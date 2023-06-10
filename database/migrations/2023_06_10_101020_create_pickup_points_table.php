@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Category;
+use App\Models\PickupPoint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,11 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create(with(new Category)->getTable(), function (Blueprint $table) {
+        Schema::create(with(new PickupPoint)->getTable(), function (Blueprint $table) {
             $table->id();
-            $table->string('category_name')->nullable();
-            $table->string('category_slug')->nullable();
-            $table->string('status')->default(Category::$statusArrays[0]);
+            $table->string('name');
+            $table->string('phone');
+            $table->string('phone_two')->nullable();
+            $table->string('address');
+            $table->string('status')->default(PickupPoint::$statusArrays[0]);
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(with(new Category)->getTable());
+        Schema::dropIfExists(with(new PickupPoint)->getTable());
     }
 };
