@@ -40,7 +40,7 @@
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label class="control-label">Category Slug<span class="text-danger">*</span></label>
+                      <label class="control-label">Email<span class="text-danger">*</span></label>
                       <input type="text" name="category_slug" placeholder="Email" required value="{{ $category->category_slug }}"
                              class="form-control @error('category_slug') is-invalid @enderror">
                       @error('category_slug')
@@ -61,7 +61,7 @@
                       <label class="control-label">Status<span class="text-danger">*</span></label>
                       <select name="status" required class="form-control @error('status') is-invalid @enderror">
                         <option value="">Choose a status</option>
-                        @foreach(\App\Models\Category::$statusArrays as $status)
+                        @foreach(\App\Models\Categories::$statusArrays as $status)
                           <option value="{{ $status }}"
                                   @if(old('status', $category->status) == $status) selected @endif>{{ ucfirst($status) }}</option>
                         @endforeach

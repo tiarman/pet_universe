@@ -11,11 +11,16 @@ class SubCategory extends Model
     protected $table = 'sub_categories';
     protected $fillable = [
         'category_id',
-        'name',
-        'slug',
+        'subcategory_name',
+        'subcategory_slug',
         'status',
 
     ];
 
     public static $statusArrays = ['active', 'inactive'];
+
+    public function category()
+    {
+        return $this->hasOne(Categories::class, 'id', 'category_id');
+    }
 }

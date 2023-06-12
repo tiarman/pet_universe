@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Categories;
+use App\Models\Product;
+use App\Models\SubCategory;
 
 class SiteController extends Controller {
 
@@ -24,4 +26,36 @@ class SiteController extends Controller {
     \session()->flush();
     return redirect()->route('login');
   }
+
+
+
+
+
+
+
+//   Start Here
+
+public function home(){
+    $data ['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();
+    $data ['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
+    $data ['product'] = Product::where('status', '=', Product::$statusArrays[0])->get();
+    // return $datas;
+    return view('site.index', $data);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

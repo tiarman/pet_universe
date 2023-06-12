@@ -1,11 +1,22 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ChildCategoryController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PickupPointController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteController;
-use App\Http\Controllers\SliderController;
+use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WareHouseController;
+use App\Models\Coupon;
+use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,74 +30,80 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-  return view('site.index');
-})->name('home');
+// Route::get('/', function () {
+//     return view('site.index');
+// })->name('home');
+
+
+
+Route::get('/', [SiteController::class, 'home'])->name('home');
+
+Route::get('/shop', function () {
+    return view('site.shop');
+})->name('shop');
+
+
+
+
+
+Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('login');
+Route::match(['get', 'post'], '/register', [AuthController::class, 'register'])->name('register');
+
+
 
 Route::get('/logout', [SiteController::class, 'logout'])->middleware('auth')->name('logout');
 Route::middleware([
-  'auth:sanctum',
-  config('jetstream.auth_session'),
-  'verified'
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
 ])->group(function () {
-  Route::get('/dashboard', [SiteController::class, 'dashboard'])->name('dashboard');
-  Route::get('/profile', [SiteController::class, 'profile'])->name('profile');
+    Route::get('/dashboard', [SiteController::class, 'dashboard'])->name('dashboard');
+    Route::get('/profile', [SiteController::class, 'profile'])->name('profile');
 
-  # Ajax
-  Route::prefix('ajax')->name('ajax.')->group(function () {
-    Route::post('/permission-by-role', [PermissionController::class, 'getPermissionByRole'])->middleware('role_or_permission:Super Admin|Manage Permission')->name('get.permission.by.role');
-    Route::post('/update/user/status', [UserController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.user.status');
-    Route::post('/update/slider/status', [SliderController::class, 'ajaxUpdateStatus'])->name('update.slider.status');
-    Route::post('/update/category/status', [CategoriesController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.category.status');
-
-
-  });
-
-
-  #Users
-  Route::prefix('user')->name('user.')->group(function () {
-    Route::get('/create', [UserController::class, 'create'])->middleware('role_or_permission:Super Admin|Create User')->name('create');
-    Route::post('/store', [UserController::class, 'store'])->middleware('role_or_permission:Super Admin|Create User|Manage User')->name('store');
-    Route::get('/manage/{id}', [UserController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage User')->name('manage');
-    Route::get('/{id}/view', [UserController::class, 'view'])->middleware('role_or_permission:Super Admin|View User')->name('view');
-    Route::delete('/destroy', [UserController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete User')->name('destroy');
-    Route::get('/list', [UserController::class, 'index'])->middleware('role_or_permission:Super Admin|List Of User')->name('list');
-  });
-
-  #Roles
-  Route::prefix('role')->name('role.')->group(function () {
-    Route::get('/create', [RoleController::class, 'create'])->middleware('role_or_permission:Super Admin|Create Role')->name('create');
-    Route::post('/store', [RoleController::class, 'store'])->middleware('role_or_permission:Super Admin|Create Role|Manage Role')->name('store');
-    Route::get('/manage/{id}', [RoleController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Role')->name('manage');
-    Route::get('/{id}/view', [RoleController::class, 'view'])->middleware('role_or_permission:Super Admin|View Role')->name('view');
-    Route::delete('/destroy', [RoleController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Role')->name('destroy');
-    Route::get('/list', [RoleController::class, 'index'])->middleware('role_or_permission:Super Admin|List Of Role')->name('list');
-  });
-
-  #Permission
-  Route::match(['get', 'post'], '/permission/manage', [PermissionController::class, 'managePermission'])->middleware('role_or_permission:Super Admin|Manage Permission')->name('permission.manage');
-
-
-
-
-      #Slider
-      Route::prefix('slider')->name('slider.')->group(function () {
-        Route::get('/create', [SliderController::class, 'create'])->middleware('role_or_permission:Super Admin|Create Slider')->name('create');
-        Route::post('/store', [SliderController::class, 'store'])->middleware('role_or_permission:Super Admin|Store Slider')->name('store');
-        Route::get('/manage/{id}', [SliderController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Slider')->name('manage');
-        Route::get('/{id}/view', [SliderController::class, 'view'])->middleware('role_or_permission:Super Admin|View Slider')->name('view');
-        Route::delete('/destroy', [SliderController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
-        Route::get('/list', [SliderController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
+    # Ajax
+    Route::prefix('ajax')->name('ajax.')->group(function () {
+        Route::post('/permission-by-role', [PermissionController::class, 'getPermissionByRole'])->middleware('role_or_permission:Super Admin|Manage Permission')->name('get.permission.by.role');
+        Route::post('/update/user/status', [UserController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.user.status');
+        Route::post('/update/category/status', [CategoriesController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.category.status');
+        Route::post('/update/subcategory/status', [SubCategoryController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.subcategory.status');
+        Route::post('/update/pickuppoint/status', [PickupPointController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.pickuppoint.status');
+        Route::post('/update/product/status', [ProductController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.product.status');
     });
 
-       #Categories
-       Route::prefix('category')->name('category.')->group(function () {
-        Route::get('/create', [CategoryController::class, 'create'])->middleware('role_or_permission:Super Admin|Create User')->name('create');
-        Route::post('/store', [CategoryController::class, 'store'])->middleware('role_or_permission:Super Admin|Create User|Manage User')->name('store');
-        Route::get('/manage/{id}', [CategoryController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage User')->name('manage');
-        Route::get('/{id}/view', [CategoryController::class, 'view'])->middleware('role_or_permission:Super Admin|View User')->name('view');
-        Route::delete('/destroy', [CategoryController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete User')->name('destroy');
-        Route::get('/list', [CategoryController::class, 'index'])->middleware('role_or_permission:Super Admin|List Of User')->name('list');
+
+    #Users
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::get('/create', [UserController::class, 'create'])->middleware('role_or_permission:Super Admin|Create User')->name('create');
+        Route::post('/store', [UserController::class, 'store'])->middleware('role_or_permission:Super Admin|Create User|Manage User')->name('store');
+        Route::get('/manage/{id}', [UserController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage User')->name('manage');
+        Route::get('/{id}/view', [UserController::class, 'view'])->middleware('role_or_permission:Super Admin|View User')->name('view');
+        Route::delete('/destroy', [UserController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete User')->name('destroy');
+        Route::get('/list', [UserController::class, 'index'])->middleware('role_or_permission:Super Admin|List Of User')->name('list');
+    });
+
+    #Roles
+    Route::prefix('role')->name('role.')->group(function () {
+        Route::get('/create', [RoleController::class, 'create'])->middleware('role_or_permission:Super Admin|Create Role')->name('create');
+        Route::post('/store', [RoleController::class, 'store'])->middleware('role_or_permission:Super Admin|Create Role|Manage Role')->name('store');
+        Route::get('/manage/{id}', [RoleController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Role')->name('manage');
+        Route::get('/{id}/view', [RoleController::class, 'view'])->middleware('role_or_permission:Super Admin|View Role')->name('view');
+        Route::delete('/destroy', [RoleController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Role')->name('destroy');
+        Route::get('/list', [RoleController::class, 'index'])->middleware('role_or_permission:Super Admin|List Of Role')->name('list');
+    });
+
+    #Permission
+    Route::match(['get', 'post'], '/permission/manage', [PermissionController::class, 'managePermission'])->middleware('role_or_permission:Super Admin|Manage Permission')->name('permission.manage');
+
+
+
+    #Categories
+    Route::prefix('category')->name('category.')->group(function () {
+        Route::get('/create', [CategoriesController::class, 'create'])->middleware('role_or_permission:Super Admin|Create User')->name('create');
+        Route::post('/store', [CategoriesController::class, 'store'])->middleware('role_or_permission:Super Admin|Create User|Manage User')->name('store');
+        Route::get('/manage/{id}', [CategoriesController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage User')->name('manage');
+        Route::get('/{id}/view', [CategoriesController::class, 'view'])->middleware('role_or_permission:Super Admin|View User')->name('view');
+        Route::delete('/destroy', [CategoriesController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete User')->name('destroy');
+        Route::get('/list', [CategoriesController::class, 'index'])->middleware('role_or_permission:Super Admin|List Of User')->name('list');
     });
 
     #SubCategory
@@ -99,6 +116,42 @@ Route::middleware([
         Route::get('/list', [SubCategoryController::class, 'index'])->middleware('role_or_permission:Super Admin|List Of User')->name('list');
     });
 
+
+
+
+
+
+
+    #Pickup Point
+    Route::prefix('pickuppoint')->name('pickuppoint.')->group(function () {
+        Route::get('/create', [PickupPointController::class, 'create'])->middleware('role_or_permission:Super Admin|Create User')->name('create');
+        Route::post('/store', [PickupPointController::class, 'store'])->middleware('role_or_permission:Super Admin|Create User|Manage User')->name('store');
+        Route::get('/manage/{id}', [PickupPointController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage User')->name('manage');
+        Route::get('/{id}/view', [PickupPointController::class, 'view'])->middleware('role_or_permission:Super Admin|View User')->name('view');
+        Route::delete('/destroy', [PickupPointController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete User')->name('destroy');
+        Route::get('/list', [PickupPointController::class, 'index'])->middleware('role_or_permission:Super Admin|List Of User')->name('list');
+    });
+
+
+        #Product
+        Route::prefix('product')->name('product.')->group(function () {
+            Route::get('/create', [ProductController::class, 'create'])->middleware('role_or_permission:Super Admin|Create Slider')->name('create');
+            Route::post('/store', [ProductController::class, 'store'])->middleware('role_or_permission:Super Admin|Store Slider')->name('store');
+            Route::get('/manage/{id}', [ProductController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Slider')->name('manage');
+            Route::get('/{id}/view', [ProductController::class, 'view'])->middleware('role_or_permission:Super Admin|View Slider')->name('view');
+            Route::delete('/destroy', [ProductController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
+            Route::get('/list', [ProductController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
+        });
+
+          #Review
+  Route::prefix('review')->name('review.')->group(function () {
+    Route::get('/create', [ReviewController::class, 'create'])->middleware('role_or_permission:Super Admin|Create Slider')->name('create');
+    Route::post('/store', [ReviewController::class, 'store'])->middleware('role_or_permission:Super Admin|Customer|Store Slider')->name('store');
+    Route::get('/manage/{id}', [ReviewController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Slider')->name('manage');
+    Route::get('/view', [ReviewController::class, 'view'])->middleware('role_or_permission:Super Admin|View Slider')->name('view');
+    Route::delete('/destroy', [ReviewController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
+    Route::get('/list', [ReviewController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
+});
 
 
 

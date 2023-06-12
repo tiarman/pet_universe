@@ -2,6 +2,8 @@
 
 @section('stylesheet')
   <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('assets/admin/plugins/select2/css/select2.min.css') }}">
+
   <link href="{{ asset('assets/admin/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
         type="text/css"/>
   <link href="{{ asset('assets/admin/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet"
@@ -39,8 +41,9 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label class="control-label">Category Name <span class="text-danger">*</span></label>
-                          <input type="text" name="category_name" placeholder="category_name" value="{{ old('category_name') }}"
-                                 class="form-control @error('category_name') is-invalid @enderror" required>
+                          <select type="text" multiple="multiple" name="category_name[]" placeholder="category_name" value="{{ old('category_name') }}"
+                                 class="form-control select2 @error('category_name') is-invalid @enderror" required>
+                          </select>
                           @error('category_name')
                           <strong class="text-danger">{{ $errors->first('category_name') }}</strong>
                           @enderror
@@ -63,7 +66,7 @@
                           <label class="control-label">Status<span class="text-danger">*</span></label>
                           <select name="status" required class="form-control @error('status') is-invalid @enderror">
                             <option value="">Choose a statue</option>
-                            @foreach(\App\Models\Category::$statusArrays as $statys)
+                            @foreach(\App\Models\Categories::$statusArrays as $statys)
                               <option value="{{ $statys }}"
                                       @if(old('status') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
                             @endforeach
@@ -96,7 +99,7 @@
 
 
             <header class="panel-heading mt-5">
-              <h2 class="panel-title">List of Category</h2>
+              <h2 class="panel-title">List of Categories</h2>
 
             </header>
             <div class="panel-body">
@@ -141,7 +144,7 @@
                     <td class="text-capitalize p-1" width="100">
                         <div class="onoffswitch">
                             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                                   @if($val->status == \App\Models\Category::$statusArrays[0])
+                                   @if($val->status == \App\Models\Categories::$statusArrays[0])
                                        checked
                                    @endif
                                    data-id="{{ $val->id }}"
@@ -223,8 +226,16 @@
   <script src="{{ asset('assets/admin/plugins/datatables/dataTables.responsive.min.js') }}"></script>
   <script src="{{ asset('assets/admin/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
 
-
+  <script src="{{ asset('assets/admin/plugins/select2/js/select2.min.js') }}"></script>
   <script>
+    $(document).ready(function () {
+      $('.select2').select2({
+        tags: true,
+      })
+    })
+  </script>
+  <script>
+
     $(document).ready(function () {
        $('#datatable-buttons').DataTable();
 
