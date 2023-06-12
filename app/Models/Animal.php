@@ -11,16 +11,15 @@ class Animal extends Model
     protected $table = 'animals';
     protected $fillable = [
         'category_id',
-        'sub_category_id',
+        'subcategory_id',
         'pickup_point_id',
         'name',
         'slug',
         'description',
-        'old_price',
+        'purchase_price',
         'selling_price',
         'discount_price',
-        'stock',
-        'qty',
+        'stock_quantity',
         'image',
         'status',
 

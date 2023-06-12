@@ -14,22 +14,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('animals', function (Blueprint $table) {
+        Schema::create(with(new Animal)->getTable(), function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('sub_category_id');
+            $table->unsignedBigInteger('subcategory_id');
             $table->unsignedBigInteger('pickup_point_id');
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->string('description')->nullable();
-            $table->string('old_price')->nullable();
+            $table->string('purchase_price')->nullable();
             $table->string('selling_price')->nullable();
             $table->string('discount_price')->nullable();
-            $table->string('stock')->nullable();            
+            $table->string('stock_quantity')->nullable();            
             $table->string('image')->nullable();
             $table->string('status')->default(Animal::$statusArrays[0]);
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('sub_category_id')->references('id')->on('sub_categories');
+            $table->foreign('subcategory_id')->references('id')->on('sub_categories');
             $table->foreign('pickup_point_id')->references('id')->on('pickup_points');
             $table->timestamps();
         });
@@ -42,6 +42,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('animals');
+        Schema::dropIfExists(with(new Animal)->getTable());
     }
 };

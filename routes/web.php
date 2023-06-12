@@ -1,10 +1,8 @@
 <?php
 
+use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\ChildCategoryController;
-use App\Http\Controllers\CouponController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PickupPointController;
 use App\Http\Controllers\ProductController;
@@ -13,10 +11,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WareHouseController;
-use App\Models\Coupon;
-use App\Models\Product;
-use App\Models\SubCategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,9 +32,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SiteController::class, 'home'])->name('home');
 
-Route::get('/shop', function () {
-    return view('site.shop');
-})->name('shop');
+// Route::get('/shop', function () {
+//     return view('site.shop');
+// })->name('shop');
 
 
 
@@ -68,6 +62,7 @@ Route::middleware([
         Route::post('/update/subcategory/status', [SubCategoryController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.subcategory.status');
         Route::post('/update/pickuppoint/status', [PickupPointController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.pickuppoint.status');
         Route::post('/update/product/status', [ProductController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.product.status');
+        Route::post('/update/animal/status', [AnimalController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.status');
     });
 
 
@@ -116,12 +111,6 @@ Route::middleware([
         Route::get('/list', [SubCategoryController::class, 'index'])->middleware('role_or_permission:Super Admin|List Of User')->name('list');
     });
 
-
-
-
-
-
-
     #Pickup Point
     Route::prefix('pickuppoint')->name('pickuppoint.')->group(function () {
         Route::get('/create', [PickupPointController::class, 'create'])->middleware('role_or_permission:Super Admin|Create User')->name('create');
@@ -132,27 +121,31 @@ Route::middleware([
         Route::get('/list', [PickupPointController::class, 'index'])->middleware('role_or_permission:Super Admin|List Of User')->name('list');
     });
 
+    #Animal
+    Route::prefix('animal')->name('animal.')->group(function () {
+        Route::get('/create', [AnimalController::class, 'create'])->middleware('role_or_permission:Super Admin|Create Animal')->name('create');
+        Route::post('/store', [AnimalController::class, 'store'])->middleware('role_or_permission:Super Admin|Store Animal')->name('store');
+        Route::get('/manage/{id}', [AnimalController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Animal')->name('manage');
+        Route::get('/{id}/view', [AnimalController::class, 'view'])->middleware('role_or_permission:Super Admin|View Animal')->name('view');
+        Route::delete('/destroy', [AnimalController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Animal')->name('destroy');
+        Route::get('/list', [AnimalController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Animal')->name('list');
+    });
 
-        #Product
-        Route::prefix('product')->name('product.')->group(function () {
-            Route::get('/create', [ProductController::class, 'create'])->middleware('role_or_permission:Super Admin|Create Slider')->name('create');
-            Route::post('/store', [ProductController::class, 'store'])->middleware('role_or_permission:Super Admin|Store Slider')->name('store');
-            Route::get('/manage/{id}', [ProductController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Slider')->name('manage');
-            Route::get('/{id}/view', [ProductController::class, 'view'])->middleware('role_or_permission:Super Admin|View Slider')->name('view');
-            Route::delete('/destroy', [ProductController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
-            Route::get('/list', [ProductController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
-        });
-
-          #Review
-  Route::prefix('review')->name('review.')->group(function () {
-    Route::get('/create', [ReviewController::class, 'create'])->middleware('role_or_permission:Super Admin|Create Slider')->name('create');
-    Route::post('/store', [ReviewController::class, 'store'])->middleware('role_or_permission:Super Admin|Customer|Store Slider')->name('store');
-    Route::get('/manage/{id}', [ReviewController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Slider')->name('manage');
-    Route::get('/view', [ReviewController::class, 'view'])->middleware('role_or_permission:Super Admin|View Slider')->name('view');
-    Route::delete('/destroy', [ReviewController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
-    Route::get('/list', [ReviewController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
-});
-
+    #Review
+    Route::prefix('review')->name('review.')->group(function () {
+        Route::get('/create', [ReviewController::class, 'create'])->middleware('role_or_permission:Super Admin|Create Slider')->name('create');
+        Route::post('/store', [ReviewController::class, 'store'])->middleware('role_or_permission:Super Admin|Customer|Store Slider')->name('store');
+        Route::get('/manage/{id}', [ReviewController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Slider')->name('manage');
+        Route::get('/view', [ReviewController::class, 'view'])->middleware('role_or_permission:Super Admin|View Slider')->name('view');
+        Route::delete('/destroy', [ReviewController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
+        Route::get('/list', [ReviewController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
+    });
 
 
+
+
+
+
+
+    
 });

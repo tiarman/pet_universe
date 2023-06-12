@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Animal;
 use App\Models\Categories;
 use App\Models\Product;
 use App\Models\SubCategory;
@@ -38,7 +39,7 @@ class SiteController extends Controller {
 public function home(){
     $data ['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();
     $data ['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
-    $data ['product'] = Product::where('status', '=', Product::$statusArrays[0])->get();
+    $data ['animals'] = Animal::where('status', '=', Animal::$statusArrays[0])->get();
     // return $datas;
     return view('site.index', $data);
 

@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <section class="panel">
                         <header class="panel-heading">
-                            <h2 class="panel-title">List of Product</h2>
+                            <h2 class="panel-title">List of Animal</h2>
                         </header>
                         <div class="panel-body">
                             @if(session()->has('status'))
@@ -29,7 +29,7 @@
 
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-xl-12 text-right mb-3">
-                                    <a href="{{ route('product.create') }}" class="brn btn-success btn-sm">New product</a>
+                                    <a href="{{ route('animal.create') }}" class="brn btn-success btn-sm">New animal</a>
                                 </div>
                             </div>
                             {{--<table class="table table-bordered table-striped mb-none" id="data-table">--}}
@@ -42,8 +42,7 @@
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th width="200">Created</th>
-                                    <th width="50">Today Deal</th>
-                                    <th width="50">Featured</th>
+    
                                     <th width="50">Status</th>
                                     <th class="hidden-phone" width="40">Option</th>
                                 </tr>
@@ -57,37 +56,11 @@
                                         <td width="200" class="p-1">{{ date('F d, Y h:i A', strtotime($val->created_at)) }}</td>
 
 
-                                        <td class="text-capitalize p-1" width="100">
-                                            <div class="onoffswitchdeal">
-                                                <input type="checkbox" name="onoffswitchdeal" class="onoffswitchdeal-checkbox"
-                                                       @if($val->today_deal == \App\Models\Product::$todayDealArrays[0])
-                                                           checked
-                                                       @endif
-                                                       data-id="{{ $val->id }}"
-                                                       id="myonoffswitchdeal{{ ($key+1) }}">
-                                                <label class="onoffswitchdeal-label" for="myonoffswitchdeal{{ ($key+1) }}">
-                                                    <span class="onoffswitchdeal-inner"></span>
-                                                    <span class="onoffswitchdeal-switch"></span>
-                                                </label>
-                                            </div>
-                                        </td>
+                                        
 
 
 
-                                        <td class="text-capitalize p-1" width="60">
-                                            <div class="onoffswitchtwo">
-                                                <input type="checkbox" name="onoffswitchtwo" class="onoffswitchtwo-checkbox"
-                                                       @if($val->featured == \App\Models\Product::$featuredArrays[0])
-                                                           checked
-                                                       @endif
-                                                       data-id="{{ $val->id }}"
-                                                       id="myonoffswitchtwo{{ ($key+1) }}">
-                                                <label class="onoffswitchtwo-label" for="myonoffswitchtwo{{ ($key+1) }}">
-                                                    <span class="onoffswitchtwo-inner"></span>
-                                                    <span class="onoffswitchtwo-switch"></span>
-                                                </label>
-                                            </div>
-                                        </td>
+                                        
 
 
 
@@ -96,7 +69,7 @@
                                         <td class="text-capitalize p-1" width="100">
                                             <div class="onoffswitch">
                                                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                                                       @if($val->status == \App\Models\Product::$statusArrays[0])
+                                                       @if($val->status == \App\Models\Animal::$statusArrays[0])
                                                            checked
                                                        @endif
                                                        data-id="{{ $val->id }}"
@@ -109,7 +82,7 @@
                                         </td>
 
                                         <td class="center hidden-phone p-1" width="100">
-                                            <a href="{{ route('product.manage', $val->id) }}" class="btn btn-sm btn-success"> <i class="fa fa-edit"></i> </a>
+                                            <a href="{{ route('animal.manage', $val->id) }}" class="btn btn-sm btn-success"> <i class="fa fa-edit"></i> </a>
                                             <span class="btn btn-sm btn-danger btn-delete delete_{{ $val->id }}" style="cursor: pointer" data-id="{{ $val->id }}"><i class="fa fa-trash"></i></span>
                                         </td>
                                     </tr>
@@ -133,11 +106,11 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-{{--                    <h4>{{__('admin.product.delete_user')}}</h4>--}}
-                    <h4>Delete product</h4>
+{{--                    <h4>{{__('admin.animal.delete_user')}}</h4>--}}
+                    <h4>Delete animal</h4>
                 </div>
                 <div class="modal-body">
-                    <strong>Are You Sure Delete product</strong>
+                    <strong>Are You Sure Delete animal</strong>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">No</button>
@@ -190,7 +163,7 @@
                     status = 'active';
                 }
                 $.ajax({
-                    url: "{{ route('ajax.update.product.status') }}",
+                    url: "{{ route('ajax.update.animal.status') }}",
                     method: "post",
                     dataType: "html",
                     data: {'id': id, 'status': status},
@@ -213,66 +186,7 @@
 
 
 
-            $(document).on('change', 'input[name="onoffswitchtwo"]', function () {
-                var featured = 'no';
-                var id = $(this).data('id')
-                var isChecked = $(this).is(":checked");
-                if (isChecked) {
-                    featured = 'yes';
-                }
-                $.ajax({
-                    url: "{{ route('ajax.update.product.featured') }}",
-                    method: "post",
-                    dataType: "html",
-                    data: {'id': id, 'featured': featured},
-                    success: function (data) {
-                        if (data === "success") {
-                               Swal.fire({
-                                icon: 'success',
-                                title: 'Success!',
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 3000
-                            });
-                        }
-                    }
-                });
-            });
-
-
-
-            $(document).on('change', 'input[name="onoffswitchdeal"]', function () {
-                var today_deal = 'no';
-                console.log(today_deal);
-                var id = $(this).data('id')
-                console.log("log2", id);
-                var isChecked = $(this).is(":checked");
-                console.log("log3", id);
-                if (isChecked) {
-                    today_deal = 'yes';
-                }
-                $.ajax({
-                    url: "{{ route('ajax.update.product.today_deal') }}",
-                    method: "post",
-                    dataType: "html",
-                    data: {'id': id, 'today_deal': today_deal},
-                    success: function (data) {
-                        if (data === "success") {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success!',
-                                {{--  text: 'Updated successfully.',  --}}
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 3000
-                            });
-
-                        }
-                    }
-                });
-            });
+            
 
 
 
@@ -281,7 +195,7 @@
                 var pid = $(this).data('id');
                 var $this = $('.delete_' + pid)
                 $.ajax({
-                    url: "{{ route('product.destroy') }}",
+                    url: "{{ route('animal.destroy') }}",
                     method: "delete",
                     dataType: "html",
                     data: {id: pid},
