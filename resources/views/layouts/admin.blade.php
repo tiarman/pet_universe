@@ -95,7 +95,7 @@
 
                         @if (\App\Helper\CustomHelper::canView('Create Role|Manage Role|Delete Role|View Role|List Of Role', 'Super Admin'))
                             <li class="has_sub">
-                                <a class="waves-effect"><i class="mdi mdi-account-multiple"></i><span> Roles <span
+                                <a class="waves-effect"><i class="mdi mdi-lock-open"></i><span> Roles <span
                                             class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="list-unstyled">
                                     @if (\App\Helper\CustomHelper::canView('Create Role', 'Super Admin'))
@@ -109,7 +109,7 @@
                         @endif
                         @if (\App\Helper\CustomHelper::canView('Manage Permission', 'Super Admin'))
                             <li><a href="{{ route('permission.manage') }}" class="waves-effect">
-                                    <i class="mdi mdi-image-album"></i>
+                                    <i class="mdi mdi-block-helper"></i>
                                     <span> Permission</span>
                                 </a></li>
                         @endif
@@ -130,7 +130,7 @@
                                 'Create Category|Manage Category|Delete Category|View Category|List Of Category',
                                 'Super Admin'))
                             <li><a href="{{ route('subcategory.list') }}" class="waves-effect">
-                                    <i class="mdi mdi-image-album"></i>
+                                    <i class="mdi mdi-certificate"></i>
                                     <span> Sub Categories</span>
                                 </a></li>
                         @endif
@@ -141,7 +141,7 @@
                                 'Create Category|Manage Category|Delete Category|View Category|List Of Category',
                                 'Super Admin'))
                             <li><a href="{{ route('pickuppoint.list') }}" class="waves-effect">
-                                    <i class="mdi mdi-image-album"></i>
+                                    <i class="mdi mdi-recycle"></i>
                                     <span>Pickup Point</span>
                                 </a></li>
                         @endif
@@ -153,7 +153,7 @@
                                 'Create Animal|Manage Animal|Delete Animal|View Animal|List Of Animal',
                                 'Super Admin'))
                             <li class="has_sub">
-                                <a class="waves-effect"><i class="mdi mdi-account-multiple"></i><span>Animal<span
+                                <a class="waves-effect"><i class="mdi mdi-cat"></i><span>Animal<span
                                             class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="list-unstyled">
                                     @if (\App\Helper\CustomHelper::canView('Create Animal', 'Super Admin'))
@@ -198,7 +198,7 @@
                             </div>
                         </div>
 
-                        <ul class="list-inline float-right mb-0">
+                        <ul class="float-right mb-0 list-inline">
                             <!-- Fullscreen -->
                             <li class="list-inline-item dropdown notification-list hidden-xs-down">
                                 <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
@@ -219,7 +219,7 @@
                                     data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                                     aria-expanded="false">
                                     <img src="{{ auth()->user()->profile_photo_url }}" alt="user"
-                                        class="h-8 w-8 rounded-full object-cover">
+                                        class="object-cover w-8 h-8 rounded-full">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                     <a class="dropdown-item" href="{{ route('profile') }}"><i
@@ -233,7 +233,7 @@
                             </li>
                         </ul>
                         <!-- Page title -->
-                        <ul class="list-inline menu-left mb-0">
+                        <ul class="mb-0 list-inline menu-left">
                             <li class="list-inline-item">
                                 <button type="button" class="button-menu-mobile open-left waves-effect">
                                     <i class="ion-navicon"></i>
@@ -253,9 +253,9 @@
                 </div> <!-- Page content Wrapper -->
             </div>
             <footer class="footer">
-                © 2022 {{ env('APP_NAME') }}
+                © 2023 {{ env('APP_NAME') }}
                 <span class="text-muted hidden-xs-down pull-right">Developed & Maintained by <a
-                        href="https://nrast.com/" target="_blank">RAST</a></span>
+                        href="" target="_blank">OURS</a></span>
             </footer>
         </div>
     </div>

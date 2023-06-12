@@ -25,9 +25,9 @@ class SubCategoryController extends Controller
     public function manage($id = null) {
         
         if ($data['subcategory'] = SubCategory::find($id)) {
-          $category = Categories::get();
+          $data['category'] = Categories::get();
           // return $data;
-          return view('admin.subcategory.manage', $data, compact('category'));
+          return view('admin.subcategory.manage', $data);
         }
         return RedirectHelper::routeWarning('subcategory.list', '<strong>Sorry!!!</strong> User not found');
       }

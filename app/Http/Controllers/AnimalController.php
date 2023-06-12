@@ -40,7 +40,7 @@ class AnimalController extends Controller
 
        
 
-            $data['categorys'] = Categories::get();
+            $data['category'] = Categories::get();
             $data['subcategory'] = SubCategory::get();
             $data['pickuppoint'] = PickupPoint::get();
             // return $datas;

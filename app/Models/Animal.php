@@ -26,4 +26,20 @@ class Animal extends Model
     ];
 
     public static $statusArrays = ['active', 'inactive'];
+
+
+    public function category()
+    {
+        return $this->hasOne(Categories::class, 'id', 'category_id');
+    }
+
+    public function subcategory()
+    {
+        return $this->hasOne(SubCategory::class, 'id', 'subcategory_id');
+    }
+
+    public function pickuppoint()
+    {
+        return $this->hasOne(PickupPoint::class, 'id', 'pickup_point_id');
+    }
 }
