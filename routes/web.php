@@ -146,6 +146,7 @@ Route::middleware([
 
     Route::prefix('food')->name('food.')->group(function(){
         Route::match(['get', 'post'], '/crete-store', [FoodController::class, 'createOrStore'])->name('create_store');
+        Route::get('/list', [FoodController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
     });
 
 
