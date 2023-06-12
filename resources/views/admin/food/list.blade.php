@@ -148,7 +148,7 @@
                     status = 'active';
                 }
                 $.ajax({
-                    url: "{{ route('ajax.update.animal.status') }}",
+                    url: "{{ route('ajax.update.food.status') }}",
                     method: "post",
                     dataType: "html",
                     data: {
@@ -173,7 +173,7 @@
                 var pid = $(this).data('id');
                 var $this = $('.delete_' + pid)
                 $.ajax({
-                    url: "{{ route('animal.destroy') }}",
+                    url: "{{ route('food.destroy') }}",
                     method: "delete",
                     dataType: "html",
                     data: {

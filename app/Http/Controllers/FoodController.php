@@ -71,7 +71,7 @@ class FoodController extends Controller
             $food->status = $request->status;
 
 
-            $oldImage = $food->image;
+            $oldImage = $food->img;
 
             if ($request->hasFile('img')) {
                 $logo = CustomHelper::storeImage($request->file('img'), '/food/');
@@ -93,7 +93,34 @@ class FoodController extends Controller
             return $e;
             return RedirectHelper::backWithInputFromException();
         }
+    }
 
-        return $request;
+    public function destroy(Request $request)
+    {
+        $id = $request->post('id');
+        try {
+            $food = Food::find($id);
+            $oldImage = $food->img;
+            if ($food->delete()) {
+                if ($oldImage !== null) {
+                    CustomHelper::deleteFile($oldImage);
+                }
+                return 'success';
+            }
+        } catch (\Exception $e) {
+        }
+    }
+
+    public function ajaxUpdateStatus(Request $request)
+    {
+        if ($request->isMethod("POST")) {
+            $id = $request->post('id');
+            $postStatus = $request->post('status');
+            $status = strtolower($postStatus);
+            $food = Food::find($id);
+            if ($food->update(['status' => $status])) {
+                return "success";
+            }
+        }
     }
 }

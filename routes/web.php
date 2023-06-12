@@ -66,6 +66,7 @@ Route::middleware([
         Route::post('/update/pickuppoint/status', [PickupPointController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.pickuppoint.status');
         Route::post('/update/product/status', [ProductController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.product.status');
         Route::post('/update/animal/status', [AnimalController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.status');
+        Route::post('/update/food/status', [FoodController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.food.status');
     });
 
 
@@ -147,6 +148,8 @@ Route::middleware([
     Route::prefix('food')->name('food.')->group(function(){
         Route::match(['get', 'post'], '/crete-store', [FoodController::class, 'createOrStore'])->name('create_store');
         Route::get('/list', [FoodController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
+        Route::get('/manage/{id}', [FoodController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Slider')->name('manage');
+        Route::delete('/destroy', [FoodController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
     });
 
 
