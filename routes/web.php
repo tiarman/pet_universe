@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\PermissionController;
@@ -37,7 +38,8 @@ Route::get('/', [SiteController::class, 'home'])->name('home');
 // })->name('shop');
 
 
-
+// Route::get('api/fetch-doctors/{id}', [ApiController::class, 'doctors']);
+Route::get('api/fetch-subcategory/{id}', [ApiController::class, 'subcategory']);
 
 
 Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('login');
@@ -144,7 +146,7 @@ Route::middleware([
 
 
 
-
+ 
 
 
     

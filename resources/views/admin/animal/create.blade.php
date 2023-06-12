@@ -19,7 +19,7 @@
                         </header>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-12 col-md-12 col-xl-12 text-right mb-3">
+                                <div class="mb-3 text-right col-lg-12 col-md-12 col-xl-12">
                                     <a href="{{route('animal.list')}}" class="brn btn-success btn-sm">List of animal</a>
                                 </div>
                             </div>
@@ -116,11 +116,6 @@
                                 </div>
 
 
-                                
-
-
-
-
 
                                     <div class="row">
                                     <div class="col-sm-12">
@@ -153,11 +148,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-                                
-
-
 
                                 <div class="row">
                                     <div class="col-sm-4">
@@ -194,7 +184,7 @@
 
 
                                 
-                                    <div class="col-sm-12 text-right">
+                                    <div class="text-right col-sm-12">
                                         <button class="btn btn-danger btn-sm" type="submit">Submit</button>
                                     </div>
                                 </div>
@@ -221,6 +211,26 @@
         tags: true,
       })
     })
+  </script>
+
+  <script>
+    $('select[name="category_id"]').change(function () {
+        const $this = $('select[name="subcategory_id"]')
+        var idCategory = this.value;
+        $this.html('');
+        $.ajax({
+          url: "{{url('api/fetch-subcategory')}}/" + idCategory,
+          type: "GET",
+          dataType: 'json',
+          success: function (result) {
+            $this.html('<option value="">Choose a district</option>');
+            $.each(result.subcategories, function (key, value) {
+              $this.append('<option value="' + value
+                .id + '">' + value.subcategory_name + '</option>');
+            });
+          }
+        });
+      });
   </script>
 
 @endsection
