@@ -6,6 +6,8 @@
 @endsection
 
 @section('content')
+    
+@section('content')
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -57,9 +59,9 @@
                                             <label class="control-label">Category<span class="text-danger">*</span></label>
                                             <select name="category_id" id="category_id"  class="form-control @error('category_id') is-invalid @enderror">
                                                 <option value="">Choose a category Status</option>
-                                                @foreach($categories as $e)
+                                                {{-- @foreach($categories as $e)
                                                     <option value="{{ $e->id }}" @if(old('category_id') == $e->category_name) selected @endif>{{ ucfirst($e->category_name) }}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                             @error('category_id')
                                             <strong class="text-danger">{{ $errors->first('category_id') }}</strong>
@@ -71,9 +73,9 @@
                                             <label class="control-label">Sub Category<span class="text-danger">*</span></label>
                                             <select name="subcategory_id" id="subcategory_id"  class="form-control @error('subcategory_id') is-invalid @enderror">
                                                 <option value="">Choose a category Status</option>
-                                                @foreach($subcategory as $e)
+                                                {{-- @foreach($subcategory as $e)
                                                     <option value="{{ $e->id }}" @if(old('subcategory_id') == $e->subcategory_name) selected @endif>{{ ucfirst($e->subcategory_name) }}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                             @error('subcategory_id')
                                             <strong class="text-danger">{{ $errors->first('subcategory_id') }}</strong>
@@ -91,9 +93,9 @@
                                             <label class="control-label">Pickup Point<span class="text-danger">*</span></label>
                                             <select name="pickup_point_id" id="pickup_point_id"  class="form-control @error('pickup_point_id') is-invalid @enderror">
                                                 <option value="">Choose a Pickup Point</option>
-                                                @foreach($pickup_point as $e)
+                                                {{-- @foreach($pickup_point as $e)
                                                     <option value="{{ $e->id }}" @if(old('pickup_point_id') == $e->pickup_point_name) selected @endif>{{ ucfirst($e->pickup_point_name) }}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                             @error('pickup_point_id')
                                             <strong class="text-danger">{{ $errors->first('pickup_point_id') }}</strong>
@@ -134,7 +136,7 @@
                                             <label class="control-label">Status<span class="text-danger">*</span></label>
                                             <select name="status"  class="form-control @error('status') is-invalid @enderror">
                                                 <option value="">Choose a status</option>
-                                                @foreach(\App\Models\Product::$statusArrays as $statys)
+                                                @foreach(\App\Models\Food::$statusArray as $statys)
                                                     <option value="{{ $statys }}"
                                                             @if(old('status') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
                                                 @endforeach
@@ -193,37 +195,5 @@
         </div>
     </div>
 @endsection
-
-
-@section('script')
-
-  <script src="{{ asset('assets/admin/plugins/select2/js/select2.min.js') }}"></script>
-  <script>
-    $(document).ready(function () {
-      $('.select2').select2({
-        tags: true,
-      })
-    })
-  </script>
-
-  <script>
-    $('select[name="category_id"]').change(function () {
-        const $this = $('select[name="subcategory_id"]')
-        var idCategory = this.value;
-        $this.html('');
-        $.ajax({
-          url: "{{url('api/fetch-subcategory')}}/" + idCategory,
-          type: "GET",
-          dataType: 'json',
-          success: function (result) {
-            $this.html('<option value="">Choose a district</option>');
-            $.each(result.subcategories, function (key, value) {
-              $this.append('<option value="' + value
-                .id + '">' + value.subcategory_name + '</option>');
-            });
-          }
-        });
-      });
-  </script>
-
+    
 @endsection
