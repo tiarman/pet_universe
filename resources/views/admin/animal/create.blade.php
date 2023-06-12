@@ -33,7 +33,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Name</label>
-                                            <input type="text" name="name" placeholder="Product name" value="{{ old('name') }}"
+                                            <input type="text" name="name" placeholder="Enter name" value="{{ old('name') }}"
                                                    class="form-control @error('name') is-invalid @enderror">
                                             @error('name')
                                             <strong class="text-danger">{{ $errors->first('name') }}</strong>
@@ -43,7 +43,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Stock Quantity</label>
-                                            <input type="text" name="stock_quantity" placeholder="Slider stock_quantity" value="{{ old('stock_quantity') }}"
+                                            <input type="text" name="stock_quantity" placeholder="Enter stock quantity" value="{{ old('stock_quantity') }}"
                                                    class="form-control @error('stock_quantity') is-invalid @enderror">
                                             @error('stock_quantity')
                                             <strong class="text-danger">{{ $errors->first('stock_quantity') }}</strong>
@@ -87,6 +87,42 @@
                                 </div>
 
 
+                                
+
+
+
+                                    
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Thumbnail <label class="text-danger">*</label></label>
+                                            <input type="file" name="image"  placeholder="Slider image" value="{{ old('image') }}"
+                                                   class="form-control @error('image') is-invalid @enderror">
+                                            @error('image')
+                                            <strong class="text-danger">{{ $errors->first('image') }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="mt-2 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Status<span class="text-danger">*</span></label>
+                                            <select name="status"  class="form-control @error('status') is-invalid @enderror">
+                                                <option value="">Choose a status</option>
+                                                @foreach(\App\Models\Product::$statusArrays as $statys)
+                                                    <option value="{{ $statys }}"
+                                                            @if(old('status') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('status')
+                                            <strong class="text-danger">{{ $errors->first('status') }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                   
                                     <div class="col-sm-6">
@@ -105,53 +141,6 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="control-label">Thumbnail <label class="text-danger">*</label></label>
-                                            <input type="file" name="image"  placeholder="Slider image" value="{{ old('image') }}"
-                                                   class="form-control @error('image') is-invalid @enderror">
-                                            @error('image')
-                                            <strong class="text-danger">{{ $errors->first('image') }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                    <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label class="control-label">Product Details</label>
-                                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="5">{{ old('description') }}</textarea>
-                                            @error('description')
-                                            <strong class="text-danger">{{ $errors->first('description') }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Status<span class="text-danger">*</span></label>
-                                            <select name="status"  class="form-control @error('status') is-invalid @enderror">
-                                                <option value="">Choose a status</option>
-                                                @foreach(\App\Models\Product::$statusArrays as $statys)
-                                                    <option value="{{ $statys }}"
-                                                            @if(old('status') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('status')
-                                            <strong class="text-danger">{{ $errors->first('status') }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
                                             <label class="control-label">Purchase Price</label>
                                             <input type="text" name="purchase_price" placeholder="Enter purchase price" value="{{ old('purchase_price') }}"
                                                    class="form-control @error('purchase_price') is-invalid @enderror">
@@ -160,7 +149,17 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    
+
+
+
+
+                                    
+                                </div>
+
+                                <div class="row">
+                                    
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Selling Price</label>
                                             <input type="text" name="selling_price" placeholder="Enter selling price" value="{{ old('selling_price') }}"
@@ -170,13 +169,27 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Discount Price</label>
                                             <input type="text" name="discount_price" placeholder="Enter discount price" value="{{ old('discount_price') }}"
                                                    class="form-control @error('discount_price') is-invalid @enderror">
                                             @error('discount_price')
                                             <strong class="text-danger">{{ $errors->first('discount_price') }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Product Details</label>
+                                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="5">{{ old('description') }}</textarea>
+                                            @error('description')
+                                            <strong class="text-danger">{{ $errors->first('description') }}</strong>
                                             @enderror
                                         </div>
                                     </div>
