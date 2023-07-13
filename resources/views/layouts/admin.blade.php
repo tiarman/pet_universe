@@ -114,6 +114,8 @@
                                 </a></li>
                         @endif
 
+
+
                         @if (
                             \App\Helper\CustomHelper::canView(
                                 'Create Category|Manage Category|Delete Category|View Category|List Of Category',
@@ -132,6 +134,16 @@
                             <li><a href="{{ route('subcategory.list') }}" class="waves-effect">
                                     <i class="mdi mdi-certificate"></i>
                                     <span> Sub Categories</span>
+                                </a></li>
+                        @endif
+
+                        @if (
+                            \App\Helper\CustomHelper::canView(
+                                'Create Category|Manage Category|Delete Category|View Category|List Of Category',
+                                'Super Admin'))
+                            <li><a href="{{ route('slider.list') }}" class="waves-effect">
+                                    <i class="mdi mdi-image-album"></i>
+                                    <span> Slider</span>
                                 </a></li>
                         @endif
 
