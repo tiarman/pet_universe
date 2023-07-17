@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('discount_price')->nullable();
             $table->string('stock_quantity')->nullable();            
             $table->string('image')->nullable();
+            $table->string('featured')->default(Animal::$featuredArrays[0]);
+            $table->string('today_deal')->default(Animal::$todayDealArrays[0]);
             $table->string('status')->default(Animal::$statusArrays[0]);
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('subcategory_id')->references('id')->on('sub_categories');

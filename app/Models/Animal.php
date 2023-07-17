@@ -26,6 +26,8 @@ class Animal extends Model
     ];
 
     public static $statusArrays = ['active', 'inactive'];
+    public static $featuredArrays = ['yes', 'no'];
+    public static $todayDealArrays = ['yes', 'no'];
 
 
     public function category()

@@ -92,6 +92,47 @@
                                 
                                 
                             </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Featured<span
+                                                class="text-danger">*</span></label>
+                                        <select name="featured" required
+                                                class="form-control @error('featured') is-invalid @enderror">
+                                            <option value="">Choose a featured</option>
+                                            @foreach (\App\Models\Animal::$featuredArrays as $statys)
+                                            <option value="{{ $statys }}"
+                                                    @if (old(
+                                            'featured', $animal->featured) == $statys) selected @endif>
+                                            {{ ucfirst($statys) }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('featured')
+                                        <strong class="text-danger">{{ $errors->first('featured') }}</strong>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Todays Deal<span
+                                                class="text-danger">*</span></label>
+                                        <select name="today_deal" required
+                                                class="form-control @error('today_deal') is-invalid @enderror">
+                                            <option value="">Choose a today_deal</option>
+                                            @foreach (\App\Models\Animal::$todayDealArrays as $statys)
+                                            <option value="{{ $statys }}"
+                                                    @if (old(
+                                            'today_deal', $animal->today_deal) == $statys) selected @endif>
+                                            {{ ucfirst($statys) }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('today_deal')
+                                        <strong class="text-danger">{{ $errors->first('today_deal') }}</strong>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 

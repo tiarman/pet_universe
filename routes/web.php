@@ -34,6 +34,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SiteController::class, 'home'])->name('home');
 
+
+// All Details Sites
+Route::get('/animal_details/{name}', [SiteController::class, 'animal_details'])->name('animal_details');
+
+
 // Route::get('/shop', function () {
 //     return view('site.shop');
 // })->name('shop');
@@ -67,6 +72,8 @@ Route::middleware([
         Route::post('/update/product/status', [ProductController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.product.status');
         Route::post('/update/slider/status', [ProductController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.slider.status');
         Route::post('/update/animal/status', [AnimalController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.status');
+        Route::post('/update/animal/featured', [AnimalController::class, 'ajaxUpdateFeatured'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.featured');
+        Route::post('/update/animal/today_deal', [AnimalController::class, 'ajaxUpdatedeal'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.today_deal');
     });
 
 

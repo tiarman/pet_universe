@@ -66,6 +66,8 @@ class AnimalController extends Controller
             'stock_quantity' => 'nullable|string',
             'description' => 'nullable|string',
             'images' => 'nullable|string',
+            'featured' => ['required', Rule::in(\App\Models\Animal::$featuredArrays)],
+            'today_deal' => 'nullable|string',
             'status' => ['required', Rule::in(\App\Models\Animal::$statusArrays)],
             // 'status' = ['required|string', Rule::in(\App\Models\Animal::$statusArrays)],
         ];
@@ -90,6 +92,8 @@ class AnimalController extends Controller
             $animal->discount_price = $request->discount_price;
             $animal->stock_quantity = $request->stock_quantity;
             $animal->description = $request->description;
+            $animal->featured = $request->featured;
+            $animal->today_deal = $request->today_deal;
             $animal->status = $request->status;
 
 
@@ -131,6 +135,50 @@ class AnimalController extends Controller
         } catch (\Exception $e) {
         }
     }
+
+
+
+    
+
+    /**
+     * @param Request $request
+     * @return string|void
+     */
+    public function ajaxUpdateFeatured(Request $request)
+    {
+        if ($request->isMethod("POST")) {
+            $id = $request->post('id');
+            $postStatus = $request->post('featured');
+            $featured = strtolower($postStatus);
+            $user = Animal::find($id);
+            if ($user->update(['featured' => $featured])) {
+                return "success";
+            }
+        }
+    }
+
+
+     /**
+     * @param Request $request
+     * @return string|void
+     */
+    public function ajaxUpdatedeal(Request $request)
+    {
+        if ($request->isMethod("POST")) {
+            $id = $request->post('id');
+            $postStatus = $request->post('today_deal');
+            $today_deal = strtolower($postStatus);
+            $user = Animal::find($id);
+            if ($user->update(['today_deal' => $today_deal])) {
+                return "success";
+            }
+        }
+    }
+
+
+
+
+
 
 
     /**

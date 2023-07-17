@@ -87,6 +87,40 @@
                                 </div>
 
 
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Featured Status<span class="text-danger">*</span></label>
+                                            <select name="featured"  class="form-control @error('featured') is-invalid @enderror">
+                                                <option value="">Choose a featured</option>
+                                                @foreach(\App\Models\Animal::$featuredArrays as $statys)
+                                                    <option value="{{ $statys }}"
+                                                            @if(old('featured') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('featured')
+                                            <strong class="text-danger">{{ $errors->first('featured') }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Today Deal<span class="text-danger">*</span></label>
+                                            <select name="today_deal"  class="form-control @error('today_deal') is-invalid @enderror">
+                                                <option value="">Choose a today_deal</option>
+                                                @foreach(\App\Models\Animal::$todayDealArrays as $statys)
+                                                    <option value="{{ $statys }}"
+                                                            @if(old('today_deal') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('today_deal')
+                                            <strong class="text-danger">{{ $errors->first('today_deal') }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 
 
 
@@ -111,7 +145,7 @@
                                             <label class="control-label">Status<span class="text-danger">*</span></label>
                                             <select name="status"  class="form-control @error('status') is-invalid @enderror">
                                                 <option value="">Choose a status</option>
-                                                @foreach(\App\Models\Product::$statusArrays as $statys)
+                                                @foreach(\App\Models\Animal::$statusArrays as $statys)
                                                     <option value="{{ $statys }}"
                                                             @if(old('status') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
                                                 @endforeach
@@ -186,7 +220,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label class="control-label">Product Details</label>
+                                            <label class="control-label">Animal Details</label>
                                             <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="5">{{ old('description') }}</textarea>
                                             @error('description')
                                             <strong class="text-danger">{{ $errors->first('description') }}</strong>
