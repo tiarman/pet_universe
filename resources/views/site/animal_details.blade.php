@@ -41,27 +41,12 @@
                             <a class="swiper-slide w-100" href="{{asset($animal->image)}}">
                                 <img class="w-100" src="{{asset($animal->image)}}" alt="Product">
                             </a>
-                            <a class="swiper-slide w-100" href="{{asset('assets/site/images/products/large-product/2.png')}}">
-                                <img class="w-100" src="{{asset('assets/site/images/products/large-product/2.png')}}" alt="Product">
+                            @foreach ($animal_files as $val)
+                            <a class="swiper-slide w-100" href="{{asset($val->file)}}">
+                                <img class="w-100" src="{{asset($val->file)}}" alt="Product">
                             </a>
-                            <a class="swiper-slide w-100" href="{{asset('assets/site/images/products/large-product/3.png')}}">
-                                <img class="w-100" src="{{asset('assets/site/images/products/large-product/3.png')}}" alt="Product">
-                            </a>
-                            <a class="swiper-slide w-100" href="{{asset('assets/site/images/products/large-product/4.png')}}">
-                                <img class="w-100" src="{{asset('assets/site/images/products/large-product/4.png')}}" alt="Product">
-                            </a>
-                            <a class="swiper-slide w-100" href="{{asset('assets/site/images/products/large-product/5.png')}}">
-                                <img class="w-100" src="{{asset('assets/site/images/products/large-product/5.png')}}" alt="Product">
-                            </a>
-                            <a class="swiper-slide w-100" href="{{asset('assets/site/images/products/large-product/6.png')}}">
-                                <img class="w-100" src="{{asset('assets/site/images/products/large-product/6.png')}}" alt="Product">
-                            </a>
-                            <a class="swiper-slide w-100" href="{{asset('assets/site/images/products/large-product/7.png')}}">
-                                <img class="w-100" src="{{asset('assets/site/images/products/large-product/7.png')}}" alt="Product">
-                            </a>
-                            <a class="swiper-slide w-100" href="{{asset('assets/site/images/products/large-product/8.png')}}">
-                                <img class="w-100" src="{{asset('assets/site/images/products/large-product/8.png')}}" alt="Product">
-                            </a>
+                            @endforeach
+                            
                         </div>
                     </div>
                     <!-- Single Product Image End -->
@@ -70,29 +55,15 @@
                     <div class="single-product-thumb swiper-container product-gallery-thumbs">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="{{asset('assets/site/images/products/medium-plus-product/1.png')}}" alt="Product">
+                                <img src="{{asset($animal->image)}}" alt="Product">
                             </div>
+                            @foreach ($animal_files as $val)
                             <div class="swiper-slide">
-                                <img src="{{asset('assets/site/images/products/medium-plus-product/2.png')}}" alt="Product">
+                                <img src="{{asset($val->file)}}" alt="Product">
                             </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('assets/site/images/products/medium-plus-product/3.png')}}" alt="Product">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('assets/site/images/products/medium-plus-product/4.png')}}" alt="Product">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('assets/site/images/products/medium-plus-product/5.png')}}" alt="Product">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('assets/site/images/products/medium-plus-product/6.png')}}" alt="Product">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('assets/site/images/products/medium-plus-product/7.png')}}" alt="Product">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('assets/site/images/products/medium-plus-product/8.png')}}" alt="Product">
-                            </div>
+                            @endforeach
+                            
+                            
                         </div>
 
                         <!-- Next Previous Button Start -->

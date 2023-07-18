@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\RedirectHelper;
 use App\Models\Animal;
+use App\Models\AnimalFile;
 use App\Models\Categories;
 use App\Models\Product;
 use App\Models\SubCategory;
@@ -54,9 +55,11 @@ public function animal_details($name = null, $id=NULL)
 
     if ($animal = Animal::where('name', $name)->where('status', Animal::$statusArrays[0])->first()){
       $related_animal = Animal::where('subcategory_id', $animal->subcategory_id)->take(10)->get();
+      $animal_files = AnimalFile::where('animal_id', $animal->id)->get();
+      // return $product_file;
 
        
-        return view('site.animal_details', compact('animal', 'related_animal'));
+        return view('site.animal_details', compact('animal', 'related_animal', 'animal_files'));
 
     }
     return RedirectHelper::backWithWarning('<strong>Sorry!!! </strong> Animal not found.');

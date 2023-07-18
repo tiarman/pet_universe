@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Helper\CustomHelper;
 use App\Helper\RedirectHelper;
 use App\Models\Animal;
+use App\Models\AnimalFile;
 use App\Models\Categories;
 use App\Models\PickupPoint;
+use App\Models\ProductFile;
 use App\Models\SubCategory;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class AnimalController extends Controller
@@ -109,6 +112,21 @@ class AnimalController extends Controller
                 if ($oldImage !== null && isset($logo)) {
                     CustomHelper::deleteFile($oldImage);
                 }
+                if ($request->hasFile('image_upload')) {
+                    foreach ($request->file('image_upload') as $k => $file) {
+                      $file = CustomHelper::storeImage($file, '/Product/' . $animal->id . '/');
+                      if ($file) {
+                        $fileUpload = new AnimalFile();
+                        $fileUpload->description = $request->image_filename[$k];
+                        $fileUpload->type = $request->image_type[$k];
+                        $fileUpload->size = $request->image_size[$k];
+                        $fileUpload->file = $file;
+                        $fileUpload->animal_id = $animal->id;
+                        $fileUpload->save();
+                      }
+                    }
+                  }
+                  DB::commit();
 
                 return RedirectHelper::routeSuccessWithParams('animal.list', $message);
             }
