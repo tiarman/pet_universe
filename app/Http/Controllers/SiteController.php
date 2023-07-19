@@ -66,6 +66,17 @@ public function animal_details($name = null, $id=NULL)
 }
 
 
+public function quickview($id=NULL){
+  $animal = Animal::where('id', $id)->first();
+  // $ids2 = $product->color;
+  //     $selectedColors = explode(',', $ids2 );
+  $animal_files = AnimalFile::where('animal_id', $animal->id)->get();
+  // return response()->json($product);
+  // return $animal_files;
+  return view('site.quickview', compact('animal', 'animal_files'));
+}
+
+
 
 
 

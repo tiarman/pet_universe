@@ -426,7 +426,7 @@
     </footer>
     <!-- Footer Section End -->
 
-    <!-- Modal Start  -->
+    {{--  <!-- Modal Start  -->
     <div class="modalquickview modal fade" id="quick-view" tabindex="-1" aria-labelledby="quick-view" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -568,7 +568,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal End  -->
+    <!-- Modal End  -->  --}}
 
     <!-- Scroll Top Start -->
     <a href="#" class="scroll-top show" id="scroll-top">

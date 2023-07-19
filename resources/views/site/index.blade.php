@@ -169,7 +169,7 @@
                                         <span class="new">New</span>
                                         </span>
                                         <div class="action-wrapper">
-                                            <a href="#/" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
+                                            <a href="#/" id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
                                             <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="ti-heart"></i></a>
                                             <a href="cart.html" class="action cart" title="Cart"><i class="ti-shopping-cart"></i></a>
                                         </div>
@@ -674,7 +674,38 @@
 
 
 
+<!-- Modal Start  -->
+<div class="modalquickview modal fade" id="quick-view" tabindex="-1" aria-labelledby="quick-view" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="quickview_body">
+            
+
+            
+        </div>
+    </div>
+</div>
+<!-- Modal End  -->
+
+
+
+
+
 @endsection
 
 @section('script')
+  <script type="text/javascript">
+        //ajax request send for collect childcategory
+        $(document).on('click', '.quickview', function() {
+            console.log('clicked');
+            var id = $(this).attr("id");
+            {{--  alert(id);  --}}
+            $.ajax({
+                url: "{{ url('/quickview/') }}/" + id,
+                type: 'get',
+                success: function(data) {
+                    $("#quickview_body").html(data);
+                }
+            });
+        });
+    </script>
 @endsection

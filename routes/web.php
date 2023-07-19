@@ -37,6 +37,8 @@ Route::get('/', [SiteController::class, 'home'])->name('home');
 
 // All Details Sites
 Route::get('/animal_details/{name}', [SiteController::class, 'animal_details'])->name('animal_details');
+Route::get('/quickview/{id}', [SiteController::class, 'quickview']);
+
 
 
 // Route::get('/shop', function () {
