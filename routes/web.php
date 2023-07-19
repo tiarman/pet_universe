@@ -40,6 +40,11 @@ Route::get('/animal_details/{name}', [SiteController::class, 'animal_details'])-
 Route::get('/quickview/{id}', [SiteController::class, 'quickview']);
 
 
+Route::get('/cart_page', function () {
+    return view('site.cart_page');
+})->name('cart_page');
+
+
 
 // Route::get('/shop', function () {
 //     return view('site.shop');
