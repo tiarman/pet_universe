@@ -163,7 +163,7 @@
                                     <!-- Thumb Start  -->
                                     <div class="thumb">
                                         <a href="single-product.html" class="image">
-                                            <img class="fit-image" src="{{asset($val->image)}}" alt="Product" />
+                                            <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
                                         <span class="new">New</span>

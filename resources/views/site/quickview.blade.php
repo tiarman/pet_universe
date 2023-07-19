@@ -14,7 +14,7 @@
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                                 <a class="swiper-slide" href="#">
-                                    <img class="w-100" src="{{asset($animal->image)}}" alt="Product">
+                                    <img class="w-100" style="height: 470px; width: 470px;" src="{{asset($animal->image)}}" alt="Product">
                                 </a>
                                 @foreach ($animal_files as $val)
 

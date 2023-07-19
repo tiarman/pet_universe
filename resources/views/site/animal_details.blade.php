@@ -39,7 +39,7 @@
                     <div class="single-product-img swiper-container product-gallery-top">
                         <div class="swiper-wrapper popup-gallery">
                             <a class="swiper-slide w-100" href="{{asset($animal->image)}}">
-                                <img class="w-100" src="{{asset($animal->image)}}" alt="Product">
+                                <img class="w-100" style="height: 470px; width: 470px;" src="{{asset($animal->image)}}" alt="Product">
                             </a>
                             @foreach ($animal_files as $val)
                             <a class="swiper-slide w-100" href="{{asset($val->file)}}">
@@ -446,7 +446,7 @@
                                         <!-- Thumb Start  -->
                                         <div class="thumb">
                                             <a href="single-product.html" class="image">
-                                                <img class="fit-image" src="{{asset($val->image)}}" alt="Product" />
+                                                <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                             </a>
                                             <div class="action-wrapper">
                                                 <a href="#/" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
@@ -458,16 +458,23 @@
 
                                         <!-- Content Start  -->
                                         <div class="content">
-                                            <h5 class="title"><a href="single-product.html">Basic Dog Trainning</a></h5>
-                                            <span class="rating">
+                                            <h5 class="title"><a href="{{ route('animal_details', $animal->name) }}">{{$animal->name}}</a></h5>
+                                            {{--  <span class="rating">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star-half-o"></i>
                                                     <i class="fa fa-star-o"></i>
-                                                </span>
+                                                </span>  --}}
                                             <span class="price">
-                                                    <span class="new">$55.00</span>
+                                                @if ($animal->discount_price == null)
+                                                    <span class="new">${{ $animal->selling_price }}</span>
+
+                                                    @else
+                                                    <span class="new">${{ $animal->discount_price }}</span>
+                                                    <span class="old">${{$animal->selling_price}}</span>
+
+                                                    @endif
                                             </span>
                                         </div>
                                         <!-- Content End  -->
