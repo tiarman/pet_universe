@@ -13,6 +13,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -190,7 +191,11 @@ Route::middleware([
     Route::delete('/remove/{id}',[CartController::class, 'removeCart'])->name('remove');
 
 });
-
-
     
+});
+
+// site
+Route::controller(StripePaymentController::class)->group(function(){
+    Route::get('stripe', 'stripe');
+    Route::post('stripe', 'stripePost')->name('stripe.post');
 });
