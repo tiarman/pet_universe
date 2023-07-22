@@ -19,13 +19,14 @@ class SubCategory extends Model
 
     public static $statusArrays = ['active', 'inactive'];
 
-    // public function category()
-    // {
-    //     return $this->hasOne(Categories::class, 'id', 'category_id');
-    // }
-
-
-    public function category_id(){
-        return $this->hasMany(Categories::class,'category_id','id');
+    public function category()
+    {
+        return $this->hasOne(Categories::class, 'id', 'category_id');
     }
+
+
+
+    // public function category_id(){
+    //     return $this->hasMany(Categories::class,'category_id','id');
+    // }
 }

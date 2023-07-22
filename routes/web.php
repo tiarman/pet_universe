@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\PermissionController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +35,18 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [SiteController::class, 'home'])->name('home');
+
+
+// All Details Sites
+Route::get('/animal_details/{name}', [SiteController::class, 'animal_details'])->name('animal_details');
+Route::get('/quickview/{id}', [SiteController::class, 'quickview']);
+
+
+Route::get('/cart_page', function () {
+    return view('site.cart_page');
+})->name('cart_page');
+
+
 
 // Route::get('/shop', function () {
 //     return view('site.shop');
@@ -65,8 +79,11 @@ Route::middleware([
         Route::post('/update/subcategory/status', [SubCategoryController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.subcategory.status');
         Route::post('/update/pickuppoint/status', [PickupPointController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.pickuppoint.status');
         Route::post('/update/product/status', [ProductController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.product.status');
+        Route::post('/update/slider/status', [ProductController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.slider.status');
         Route::post('/update/animal/status', [AnimalController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.status');
         Route::post('/update/food/status', [FoodController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.food.status');
+        Route::post('/update/animal/featured', [AnimalController::class, 'ajaxUpdateFeatured'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.featured');
+        Route::post('/update/animal/today_deal', [AnimalController::class, 'ajaxUpdatedeal'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.today_deal');
     });
 
 
@@ -151,10 +168,28 @@ Route::middleware([
         Route::get('/manage/{id}', [FoodController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Slider')->name('manage');
         Route::delete('/destroy', [FoodController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
     });
+        #Slider
+        Route::prefix('slider')->name('slider.')->group(function () {
+            Route::get('/create', [SliderController::class, 'create'])->middleware('role_or_permission:Super Admin|Create Slider')->name('create');
+            Route::post('/store', [SliderController::class, 'store'])->middleware('role_or_permission:Super Admin|Customer|Store Slider')->name('store');
+            Route::get('/manage/{id}', [SliderController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Slider')->name('manage');
+            Route::get('/view', [SliderController::class, 'view'])->middleware('role_or_permission:Super Admin|View Slider')->name('view');
+            Route::delete('/destroy', [SliderController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
+            Route::get('/list', [SliderController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
+        });
 
 
 
- 
+
+  #Cart
+  Route::prefix('shopping')->name('shopping.')->group(function () {
+    Route::get('/cartlist', [CartController::class, 'cartList'])->name('cartlist');
+    Route::post('/carts', [CartController::class, 'store'])->name('carts.store');
+    Route::post('/update-cart', [CartController::class, 'updateCart'])->name('carts.update');
+    // Route::delete('/remove', [CartController::class, 'removeFromCart'])->name('remove');
+    Route::delete('/remove/{id}',[CartController::class, 'removeCart'])->name('remove');
+
+});
 
 
     

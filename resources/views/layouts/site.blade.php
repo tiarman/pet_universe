@@ -174,9 +174,15 @@
                                             <li><a href="blog-details-sidebar.html">Blog Details Sidebar</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                   
+                                    @guest()
                                     <li><a href="{{route('login')}}">Login</a></li>
+
+                                    @else
+                                    <li><a href="{{route('dashboard')}}">Dashboard</a></li>
+                                    <li><a href="{{route('logout')}}">Logout</a></li>
+
+                                    @endguest
                                 </ul>
                             </div>
                         </div>
@@ -222,7 +228,7 @@
                                         <div class="cart-product-wrapper">
 
                                             <!-- Cart Product/Price Start -->
-                                            <div class="cart-product-inner mb-4 pb-4 border-bottom">
+                                            <div class="pb-4 mb-4 cart-product-inner border-bottom">
 
                                                 <!-- Single Cart Product Start -->
                                                 <div class="single-cart-product">
@@ -251,7 +257,7 @@
                                             <!-- Cart Product/Price End -->
 
                                             <!-- Cart Product/Price Start -->
-                                            <div class="cart-product-inner mb-4 pb-4 border-bottom">
+                                            <div class="pb-4 mb-4 cart-product-inner border-bottom">
 
                                                 <!-- Single Cart Product Start -->
                                                 <div class="single-cart-product">
@@ -283,16 +289,16 @@
                                         <!-- Cart Procut Wrapper -->
 
                                         <!-- Cart Product Total Start -->
-                                        <div class="cart-product-total mb-4 pb-4 border-bottom">
+                                        <div class="pb-4 mb-4 cart-product-total border-bottom">
                                             <span class="value">Total</span>
                                             <span class="price">200$</span>
                                         </div>
                                         <!-- Cart Product Total End -->
 
                                         <!-- Cart Product Button Start -->
-                                        <div class="cart-product-btn mt-4">
+                                        <div class="mt-4 cart-product-btn">
                                             <a href="cart.html" class="btn btn-outline-light btn-hover-primary w-100">View cart</a>
-                                            <a href="checkout.html" class="btn btn-outline-light btn-hover-primary w-100 mt-4">Checkout</a>
+                                            <a href="checkout.html" class="mt-4 btn btn-outline-light btn-hover-primary w-100">Checkout</a>
                                         </div>
                                         <!-- Cart Product Button End -->
 
@@ -338,7 +344,7 @@
         <div class="footer-top bg-bright section-padding">
             <div class="container">
                 <div class="row mb-n8">
-                    <div class="col-12 col-sm-6 col-lg-3 mb-8" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="mb-8 col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-duration="1000">
                         <div class="single-footer-widget">
                             <h1 class="widget-title">About Us</h1>
                             <p class="desc-content">Lorem ipsum dolor sit amet, co adipisi elit, sed eiusmod tempor incididunt ut labore et dolore</p>
@@ -353,7 +359,7 @@
                             <!-- Social Link End -->
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-lg-3 mb-8" data-aos="fade-up" data-aos-duration="1200">
+                    <div class="mb-8 col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-duration="1200">
                         <div class="single-footer-widget">
                             <h2 class="widget-title">Useful Links</h2>
                             <ul class="widget-list">
@@ -364,7 +370,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-lg-3 mb-8" data-aos="fade-up" data-aos-duration="1400">
+                    <div class="mb-8 col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-duration="1400">
                         <div class="single-footer-widget aos-init aos-animate">
                             <h2 class="widget-title">Help</h2>
                             <ul class="widget-list">
@@ -375,13 +381,13 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-lg-3 mb-8" data-aos="fade-up" data-aos-duration="1600">
+                    <div class="mb-8 col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-duration="1600">
                         <div class="single-footer-widget">
                             <h2 class="widget-title">Send newsletter</h2>
                             <div class="widget-body">
-                                <p class="desc-content mb-4">Subscribe to our newsletter and get 10% off your first purchase..</p>
+                                <p class="mb-4 desc-content">Subscribe to our newsletter and get 10% off your first purchase..</p>
                                 <!-- Newsletter Form Start -->
-                                <div class="newsletter-form-wrap pt-1">
+                                <div class="pt-1 newsletter-form-wrap">
                                     <form id="mc-form" class="mc-form">
                                         <input type="email" id="mc-email" class="form-control email-box" placeholder="demo@example.com" name="EMAIL">
                                         <button id="mc-submit" class="newsletter-btn" type="submit">Send</button>
@@ -404,15 +410,15 @@
         <!-- Footer Top End -->
 
         <!-- Footer Bottom Start -->
-        <div class="footer-bottom bg-light pt-4 pb-4">
+        <div class="pt-4 pb-4 footer-bottom bg-light">
             <div class="container">
                 <div class="row align-items-center mb-n4">
-                    <div class="col-md-6 text-center text-md-start order-2 order-md-1 mb-4">
+                    <div class="order-2 mb-4 text-center col-md-6 text-md-start order-md-1">
                         <div class="copyright-content">
                             <p class="mb-0">© 2021 <strong>Amber </strong> Made with <i class="fa fa-heart text-danger"></i> by <a href="https://hasthemes.com/">HasThemes.</a></p>
                         </div>
                     </div>
-                    <div class="col-md-6 text-center text-md-end order-1 order-md-2 mb-4">
+                    <div class="order-1 mb-4 text-center col-md-6 text-md-end order-md-2">
                         <div class="payment">
                             <a href="#/">
                                 <img class="fit-image" src="{{asset('assets/site/images/payment/payment_large.png')}}" alt="Payment">
@@ -426,7 +432,7 @@
     </footer>
     <!-- Footer Section End -->
 
-    <!-- Modal Start  -->
+    {{--  <!-- Modal Start  -->
     <div class="modalquickview modal fade" id="quick-view" tabindex="-1" aria-labelledby="quick-view" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -472,19 +478,19 @@
                         <!-- Product Details Image End -->
 
                     </div>
-                    <div class="col-md-6 col-12 overflow-hidden position-relative">
+                    <div class="overflow-hidden col-md-6 col-12 position-relative">
 
                         <!-- Product Summery Start -->
                         <div class="product-summery position-relative">
 
                             <!-- Product Head Start -->
-                            <div class="product-head mb-3">
+                            <div class="mb-3 product-head">
                                 <h2 class="product-title">Single Product Slider</h2>
                             </div>
                             <!-- Product Head End -->
 
                             <!-- Rating Start -->
-                            <span class="rating justify-content-start mb-2">
+                            <span class="mb-2 rating justify-content-start">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -494,31 +500,31 @@
                             <!-- Rating End -->
 
                             <!-- Price Box Start -->
-                            <div class="price-box mb-2">
+                            <div class="mb-2 price-box">
                                 <span class="regular-price">$70.00</span>
                                 <span class="old-price"><del>$85.00</del></span>
                             </div>
                             <!-- Price Box End -->
 
                             <!-- SKU Start -->
-                            <div class="sku mb-3">
+                            <div class="mb-3 sku">
                                 <span>SKU: 12345</span>
                             </div>
                             <!-- SKU End -->
 
                             <!-- Product Inventory Start -->
-                            <div class="product-inventroy mb-3">
+                            <div class="mb-3 product-inventroy">
                                 <span class="inventroy-title"> <strong>Availability:</strong></span>
                                 <span class="inventory-varient">12 Left in Stock</span>
                             </div>
                             <!-- Product Inventory End -->
 
                             <!-- Description Start -->
-                            <p class="desc-content mb-5">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                            <p class="mb-5 desc-content">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
                             <!-- Description End -->
 
                             <!-- Quantity Start -->
-                            <div class="quantity d-flex align-items-center justify-content-start mb-5">
+                            <div class="mb-5 quantity d-flex align-items-center justify-content-start">
                                 <span class="me-2"><strong>Qty: </strong></span>
                                 <div class="cart-plus-minus">
                                     <input class="cart-plus-minus-box" value="1" type="text">
@@ -529,7 +535,7 @@
                             <!-- Quantity End -->
 
                             <!-- Cart Button Start -->
-                            <div class="cart-btn action-btn mb-6">
+                            <div class="mb-6 cart-btn action-btn">
                                 <div class="action-cart-btn-wrapper d-flex justify-content-start">
                                     <div class="add-to_cart">
                                         <a class="btn btn-primary btn-hover-dark rounded-0" href="cart.html">Add to cart</a>
@@ -541,7 +547,7 @@
 
                             <!-- Social Shear Start -->
                             <div class="social-share">
-                                <div class="widget-social justify-content-center mb-6">
+                                <div class="mb-6 widget-social justify-content-center">
                                     <a title="Twitter" href="#/"><i class="icon-social-twitter"></i></a>
                                     <a title="Instagram" href="#/"><i class="icon-social-instagram"></i></a>
                                     <a title="Linkedin" href="#/"><i class="icon-social-linkedin"></i></a>
@@ -552,7 +558,7 @@
                             <!-- Social Shear End -->
 
                             <!-- Payment Option Start -->
-                            <div class="payment-option mt-4 d-flex justify-content-start">
+                            <div class="mt-4 payment-option d-flex justify-content-start">
                                 <span><strong>Payment: </strong></span>
                                 <a href="#">
                                     <img class="fit-image ms-1" src="{{asset('assets/site/images/payment/payment_large.png')}}" alt="Payment Option Image">
@@ -568,7 +574,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal End  -->
+    <!-- Modal End  -->  --}}
 
     <!-- Scroll Top Start -->
     <a href="#" class="scroll-top show" id="scroll-top">
@@ -669,7 +675,7 @@
                 <!-- Mobile Menu End -->
 
                 <!-- Language, Currency & Link Start -->
-                <div class="offcanvas-lag-curr mb-6">
+                <div class="mb-6 offcanvas-lag-curr">
                     <div class="header-top-lan-curr-link">
                         <div class="header-top-lan dropdown">
                             <h4 class="title">Language:</h4>
@@ -694,7 +700,7 @@
                 <!-- Language, Currency & Link End -->
 
                 <!-- Contact Links/Social Links Start -->
-                <div class="mt-auto bottom-0">
+                <div class="bottom-0 mt-auto">
 
                     <!-- Contact Links Start -->
                     <ul class="contact-links">
