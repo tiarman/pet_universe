@@ -11,7 +11,7 @@
 <div class="section breadcrumb-area bg-bright">
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="text-center col-12">
                 <div class="breadcrumb-wrapper">
                     <h2 class="breadcrumb-title">Variable Product</h2>
                     <ul>
@@ -85,13 +85,26 @@
                 <div class="product-summery position-relative">
 
                     <!-- Product Head Start -->
-                    <div class="product-head mb-3">
+                    <div class="mb-3 product-head">
                         <h2 class="product-title">{{$animal->name}}</h2>
                     </div>
                     <!-- Product Head End -->
 
+                    <div style="display: flex">
+                    <!-- Rating Start -->
+                        <span class="mb-2 rating justify-content-start">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                        <!-- Rating End -->
+                        <h5>({{$totalreview}} Custommer Review)</h5>
+                    </div>
+
                     <!-- Price Box Start -->
-                    <div class="price-box mb-2">
+                    <div class="mb-2 price-box">
                         @if ($animal->discount_price == null)
                         <span class="regular-price">${{ $animal->selling_price }}</span>
                         @else
@@ -102,24 +115,24 @@
                     <!-- Price Box End -->
 
                     <!-- SKU Start -->
-                    <div class="sku mb-3">
+                    <div class="mb-3 sku">
                         <span>SKU: 12345</span>
                     </div>
                     <!-- SKU End -->
 
                     <!-- Product Inventory Start -->
-                    <div class="product-inventroy mb-3">
+                    <div class="mb-3 product-inventroy">
                         <span class="inventroy-title"> <strong>Availability:</strong></span>
                         <span class="inventory-varient">12 Left in Stock</span>
                     </div>
                     <!-- Product Inventory End -->
 
                     <!-- Description Start -->
-                    <p class="desc-content mb-5">{{$animal->description}}</p>
+                    <p class="mb-5 desc-content">{{$animal->description}}</p>
                     <!-- Description End -->
 
                     {{--  <!-- Product Coler Variation Start -->
-                    <div class="product-color-variation mb-5">
+                    <div class="mb-5 product-color-variation">
                         <span> <strong>Color: </strong></span>
                         <button type="button" class="btn bg-danger"></button>
                         <button type="button" class="btn bg-primary"></button>
@@ -129,7 +142,7 @@
                     <!-- Product Coler Variation End -->
 
                     <!-- Product Size Start -->
-                    <div class="product-size mb-4">
+                    <div class="mb-4 product-size">
                         <span><strong>Size :</strong></span>
                         <a href="#" class="size-ratio active">s</a>
                         <a href="#" class="size-ratio">m</a>
@@ -139,7 +152,7 @@
                     <!-- Product Size End -->
 
                     <!-- Product Material Start -->
-                    <div class="product-material mb-5">
+                    <div class="mb-5 product-material">
                         <span><strong>Material :</strong></span>
                         <a href="#" class="active">Metal</a>
                         <a href="#">Resin</a>
@@ -149,7 +162,7 @@
                     <!-- Product Material End -->  --}}
 
                     <!-- Quantity Start -->
-                    <div class="quantity d-flex align-items-center mb-5">
+                    <div class="mb-5 quantity d-flex align-items-center">
                         <span class="me-2"><strong>Qty: </strong></span>
                         <div class="cart-plus-minus">
                             <input class="cart-plus-minus-box" value="1" type="text">
@@ -160,7 +173,7 @@
                     <!-- Quantity End -->
 
                     <!-- Cart Button Start -->
-                    <div class="cart-btn action-btn mb-6">
+                    <div class="mb-6 cart-btn action-btn">
                         <div class="action-cart-btn-wrapper d-flex">
                             <div class="add-to_cart">
                                 <a class="btn btn-primary btn-hover-dark rounded-0" href="cart.html">Add to cart</a>
@@ -171,14 +184,14 @@
                     <!-- Cart Button End -->
 
                     {{--  <!-- Single Product Buy Button Start -->
-                    <div class="single-product-buy mb-6">
+                    <div class="mb-6 single-product-buy">
                         <a href="checkout.html" class="btn btn-primary btn-hover-dark rounded-0">Buy it Now</a>
                     </div>
                     <!-- Single Product Buy Button End -->  --}}
 
                     <!-- Social Shear Start -->
                     <div class="social-share mb-n7">
-                        <div class="widget-social justify-content-start mb-6">
+                        <div class="mb-6 widget-social justify-content-start">
                             <a title="Twitter" href="#/"><i class="icon-social-twitter"></i></a>
                             <a title="Instagram" href="#/"><i class="icon-social-instagram"></i></a>
                             <a title="Linkedin" href="#/"><i class="icon-social-linkedin"></i></a>
@@ -206,16 +219,16 @@
             <!-- Single Product Tab Start -->
             <div class="col-lg-12 single-product-tab">
                 <ul class="nav nav-tabs mb-n3" id="myTab" role="tablist">
-                    <li class="nav-item mb-3">
+                    <li class="mb-3 nav-item">
                         <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#connect-1" role="tab" aria-selected="true">Description</a>
                     </li>
-                    <li class="nav-item mb-3">
+                    <li class="mb-3 nav-item">
                         <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#connect-2" role="tab" aria-selected="false">Reviews</a>
                     </li>
-                    <li class="nav-item mb-3">
+                    <li class="mb-3 nav-item">
                         <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#connect-3" role="tab" aria-selected="false">Shipping Policy</a>
                     </li>
-                    <li class="nav-item mb-3">
+                    <li class="mb-3 nav-item">
                         <a class="nav-link" id="review-tab" data-bs-toggle="tab" href="#connect-4" role="tab" aria-selected="false">Size Chart</a>
                     </li>
                 </ul>
@@ -229,60 +242,48 @@
                     </div>
                     <div class="tab-pane fade" id="connect-2" role="tabpanel" aria-labelledby="profile-tab">
                         <!-- Start Single Content -->
-                        <div class="product_tab_content mt-8 p-3 border">
+                        <div class="p-3 mt-8 border product_tab_content">
 
-                            <!-- Start Single Review -->
-                            <div class="single-review d-flex mb-4">
+                            
 
-                                <!-- Review Thumb Start -->
-                                <div class="review_thumb">
-                                    <img alt="review images" src="{{asset('assets/site/images/review/1.jpg')}}">
-                                </div>
-                                <!-- Review Thumb End -->
 
-                                <!-- Review Details Start -->
-                                <div class="review_details">
-                                    <div class="review_info mb-2">
 
-                                        <!-- Rating Start -->
-                                        <span class="rating justify-content-start mb-3">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </span>
-                                        <!-- Rating End -->
+                            <form id="data-form">
+                                {{--  <form action="{{ route('review.store') }}" method="post" enctype="multipart/form-data">  --}}
 
-                                        <!-- Review Title & Date Start -->
-                                        <div class="review-title-date d-flex">
-                                            <h5 class="title">Admin - </h5><span> January 19, 2021</span>
-                                        </div>
-                                        <!-- Review Title & Date End -->
-
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in viverra ex, vitae vestibulum arcu. Duis sollicitudin metus sed lorem commodo, eu dapibus libero interdum. Morbi convallis viverra erat, et aliquet orci congue vel. Integer in odio enim. Pellentesque in dignissim leo. Vivamus varius ex sit amet quam tincidunt iaculis.</p>
-                                </div>
-                                <!-- Review Details End -->
-
-                            </div>
-                            <!-- End Single Review -->
+                                @csrf
+                                <input type="hidden" name="animal_id" value="{{$animal->id}}">
 
                             <!-- Rating Wrap Start -->
                             <div class="rating_wrap">
-                                <h5 class="rating-title mb-2">Add a review </h5>
+                                <h5 class="mb-2 rating-title">Add a review </h5>
                                 <p class="mb-2">Your email address will not be published. Required fields are marked *</p>
-                                <h6 class="rating-sub-title mb-2">Your Rating</h6>
 
-                                <!-- Rating Start -->
-                                <span class="rating justify-content-start mb-3">
+
+
+                                
+                                    <div class="form-group mb--40">
+                                       
+                                        
+                                        <p class="mt-3 mb-2">This will be how your name will be displayed in the account section and in reviews</p>
+                                    </div>
+                               
+
+
+
+
+
+
+
+                                {{--  <!-- Rating Start -->
+                                <span class="mb-3 rating justify-content-start">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star-half-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </span>
-                                <!-- Rating End -->
+                                <!-- Rating End -->  --}}
 
                             </div>
                             <!-- Rating Wrap End -->
@@ -296,15 +297,27 @@
                                         <form action="#" class="comment-form-area">
                                             <div class="row comment-input">
 
-                                                <!-- Input Name Start -->
-                                                <div class="col-md-6 comment-form-author mb-3">
-                                                    <label>Name</label>
-                                                    <input type="text" required="required" name="Name">
+                                                <div class="mb-3 col-md-6 comment-form-author">
+                                                <label>Select a rating</label>
+                                                <select name="rating" class="myniceselect nice-select wide rounded-0" style="background-color:#f4f4f4">
+                                                    <option selected value="">Select a rating here</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
                                                 </div>
-                                                <!-- Input Name End -->
+
+                                                {{--  <!-- Input Name Start -->
+                                                <div class="mb-3 col-md-6 comment-form-author">
+                                                    <label>Name</label>
+                                                    <input type="text" required="required" name="name">
+                                                </div>
+                                                <!-- Input Name End -->  --}}
 
                                                 <!-- Input Email Start -->
-                                                <div class="col-md-6 comment-form-emai mb-3">
+                                                <div class="mb-3 col-md-6 comment-form-emai">
                                                     <label>Email</label>
                                                     <input type="text" required="required" name="email">
                                                 </div>
@@ -312,15 +325,15 @@
 
                                             </div>
                                             <!-- Comment Texarea Start -->
-                                            <div class="comment-form-comment mb-3">
+                                            <div class="mb-3 comment-form-comment">
                                                 <label>Comment</label>
-                                                <textarea class="comment-notes" required="required"></textarea>
+                                                <textarea class="comment-notes" required="required" name="comment"></textarea>
                                             </div>
                                             <!-- Comment Texarea End -->
 
                                             <!-- Comment Submit Button Start -->
                                             <div class="comment-form-submit">
-                                                <button class="btn btn-primary btn-hover-dark border-0">Submit</button>
+                                                <button type="submit" id="submit" class="border-0 btn btn-primary btn-hover-dark">Submit</button>
                                             </div>
                                             <!-- Comment Submit Button End -->
 
@@ -331,16 +344,93 @@
                                 </div>
                             </div>
                             <!-- Comments ans Replay End -->
-
-                        </div>
+</form>
+                        
                         <!-- End Single Content -->
+
+
+
+                        <h6 class="mt-5 mb-2 rating-sub-title">Animal Ratings</h6>
+
+                        @guest
+                        <h4 style="color: red">Please Login first if you see the reviews</h4>
+
+                        @else
+
+                        @foreach ($review as $val )
+
+                        <!-- Start Single Review -->
+                            <div class="mb-4 single-review d-flex">
+
+                                <!-- Review Thumb Start -->
+                                <div class="review_thumb">
+                                    <img alt="review images" src="{{asset('assets/site/images/review/1.jpg')}}">
+                                </div>
+                                <!-- Review Thumb End -->
+
+                                <!-- Review Details Start -->
+                                <div class="review_details">
+                                    <div class="mb-2 review_info">
+
+                                        <!-- Rating Start -->
+                                        <span class="mb-3 rating justify-content-start">
+                                            @if($val->rating=='1')
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                @elseif ($val->rating=='2')
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                @elseif ($val->rating=='3')
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                @elseif ($val->rating=='4')
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                @elseif ($val->rating=='5')
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                @endif
+                                            </span>
+                                        <!-- Rating End -->
+
+                                        <!-- Review Title & Date Start -->
+                                        <div class="review-title-date d-flex">
+                                            <h5 class="title">{{$val->user->full_name}} </h5><span>{{ date('F d, Y h:i A', strtotime($val->created_at)) }}</span>
+                                        </div>
+                                        <!-- Review Title & Date End -->
+
+                                    </div>
+                                    <p>{{$val->comment}}</p>
+                                </div>
+                                <!-- Review Details End -->
+
+                            </div>
+                            <!-- End Single Review -->
+                            @endforeach
+                            @endguest
                     </div>
+                </div>
                     <div class="tab-pane fade" id="connect-3" role="tabpanel" aria-labelledby="contact-tab">
                         <!-- Shipping Policy Start -->
-                        <div class="shipping-policy mt-8 mb-n3">
-                            <h4 class="title mb-4">Shipping policy for our store</h4>
+                        <div class="mt-8 shipping-policy mb-n3">
+                            <h4 class="mb-4 title">Shipping policy for our store</h4>
                             <p class="mb-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate</p>
-                            <ul class="policy-list mb-3">
+                            <ul class="mb-3 policy-list">
                                 <li>1-2 business days (Typically by end of day)</li>
                                 <li><a href="#">30 days money back guaranty</a></li>
                                 <li>24/7 live support</li>
@@ -355,9 +445,9 @@
                         <!-- Shipping Policy End -->
                     </div>
                     <div class="tab-pane fade" id="connect-4" role="tabpanel" aria-labelledby="review-tab">
-                        <div class="size-tab table-responsive-lg mt-8">
-                            <h4 class="title-3 mb-4">Size Chart</h4>
-                            <table class="table border mb-0">
+                        <div class="mt-8 size-tab table-responsive-lg">
+                            <h4 class="mb-4 title-3">Size Chart</h4>
+                            <table class="table mb-0 border">
                                 <tbody>
                                     <tr>
                                         <td class="cun-name"><span>UK</span></td>
@@ -418,7 +508,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="section-title text-center">
+                <div class="text-center section-title">
                     <h2 class="title">Related Products</h2>
                 </div>
             </div>
@@ -507,5 +597,51 @@
 @endsection
 
 @section('script')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5"></script>
+<script>
+    $(document).ready(function() {
+        $('#data-form').submit(function(event) {
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: '{{ route('review.store') }}',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    // Show SweetAlert Toast success notification
+                    Swal.fire({
+                        icon: 'success',
+                        title: response.title,
+                        text: response.message,
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+
+                    // Reset the form
+                    $('#data-form')[0].reset();
+                },
+                error: function(xhr) {
+                    // Show SweetAlert Toast error notification
+                    Swal.fire({
+                        icon: 'error',
+                        title: xhr.responseJSON.error ? xhr.responseJSON.title : 'Error',
+                        text: xhr.responseJSON.message,
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+                }
+            });
+        });
+    });
+</script>
 
 @endsection

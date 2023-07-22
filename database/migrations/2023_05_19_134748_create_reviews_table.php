@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('animal_id')->nullable();
             $table->unsignedBigInteger('food_id')->nullable();
-            $table->string('name');
             $table->string('email');
             $table->string('comment');
             $table->integer('rating');

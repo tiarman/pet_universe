@@ -40,7 +40,6 @@ class ReviewController extends Controller
             'user_id' => 'nullable',
             'animal_id' => 'nullable',
             'food_id' => 'nullable',
-            'name' => 'nullable|string',
             'email' => 'nullable|string',
             'comment' => 'nullable|string',
             'rating' => 'nullable',
@@ -58,9 +57,14 @@ class ReviewController extends Controller
 
           try{
             $review->user_id=auth()->id();
+            $check = DB::table('reviews')->where('user_id', auth()->id())->where('animal_id', $request->animal_id)->first();
+            if($check){
+                return response()->json(['message' => 'Faild!!! Already Submited', 'title' => 'error', 'error' => true]);
+            }
+
+
             $review->animal_id = $request->animal_id;
             $review->food_id = $request->food_id;
-            $review->name = $request->name;
             $review->email = $request->email;
             $review->comment = $request->comment;
             $review->rating = $request->rating;

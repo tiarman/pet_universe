@@ -14,7 +14,6 @@ class Review extends Model
         'user_id',
         'animal_id',
         'food_id',
-        'name',
         'email',
         'comment',
         'rating',
@@ -26,7 +25,7 @@ class Review extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function product()
+    public function animal()
     {
         return $this->belongsTo(Animal::class, 'animal_id');
     }

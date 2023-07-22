@@ -140,26 +140,35 @@
             <!-- Tab End -->
         </div>
         <!-- Section Title & Tab End -->
-
+        
         <!-- Products Tab Start -->
         <div class="row" data-aos="fade-up" data-aos-duration="1100">
             <div class="col-12">
                 <div class="tab-content">
 
                     <div class="tab-pane fade show active" id="tab-product-all">
+                        
                         <div class="row mb-n8">
 
                         
 
 
+                                               
 
-
-@foreach ($animals as $val)
+                @foreach ($animals as $val)
+               
     
 
                             <!-- Product Start -->
                             <div class="col-12 col-sm-6 col-lg-3 product-wrapper mb-8">
                                 <div class="product">
+                                    <form action="{{ route('shopping.carts.store') }}" method="post" enctype="multipart/form-data">
+                                        @csrf 
+                    
+                    
+                                                    <input type="hidden" value="{{ $val->id }}" name="id">
+                                                    <input type="hidden" value="{{ $val->name }}" name="name">
+                    
                                     <!-- Thumb Start  -->
                                     <div class="thumb">
                                         <a href="single-product.html" class="image">
@@ -171,7 +180,7 @@
                                         <div class="action-wrapper">
                                             <a href="#/" id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
                                             <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="ti-heart"></i></a>
-                                            <a href="cart.html" class="action cart" title="Cart"><i class="ti-shopping-cart"></i></a>
+                                            <button type="submit" id="{{ $val->id }}" class="action cart" title="Cart"><i class="ti-shopping-cart"></i></button>
                                         </div>
                                     </div>
                                     <!-- Thumb End  -->
@@ -196,26 +205,28 @@
 
                                         </span>
                                     </div>
+                                </form>
                                     <!-- Content End  -->
                                 </div>
                             </div>
                             <!-- Product End -->
-
+                        
                             @endforeach
 
-
+                      
 
 
                         </div>
                     </div>
+               
 
                     <div class="tab-pane fade" id="tab-product-featured">
                         <div class="row mb-n8">
 
 
-@foreach ($animals as $val)
+                    @foreach ($animals as $val)
     
-@if ($val->featured == 'yes')
+                        @if ($val->featured == 'yes')
 
                             <!-- Product Start -->
                             <div class="col-12 col-sm-6 col-lg-3 product-wrapper mb-8">
@@ -275,9 +286,9 @@
                         <div class="row mb-n8">
 
 
-@foreach ($animals as $val)
+                    @foreach ($animals as $val)
     
-@if ($val->today_deal == 'yes')
+                    @if ($val->today_deal == 'yes')
 
                             <!-- Product Start -->
                             <div class="col-12 col-sm-6 col-lg-3 product-wrapper mb-8">
