@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PickupPointController;
@@ -168,6 +169,17 @@ Route::middleware([
             Route::delete('/destroy', [SliderController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
             Route::get('/list', [SliderController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
         });
+
+
+        #Cart
+    Route::prefix('shopping')->name('shopping.')->group(function () {
+        Route::get('/cartlist', [CartController::class, 'cartList'])->name('cartlist');
+        Route::post('/carts', [CartController::class, 'addToCart'])->name('carts.store');
+        Route::post('/update-cart', [CartController::class, 'updateCart'])->name('carts.update');
+        // Route::delete('/remove', [CartController::class, 'removeFromCart'])->name('remove');
+        Route::delete('/remove/{id}',[CartController::class, 'removeCart'])->name('remove');
+
+    });
 
 
 
