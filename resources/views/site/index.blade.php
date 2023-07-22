@@ -160,6 +160,13 @@
                             <!-- Product Start -->
                             <div class="col-12 col-sm-6 col-lg-3 product-wrapper mb-8">
                                 <div class="product">
+                                    <form action="{{ route('shopping.carts.store') }}" method="post" enctype="multipart/form-data">
+                                        @csrf 
+                    
+                    
+                                                    <input type="hidden" value="{{ $val->id }}" name="id">
+                                                    <input type="hidden" value="{{ $val->name }}" name="name">
+                    
                                     <!-- Thumb Start  -->
                                     <div class="thumb">
                                         <a href="single-product.html" class="image">
@@ -171,7 +178,7 @@
                                         <div class="action-wrapper">
                                             <a href="#/" id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
                                             <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="ti-heart"></i></a>
-                                            <a href="cart.html" class="action cart" title="Cart"><i class="ti-shopping-cart"></i></a>
+                                            <button type="submit" class="action cart" title="Cart"><i class="ti-shopping-cart"></i></button>
                                         </div>
                                     </div>
                                     <!-- Thumb End  -->
@@ -200,6 +207,7 @@
                                 </div>
                             </div>
                             <!-- Product End -->
+                        </form>
 
                             @endforeach
 
@@ -705,6 +713,54 @@
                 success: function(data) {
                     $("#quickview_body").html(data);
                 }
+            });
+        });
+    </script>
+
+    
+    <script>
+        $(document).ready(function() {
+            $('#cart-form').submit(function(event) {
+                event.preventDefault();
+
+                var formData = $(this).serialize();
+                {{--  console.log('click', formData);  --}}
+
+                $.ajax({
+                    url: '{{ route('shopping.carts.store') }}',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        // Show SweetAlert Toast success notification
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Congratulations!',
+                            text: 'Cart added successfully',
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true
+                        });
+
+                        // Reset the form
+                        $('#cart-form')[0].reset();
+                    },
+                    error: function(xhr) {
+                        // Show SweetAlert Toast error notification
+                        Swal.fire({
+                            icon: 'error',
+                            title: xhr.responseJSON.error ? xhr.responseJSON.title :
+                                'Error',
+                            text: xhr.responseJSON.message,
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true
+                        });
+                    }
+                });
             });
         });
     </script>
