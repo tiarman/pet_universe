@@ -218,7 +218,7 @@
                                 <div class="header-action-btn header-action-btn-cart d-none d-sm-flex">
                                     <a class="cart-visible" href="javascript:void(0)">
                                         <i class="icon-handbag icons"></i>
-                                        <span class="header-action-num">3</span>
+                                        <span class="header-action-num">{{Cart::count()}}</span>
                                     </a>
 
                                     <!-- Header Cart Content Start -->
@@ -228,6 +228,9 @@
                                         <div class="cart-product-wrapper">
 
                                             <!-- Cart Product/Price Start -->
+                                            @foreach ($cartItems as $val )
+                                                
+                                            
                                             <div class="pb-4 mb-4 cart-product-inner border-bottom">
 
                                                 <!-- Single Cart Product Start -->
@@ -236,11 +239,11 @@
                                                         <a href="single-product.html"><img src="{{asset('assets/site/images/header/header-cart/1.png')}}" alt="Cart Product"></a>
                                                     </div>
                                                     <div class="cart-product-content">
-                                                        <h3 class="title"><a href="single-product.html">Basic Dog Trainning</a></h3>
+                                                        <h3 class="title"><a href="{{ route('animal_details', $val->name) }}">{{$val->name}}</a></h3>
                                                         <div class="product-quty-price">
-                                                            <span class="cart-quantity">Qty: <strong class="text-primary"> 1 </strong></span>
+                                                            <span class="cart-quantity">Qty: <strong class="text-primary"> {{$val->qty}} </strong></span>
                                                             <span class="price">
-															<span class="new">$70.00</span>
+															<span class="new">${{$val->price}}</span>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -249,41 +252,20 @@
 
                                                 <!-- Product Remove Start -->
                                                 <div class="cart-product-remove">
-                                                    <a href="#/"><i class="icon-close"></i></a>
+                                                    <form action="{{ route('shopping.remove',$val->id) }}" method="post" enctype="multipart/form-data">
+                                                        @method('DELETE')
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $val->id }}" name="id">
+                                                    <button href="#/"><i class="icon-close"></i></button>
+                                                    </form>
                                                 </div>
                                                 <!-- Product Remove End -->
 
                                             </div>
+                                            @endforeach
                                             <!-- Cart Product/Price End -->
 
-                                            <!-- Cart Product/Price Start -->
-                                            <div class="pb-4 mb-4 cart-product-inner border-bottom">
-
-                                                <!-- Single Cart Product Start -->
-                                                <div class="single-cart-product">
-                                                    <div class="cart-product-thumb">
-                                                        <a href="single-product.html"><img src="{{asset('assets/site/images/header/header-cart/2.png')}}" alt="Cart Product"></a>
-                                                    </div>
-                                                    <div class="cart-product-content">
-                                                        <h3 class="title"><a href="single-product.html">Wait, You Need This</a></h3>
-                                                        <div class="product-quty-price">
-                                                            <span class="cart-quantity">Qty: <strong class="text-primary"> 1 </strong></span>
-                                                            <span class="price">
-															<span class="new">$80.00</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Single Cart Product End -->
-
-                                                <!-- Product Remove Start -->
-                                                <div class="cart-product-remove">
-                                                    <a href="#/"><i class="icon-close"></i></a>
-                                                </div>
-                                                <!-- Product Remove End -->
-
-                                            </div>
-                                            <!-- Cart Product/Price End -->
+                                            
 
                                         </div>
                                         <!-- Cart Procut Wrapper -->
@@ -291,13 +273,13 @@
                                         <!-- Cart Product Total Start -->
                                         <div class="pb-4 mb-4 cart-product-total border-bottom">
                                             <span class="value">Total</span>
-                                            <span class="price">200$</span>
+                                            <span class="price">{{Cart::total()}}$</span>
                                         </div>
                                         <!-- Cart Product Total End -->
 
                                         <!-- Cart Product Button Start -->
                                         <div class="mt-4 cart-product-btn">
-                                            <a href="cart.html" class="btn btn-outline-light btn-hover-primary w-100">View cart</a>
+                                            <a href="{{route('shopping.cartlist')}}" class="btn btn-outline-light btn-hover-primary w-100">View cart</a>
                                             <a href="checkout.html" class="mt-4 btn btn-outline-light btn-hover-primary w-100">Checkout</a>
                                         </div>
                                         <!-- Cart Product Button End -->

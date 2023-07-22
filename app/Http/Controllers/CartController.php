@@ -52,6 +52,7 @@ class CartController extends Controller
                 'image' => $animal->image,
                 'weight' => '1',
                 'qty' => '1',
+                'tax'=>'0',
                 'attributes' => array(
                     'image' => $animal->image,
                     'discount_price' => $animal->discount_price,
@@ -71,6 +72,7 @@ class CartController extends Controller
             'image' => $animal->image,
             'weight' => '1',
             'qty' => '1',
+            'tax'=>'0',
             'attributes' => array(
                 'image' => $animal->image,
                 'discount_price' => $animal->discount_price,
@@ -83,9 +85,24 @@ class CartController extends Controller
         // return $request;
         session()->flash('success', 'Product is Added to Cart Successfully !');
         //        return \Cart::getContent();
-        $message = "Card Added Successfully";
+        $status = "Card Added Successfully";
         // return session()->all();
-        return RedirectHelper::routeSuccess2('cart_page', $message);
+        return RedirectHelper::routeSuccess2('shopping.cartlist', $status);
+    }
+
+
+    public function removeCart($rowId)
+    {
+
+        $rowId = \Cart::content()->value('rowId');
+        // return $cart;
+        \Cart::remove($rowId);
+        // // session()->flash('success', 'Item Cart Remove Successfully !');
+        // $userID = auth()->id();
+        // \Cart::session($userID)->remove($cart);
+
+        $message = 'Item Cart Remove Successfully !';
+        return RedirectHelper::routeSuccess2('shopping.cartlist', $message);
     }
 
 //     public function store(Request $request){

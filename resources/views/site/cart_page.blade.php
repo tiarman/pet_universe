@@ -23,7 +23,11 @@
     </div>
 </div>
 <!-- Breadcrumb Area End -->
-
+@if(session()->has('status'))
+<div style="text-align: center">
+    {!! session()->get('status') !!}
+</div>
+@endif
 <!-- Shopping Cart Section Start -->
 <div class="section section-margin">
     <div class="container">
@@ -59,7 +63,7 @@
                             <tr>
 
                                 <td class="pro-thumbnail"><a href="#"><img class="fit-image" src="{{asset($val->image)}}" alt="Product" /></a></td>
-                                <td class="pro-title"><a href="#">{{$val->name}}</a></td>
+                                <td class="pro-title"><a href="{{ route('animal_details', $val->name) }}">{{$val->name}}</a></td>
                                 <td class="pro-price"><span>{{$val->price}}</span></td>
                                 <td class="pro-quantity">
                                     <div class="quantity">
@@ -71,7 +75,12 @@
                                     </div>
                                 </td>
                                 <td class="pro-subtotal"><span>${{$val->subtotal}}</span></td>
-                                <td class="pro-remove"><a href="#"><i class="ti-trash"></i></a></td>
+                                <form action="{{ route('shopping.remove',$val->id) }}" method="post" enctype="multipart/form-data">
+                                    @method('DELETE')
+                                        @csrf
+                                        {{--  <input type="hidden" value="{{ $val->rowId }}" name="rowId">  --}}
+                                <td class="pro-remove"><button href="#"><i class="ti-trash"></i></button></td>
+                                </form>
                             </tr>
                             @endforeach
                             
@@ -88,7 +97,7 @@
 
                     <!-- Cart Button left Side Start -->
                     <div class="cart-btn-lef-side mb-4">
-                        <a href="#" class="btn btn btn-gray-deep btn-hover-primary">Continue Shopping</a>
+                        <a href="{{route('home')}}" class="btn btn btn-gray-deep btn-hover-primary">Continue Shopping</a>
                         <a href="#" class="btn btn btn-gray-deep btn-hover-primary">Update Shopping Cart</a>
                     </div>
                     <!-- Cart Button left Side End -->

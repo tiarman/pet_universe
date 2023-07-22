@@ -41,9 +41,9 @@ Route::get('/animal_details/{name}', [SiteController::class, 'animal_details'])-
 Route::get('/quickview/{id}', [SiteController::class, 'quickview']);
 
 
-// Route::get('/cart_page', function () {
+// Route::get('/shopping/cartlist', function () {
 //     return view('site.cart_page');
-// })->name('cart_page');
+// })->name('/shopping/cartlist');
 
 
 
@@ -176,7 +176,7 @@ Route::middleware([
   #Cart
   Route::prefix('shopping')->name('shopping.')->group(function () {
     Route::get('/cartlist', [CartController::class, 'cartList'])->name('cartlist');
-    Route::post('/carts', [CartController::class, 'store'])->name('carts.store');
+    Route::post('/cartlist', [CartController::class, 'store'])->name('carts.store');
     Route::post('/update-cart', [CartController::class, 'updateCart'])->name('carts.update');
     // Route::delete('/remove', [CartController::class, 'removeFromCart'])->name('remove');
     Route::delete('/remove/{id}',[CartController::class, 'removeCart'])->name('remove');
