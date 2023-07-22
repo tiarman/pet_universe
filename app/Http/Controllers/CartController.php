@@ -12,22 +12,21 @@ class CartController extends Controller
     
 
     public function store(Request $request){
-$animal_id = $request->id;
-$animal = Animal::find($animal_id);
-// dd($animals);
-        // $Product = Animal::find($animal_id);
-        // array format
+    $animal_id = $request->id;
+    $animal = Animal::find($animal_id);
 
-        \Cart::add();
-// \Cart::add(array(
-//     'id' => $animal->id, // inique row ID
-//     'name' => $animal->name,
-//     'price' => $animal->price,
-//     'quantity' => 1,
-//     'attributes' => array(
-//         'img' => $animal->image,
-//     )
-// ));
+        // \Cart::add();
+        \Cart::add(array(
+    'id' => $animal->id, // inique row ID
+    'name' => $animal->name,
+    'price' => $animal->price,
+    'quantity' => 1,
+    'attributes' => array(
+        'img' => $animal->image,
+    )
+));
+
+
 // \Cart::add([
 //     'id' => $animal->id,
 //     'name' => $animal->name,
