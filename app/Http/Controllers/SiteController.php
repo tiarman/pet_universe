@@ -49,6 +49,16 @@ public function home(){
 }
 
 
+public function cartList()
+{
+    $cartItems = Cart::content();
+    // $data ['category'] = Category::where('status', '=', Category::$statusArray[0])->get();
+    // dd($cartItems);
+    return $cartItems;
+    return view('layouts.site', compact('cartItems'));
+}
+
+
 public function animal_details($name = null, $id=NULL)
 {
     // $cartItems = \Cart::getContent();

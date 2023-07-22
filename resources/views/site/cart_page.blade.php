@@ -49,71 +49,33 @@
                         <!-- Table Head End -->
 
                         <!-- Table Body Start -->
+                        
+                            
+                        
                         <tbody>
+                            @foreach ($cartItems as $val)
+                                
+                            
                             <tr>
-                                <td class="pro-thumbnail"><a href="#"><img class="fit-image" src="{{asset('assets/site/images/products/small-product/6.png')}}" alt="Product" /></a></td>
-                                <td class="pro-title"><a href="#">Learn About Fish Farming</a></td>
-                                <td class="pro-price"><span>$95.00</span></td>
+
+                                <td class="pro-thumbnail"><a href="#"><img class="fit-image" src="{{asset($val->image)}}" alt="Product" /></a></td>
+                                <td class="pro-title"><a href="#">{{$val->name}}</a></td>
+                                <td class="pro-price"><span>{{$val->price}}</span></td>
                                 <td class="pro-quantity">
                                     <div class="quantity">
                                         <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="1" type="text">
+                                            <input class="cart-plus-minus-box" value="{{$val->qty}}" type="text">
                                             <div class="dec qtybutton">-</div>
                                             <div class="inc qtybutton">+</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="pro-subtotal"><span>$95.00</span></td>
+                                <td class="pro-subtotal"><span>${{$val->subtotal}}</span></td>
                                 <td class="pro-remove"><a href="#"><i class="ti-trash"></i></a></td>
                             </tr>
-                            <tr>
-                                <td class="pro-thumbnail"><a href="#"><img class="fit-image" src="{{asset('assets/site/images/products/small-product/5.png')}}" alt="Product" /></a></td>
-                                <td class="pro-title"><a href="#">Basic Birds Food</a></td>
-                                <td class="pro-price"><span>$75.00</span></td>
-                                <td class="pro-quantity">
-                                    <div class="quantity">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="1" type="text">
-                                            <div class="dec qtybutton">-</div>
-                                            <div class="inc qtybutton">+</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="pro-subtotal"><span>$75.00</span></td>
-                                <td class="pro-remove"><a href="#"><i class="ti-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td class="pro-thumbnail"><a href="#"><img class="fit-image" src="{{asset('assets/site/images/products/small-product/3.png')}}" alt="Product" /></a></td>
-                                <td class="pro-title"><a href="#">Dog Trainning Center</a></td>
-                                <td class="pro-price"><span>$28.00</span></td>
-                                <td class="pro-quantity">
-                                    <div class="quantity">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="1" type="text">
-                                            <div class="dec qtybutton">-</div>
-                                            <div class="inc qtybutton">+</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="pro-subtotal"><span>$56.00</span></td>
-                                <td class="pro-remove"><a href="#"><i class="ti-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td class="pro-thumbnail"><a href="#"><img class="fit-image" src="{{asset('assets/site/images/products/small-product/4.png')}}" alt="Product" /></a></td>
-                                <td class="pro-title"><a href="#">Animal Rescue Center</a></td>
-                                <td class="pro-price"><span>$20.00</span></td>
-                                <td class="pro-quantity">
-                                    <div class="quantity">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="1" type="text">
-                                            <div class="dec qtybutton">-</div>
-                                            <div class="inc qtybutton">+</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="pro-subtotal"><span>$40.00</span></td>
-                                <td class="pro-remove"><a href="#"><i class="ti-trash"></i></a></td>
-                            </tr>
+                            @endforeach
+                            
+                          
                         </tbody>
                         <!-- Table Body End -->
 
@@ -158,10 +120,12 @@
 
                         <!-- Responsive Table Start -->
                         <div class="table-responsive">
+                            
                             <table class="table">
+                              
                                 <tr>
                                     <td>Sub Total</td>
-                                    <td>$230</td>
+                                    <td>${{Cart::total()}}</td>
                                 </tr>
                                 <tr>
                                     <td>Shipping</td>
@@ -171,7 +135,9 @@
                                     <td>Total</td>
                                     <td class="total-amount">$300</td>
                                 </tr>
+                            
                             </table>
+                            
                         </div>
                         <!-- Responsive Table End -->
 
