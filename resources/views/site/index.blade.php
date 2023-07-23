@@ -227,22 +227,24 @@
                     @foreach ($animals as $val)
     
                         @if ($val->featured == 'yes')
-
+                        
+                        <input type="hidden" value="{{ $val->id }}" name="id">
+                        <input type="hidden" value="{{ $val->name }}" name="name">
                             <!-- Product Start -->
                             <div class="col-12 col-sm-6 col-lg-3 product-wrapper mb-8">
                                 <div class="product">
                                     <!-- Thumb Start  -->
                                     <div class="thumb">
                                         <a href="single-product.html" class="image">
-                                            <img class="fit-image" src="{{asset($val->image)}}" alt="Product" />
+                                            <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
                                         <span class="new">New</span>
                                         </span>
                                         <div class="action-wrapper">
-                                            <a href="#/" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
+                                            <a href="#/" id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
                                             <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="ti-heart"></i></a>
-                                            <a href="cart.html" class="action cart" title="Cart"><i class="ti-shopping-cart"></i></a>
+                                            <a class="add-to-cart-btn action cart" data-animal-id="{{ $val->id }} title="Cart"><i class="ti-shopping-cart"></i></a>
                                         </div>
                                     </div>
                                     <!-- Thumb End  -->
@@ -289,22 +291,23 @@
                     @foreach ($animals as $val)
     
                     @if ($val->today_deal == 'yes')
-
+                    <input type="hidden" value="{{ $val->id }}" name="id">
+                    <input type="hidden" value="{{ $val->name }}" name="name">
                             <!-- Product Start -->
                             <div class="col-12 col-sm-6 col-lg-3 product-wrapper mb-8">
                                 <div class="product">
                                     <!-- Thumb Start  -->
                                     <div class="thumb">
                                         <a href="single-product.html" class="image">
-                                            <img class="fit-image" src="{{asset($val->image)}}" alt="Product" />
+                                            <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
                                         <span class="new">New</span>
                                         </span>
                                         <div class="action-wrapper">
-                                            <a href="#/" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
+                                            <a href="#/" id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
                                             <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="ti-heart"></i></a>
-                                            <a href="cart.html" class="action cart" title="Cart"><i class="ti-shopping-cart"></i></a>
+                                            <a class="add-to-cart-btn action cart" data-animal-id="{{ $val->id }} title="Cart"><i class="ti-shopping-cart"></i></a>
                                         </div>
                                     </div>
                                     <!-- Thumb End  -->
@@ -741,7 +744,9 @@
                         _token: "{{ csrf_token() }}"
                     },
                     success: function(response) {
-                        
+                        const items = $('#cart-count').text();
+                        console.log(parseInt(items)+1)
+                        $('#cart-count').text(parseInt(items)+1);
                         // Handle the successful response with SweetAlert
                         Swal.fire({
                             icon: 'success',

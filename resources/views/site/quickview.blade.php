@@ -4,7 +4,9 @@
 @endsection
 
 <button class="btn close" data-bs-dismiss="modal">×</button>
+
             <div class="row">
+              
                 <div class="col-md-6 col-12">
 
                     <!-- Product Details Image Start -->
@@ -40,8 +42,15 @@
                     <!-- Product Details Image End -->
 
                 </div>
+                
+                
                 <div class="col-md-6 col-12 overflow-hidden position-relative">
-
+                    {{--  <form action="{{route('add.to.cart')}}" method="post" id="add_cart_form">  --}}
+                        <input type="hidden" value="{{ $animal->id }}" name="id">
+                                                    <input type="hidden" animalvalue="{{ $animal->name }}" name="name">
+                        {{--  @csrf   --}}
+                        {{--  <input type="hidden" value="{{ $animal->id }}" name="id">
+                        <input type="hidden" animalue="{{ $animal->name }}" name="nameanimal">  --}}
                     <!-- Product Summery Start -->
                     <div class="product-summery position-relative">
 
@@ -60,6 +69,7 @@
                         <i class="fa fa-star-o"></i>
                     </span>
                         <!-- Rating End -->  --}}
+                       
 
                         <!-- Price Box Start -->
                         <div class="price-box mb-2">
@@ -71,6 +81,7 @@
                             @endif
                         </div>
                         <!-- Price Box End -->
+                   
 
                         <!-- SKU Start -->
                         <div class="sku mb-3">
@@ -88,23 +99,27 @@
                         <!-- Description Start -->
                         <p class="desc-content mb-5">{{$animal->description}}</p>
                         <!-- Description End -->
-
+                        
+                            
                         <!-- Quantity Start -->
                         <div class="quantity d-flex align-items-center justify-content-start mb-5">
                             <span class="me-2"><strong>Qty: </strong></span>
                             <div class="cart-plus-minus">
-                                <input class="cart-plus-minus-box" value="1" type="text">
+                               
+                                <input class="cart-plus-minus-box" max="100" min="1" name="qty" value="1" type="text">
+                                
                                 <div class="dec qtybutton"></div>
                                 <div class="inc qtybutton"></div>
                             </div>
                         </div>
                         <!-- Quantity End -->
+                        
 
                         <!-- Cart Button Start -->
                         <div class="cart-btn action-btn mb-6">
                             <div class="action-cart-btn-wrapper d-flex justify-content-start">
                                 <div class="add-to_cart">
-                                    <a class="btn btn-primary btn-hover-dark rounded-0" href="cart.html">Add to cart</a>
+                                    <a class="add-to-cart-btn btn btn-primary btn-hover-dark rounded-0" data-animal-id="{{ $animal->id }} href="cart.html">Add to cart</a>
                                 </div>
                                 <a href="wishlist.html" title="Wishlist" class="action"><i class="ti-heart"></i></a>
                             </div>
@@ -134,6 +149,68 @@
 
                     </div>
                     <!-- Product Summery End -->
-
+                    {{--  </form>  --}}
                 </div>
+            
+                
             </div>
+
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Listen for the click event on the 'Add to Cart' button
+            $(".add-to-cart-btn").click(function() {
+                // Get the animal ID from the data attribute
+                var animalId = $(this).data("animal-id");
+    
+                // Make the AJAX request to add the item to the cart
+                $.ajax({
+                    url: "/shopping/cartlist",
+                    type: "POST",
+                    data: {
+                        id: animalId,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        const items = $('#cart-count').text();
+                        console.log(parseInt(items)+1)
+                        $('#cart-count').text(parseInt(items)+1);
+                        // Handle the successful response with SweetAlert
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: response.message,
+                            timer: 3000, // Display time (in milliseconds)
+                            timerProgressBar: true, // Show a progress bar
+                        });
+                        // You can also update the cart count or show the updated cart content dynamically
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle any errors that occurred during the AJAX request with SweetAlert
+                        if (xhr.status === 404) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Animal not found. Unable to add to cart.',
+                                timer: 3000,
+                                timerProgressBar: true,
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'An error occurred while adding the product to cart.',
+                                timer: 3000,
+                                timerProgressBar: true,
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+        
+        
