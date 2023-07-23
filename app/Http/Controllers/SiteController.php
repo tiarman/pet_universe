@@ -44,7 +44,7 @@ public function home(){
     $data ['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
     $data ['animals'] = Animal::where('status', '=', Animal::$statusArrays[0])->get();
     $cartItems = \Cart::content();
-    // return $datas;
+    // return $cartItems;
     return view('site.index', $data, compact('cartItems'));
 
 }

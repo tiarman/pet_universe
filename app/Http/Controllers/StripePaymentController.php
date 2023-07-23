@@ -10,8 +10,9 @@ use Stripe;
 class StripePaymentController extends Controller
 {
     public function stripe()
-    {
-        return view('site.stripeCheckout');
+    {   $cartItems = \Cart::content();
+        // return $cartItems;
+        return view('site.stripeCheckout',  compact('cartItems'));
     }
 
     /**
@@ -20,24 +21,35 @@ class StripePaymentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function stripePost(Request $request)
-    { 
+    {  
+        // return $request;
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $payment =   Stripe\Charge::create([
-            "amount" => 100 * 100,
+            "amount" => $request->amount * 100,
             "currency" => "usd",
             "source" => $request->stripeToken,
             "description" => "Test payment from itsolutionstuff.com.",
+            // "customer" => $request->name,
+            // "billing_details" => [
+            //     "name" => $request->name,
+            //     "email" => $request->email,
+            //     "phone" => $request->phone
+            // ],
             "shipping" => [
 
-                "name" => "Jenny Rosen",
+                "name" => $request->name,
+                // "email" => $request->email,
+                // "phone" => $request->phone,
 
                 "address" => [
 
-                    "line1" => "510 Townsend St",
+                    "line1" => "",
 
-                    "postal_code" => "98140",
+                    "postal_code" => $request->post_code,
 
-                    "city" => "San Francisco",
+                    "city" => $request->city,
+
+                    // "house" => $request->shipping_address,
 
                     "state" => "CA",
 

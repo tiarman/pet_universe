@@ -161,7 +161,7 @@
                                             <label class="control-label">Pickup Point<span class="text-danger">*</span></label>
                                             <select name="pickup_point_id" id="pickup_point_id"  class="form-control @error('pickup_point_id') is-invalid @enderror">
                                                 <option value="">Choose a Pickup Point</option>
-                                                @foreach($pickup_point as $e)
+                                                @foreach($pickup_points as $e)
                                                     <option value="{{ $e->id }}" @if(old('pickup_point_id') == $e->pickup_point_name) selected @endif>{{ ucfirst($e->pickup_point_name) }}</option>
                                                 @endforeach
                                             </select>
