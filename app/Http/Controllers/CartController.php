@@ -53,14 +53,7 @@ class CartController extends Controller
                 'weight' => '1',
                 'qty' => '1',
                 'tax'=>'0',
-                'attributes' => array(
-                    'image' => $animal->image,
-                    'discount_price' => $animal->discount_price,
-                    // 'stock_quantity' => $animal->stock_quantity,
-                    // // 'user_id'=>$animal->user_is,
-                    // 'subcategory_id' => $animal->subcategory_id,
-
-                )
+                'options' => ['image'=>$animal->image]
             ]);
 
         }else
@@ -73,14 +66,15 @@ class CartController extends Controller
             'weight' => '1',
             'qty' => '1',
             'tax'=>'0',
-            'attributes' => array(
-                'image' => $animal->image,
-                'discount_price' => $animal->discount_price,
-                // 'stock_quantity' => $animal->stock_quantity,
-                // // 'user_id'=>$animal->user_is,
-                // 'subcategory_id' => $animal->subcategory_id,
+            'options' => ['image'=>$animal->image]
+            // 'options' => array(
+            //     'image' => $animal->image,
+            //     'discount_price' => $animal->discount_price,
+            //     // 'stock_quantity' => $animal->stock_quantity,
+            //     // // 'user_id'=>$animal->user_is,
+            //     // 'subcategory_id' => $animal->subcategory_id,
 
-            )
+            // )
         ]);
         // return $request;
         session()->flash('success', 'Product is Added to Cart Successfully !');

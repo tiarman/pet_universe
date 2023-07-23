@@ -62,7 +62,7 @@
                             
                             <tr>
 
-                                <td class="pro-thumbnail"><a href="#"><img class="fit-image" src="{{asset($val->image)}}" alt="Product" /></a></td>
+                                <td class="pro-thumbnail"><a href="#"><img style="height: 50px; width: 50px" class="fit-image" src="{{asset($val->options->image)}}" alt="Product" /></a></td>
                                 <td class="pro-title"><a href="{{ route('animal_details', $val->name) }}">{{$val->name}}</a></td>
                                 <td class="pro-price"><span>{{$val->price}}</span></td>
                                 <td class="pro-quantity">
