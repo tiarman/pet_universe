@@ -9,7 +9,7 @@ use Stripe;
 
 class StripePaymentController extends Controller
 {
-    public function stripe()
+    public function paymentCheckout()
     {   $cartItems = \Cart::content();
         // return $cartItems;
         return view('site.stripeCheckout',  compact('cartItems'));
@@ -20,7 +20,7 @@ class StripePaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function stripePost(Request $request)
+    public function paymentCheckoutStore(Request $request)
     {  
         // return $request;
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));

@@ -204,6 +204,6 @@ Route::get('/cartlist', [SiteController::class, 'cartList'])->name('cartlist');
 
 // site
 Route::controller(StripePaymentController::class)->group(function(){
-    Route::get('stripe', 'stripe');
-    Route::post('stripe', 'stripePost')->name('stripe.post');
+    Route::get('payment-checkout', 'paymentCheckout')->name('paymentCheckout');
+    Route::post('payment-checkout', 'paymentCheckoutStore')->name('paymentCheckoutStore');
 });

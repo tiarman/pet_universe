@@ -140,7 +140,7 @@
                                                     <li><a href="login.html">Login | Register</a></li>
                                                     <li><a href="wishlist.html">Wishlist</a></li>
                                                     <li><a href="cart.html">Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                    <li><a href="{{route('paymentCheckout')}}">Checkout</a></li>
                                                     <li><a href="compare.html">Compare</a></li>
                                                 </ul>
                                             </li>
@@ -280,7 +280,7 @@
                                         <!-- Cart Product Button Start -->
                                         <div class="mt-4 cart-product-btn">
                                             <a href="{{route('shopping.cartlist')}}" class="btn btn-outline-light btn-hover-primary w-100">View cart</a>
-                                            <a href="checkout.html" class="mt-4 btn btn-outline-light btn-hover-primary w-100">Checkout</a>
+                                            <a href="{{route('paymentCheckout')}}" class="mt-4 btn btn-outline-light btn-hover-primary w-100">Checkout</a>
                                         </div>
                                         <!-- Cart Product Button End -->
 
