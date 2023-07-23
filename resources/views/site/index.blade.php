@@ -162,8 +162,8 @@
                             <!-- Product Start -->
                             <div class="col-12 col-sm-6 col-lg-3 product-wrapper mb-8">
                                 <div class="product">
-                                    <form action="{{ route('shopping.carts.store') }}" method="post" enctype="multipart/form-data">
-                                        @csrf 
+                                    {{--  <form action="{{ route('shopping.carts.store') }}" method="post" enctype="multipart/form-data">
+                                        @csrf   --}}
                     
                     
                                                     <input type="hidden" value="{{ $val->id }}" name="id">
@@ -180,7 +180,7 @@
                                         <div class="action-wrapper">
                                             <a href="#/" id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
                                             <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="ti-heart"></i></a>
-                                            <button type="submit" id="{{ $val->id }}" class="action cart" title="Cart"><i class="ti-shopping-cart"></i></button>
+                                            <a class="add-to-cart-btn action cart" data-animal-id="{{ $val->id }} title="Cart"><i class="ti-shopping-cart"></i></button>
                                         </div>
                                     </div>
                                     <!-- Thumb End  -->
@@ -205,7 +205,7 @@
 
                                         </span>
                                     </div>
-                                </form>
+                                {{--  </form>  --}}
                                     <!-- Content End  -->
                                 </div>
                             </div>
@@ -716,6 +716,63 @@
                 success: function(data) {
                     $("#quickview_body").html(data);
                 }
+            });
+        });
+    </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Listen for the click event on the 'Add to Cart' button
+            $(".add-to-cart-btn").click(function() {
+                // Get the animal ID from the data attribute
+                var animalId = $(this).data("animal-id");
+    
+                // Make the AJAX request to add the item to the cart
+                $.ajax({
+                    url: "/shopping/cartlist",
+                    type: "POST",
+                    data: {
+                        id: animalId,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        
+                        // Handle the successful response with SweetAlert
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: response.message,
+                            timer: 3000, // Display time (in milliseconds)
+                            timerProgressBar: true, // Show a progress bar
+                        });
+                        // You can also update the cart count or show the updated cart content dynamically
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle any errors that occurred during the AJAX request with SweetAlert
+                        if (xhr.status === 404) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Animal not found. Unable to add to cart.',
+                                timer: 3000,
+                                timerProgressBar: true,
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'An error occurred while adding the product to cart.',
+                                timer: 3000,
+                                timerProgressBar: true,
+                            });
+                        }
+                    }
+                });
             });
         });
     </script>
