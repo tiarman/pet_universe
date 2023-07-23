@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\FoodController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PickupPointController;
 use App\Http\Controllers\ProductController;
@@ -170,6 +171,9 @@ Route::middleware([
             Route::delete('/destroy', [SliderController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
             Route::get('/list', [SliderController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
         });
+    Route::prefix('food')->name('food.')->group(function(){
+        Route::match(['get', 'post'], '/crete-store', [FoodController::class, 'createOrStore'])->name('create_store');
+    });
 
 
 

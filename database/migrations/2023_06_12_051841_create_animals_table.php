@@ -30,9 +30,9 @@ return new class extends Migration
             $table->string('featured')->default(Animal::$featuredArrays[0]);
             $table->string('today_deal')->default(Animal::$todayDealArrays[0]);
             $table->string('status')->default(Animal::$statusArrays[0]);
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('subcategory_id')->references('id')->on('sub_categories');
-            $table->foreign('pickup_point_id')->references('id')->on('pickup_points');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('subcategory_id')->references('id')->on('sub_categories')->onDelete('cascade');
+            $table->foreign('pickup_point_id')->references('id')->on('pickup_points')->onDelete('cascade');
             $table->timestamps();
         });
     }
