@@ -12,7 +12,7 @@ class CartController extends Controller
     public function cartList()
     {
         $cartItems = Cart::content();
-        // return session()->all();
+        return session()->all();
         return view('site.cart_page', compact('cartItems'));
     }
     
@@ -20,6 +20,8 @@ class CartController extends Controller
     {
         $animal_id = $request->id;
         $animal = Animal::find($animal_id);
+
+        // return $request;
 
         if ($animal) {
             if ($animal->discount_price === null) {

@@ -106,7 +106,7 @@
                             <span class="me-2"><strong>Qty: </strong></span>
                             <div class="cart-plus-minus">
                                
-                                <input class="cart-plus-minus-box" max="100" min="1" name="qty" value="1" type="text">
+                                <input class="cart-plus-minus-box" name="qty" value="1">
                                 
                                 <div class="dec qtybutton"></div>
                                 <div class="inc qtybutton"></div>

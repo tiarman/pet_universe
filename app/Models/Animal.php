@@ -20,6 +20,7 @@ class Animal extends Model
         'selling_price',
         'discount_price',
         'stock_quantity',
+        'qty',
         'image',
         'status',
 

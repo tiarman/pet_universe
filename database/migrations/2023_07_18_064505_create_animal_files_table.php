@@ -19,6 +19,7 @@ return new class extends Migration
                 $table->string('type')->nullable();
                 $table->string('name')->nullable();
                 $table->longText('description')->nullable();
+                $table->string('qty')->nullable();
                 $table->string('size')->nullable();
                 $table->string('file')->nullable();
             $table->timestamps();
