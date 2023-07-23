@@ -13,6 +13,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +83,7 @@ Route::middleware([
         Route::post('/update/product/status', [ProductController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.product.status');
         Route::post('/update/slider/status', [ProductController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.slider.status');
         Route::post('/update/animal/status', [AnimalController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.status');
+        Route::post('/update/food/status', [FoodController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.food.status');
         Route::post('/update/animal/featured', [AnimalController::class, 'ajaxUpdateFeatured'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.featured');
         Route::post('/update/animal/today_deal', [AnimalController::class, 'ajaxUpdatedeal'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.today_deal');
     });
@@ -162,6 +164,12 @@ Route::middleware([
         Route::get('/list', [ReviewController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
     });
 
+    Route::prefix('food')->name('food.')->group(function(){
+        Route::match(['get', 'post'], '/crete-store', [FoodController::class, 'createOrStore'])->name('create_store');
+        Route::get('/list', [FoodController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
+        Route::get('/manage/{id}', [FoodController::class, 'manage'])->middleware('role_or_permission:Super Admin|Manage Slider')->name('manage');
+        Route::delete('/destroy', [FoodController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
+    });
         #Slider
         Route::prefix('slider')->name('slider.')->group(function () {
             Route::get('/create', [SliderController::class, 'create'])->middleware('role_or_permission:Super Admin|Create Slider')->name('create');
@@ -192,4 +200,10 @@ Route::get('/cartlist', [SiteController::class, 'cartList'])->name('cartlist');
 
 
     
+});
+
+// site
+Route::controller(StripePaymentController::class)->group(function(){
+    Route::get('stripe', 'stripe');
+    Route::post('stripe', 'stripePost')->name('stripe.post');
 });

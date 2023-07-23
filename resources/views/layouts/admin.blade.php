@@ -177,6 +177,23 @@
                                 </ul>
                             </li>
                         @endif
+                        @if (
+                            \App\Helper\CustomHelper::canView(
+                                'Create Food|Manage Food|Delete Food|View Food|List Of Food',
+                                'Super Admin'))
+                            <li class="has_sub">
+                                <a class="waves-effect"><i class="mdi mdi-account-multiple"></i><span>Food<span
+                                            class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                <ul class="list-unstyled">
+                                    @if (\App\Helper\CustomHelper::canView('Create Food', 'Super Admin'))
+                                        <li><a href="{{ route('food.create_store') }}">Create Food</a></li>
+                                    @endif
+                                    @if (\App\Helper\CustomHelper::canView('Manage Animal|Delete Animal|View Animal|List Of Animal', 'Super Admin'))
+                                        <li><a href="{{ route('food.list') }}">List of Food</a></li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
 
 
 

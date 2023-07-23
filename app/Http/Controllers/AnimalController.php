@@ -26,9 +26,9 @@ class AnimalController extends Controller
 
     public function create()
     {
-        $data['categories'] = Categories::get();
-        $data['subcategory'] = SubCategory::get();
-        $data['pickup_point'] = PickupPoint::get();
+        $data['categories']      = Categories::get();
+        $data['subcategory']     = SubCategory::get();
+        $data['pickup_points']   = PickupPoint::get();
 
 
         return view('admin.animal.create', $data);
