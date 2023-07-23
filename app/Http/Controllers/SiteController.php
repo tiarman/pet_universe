@@ -27,7 +27,7 @@ class SiteController extends Controller {
 
   public function logout() {
     \auth()->logout();
-    \session()->flush();
+    // \session()->flush();
     return redirect()->route('login');
   }
 
@@ -43,9 +43,20 @@ public function home(){
     $data ['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();
     $data ['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
     $data ['animals'] = Animal::where('status', '=', Animal::$statusArrays[0])->get();
+    $cartItems = \Cart::content();
     // return $datas;
-    return view('site.index', $data);
+    return view('site.index', $data, compact('cartItems'));
 
+}
+
+
+public function cartList()
+{
+    $cartItems = Cart::content();
+    // $data ['category'] = Category::where('status', '=', Category::$statusArray[0])->get();
+    // dd($cartItems);
+    return $cartItems;
+    return view('layouts.site', compact('cartItems'));
 }
 
 
@@ -59,11 +70,12 @@ public function animal_details($name = null, $id=NULL)
       $animal_files = AnimalFile::where('animal_id', $animal->id)->get();
       $review = Review::where('animal_id', $animal->id)->get();
       $totalreview = Review::where('animal_id', $animal->id)->count();
+      $cartItems = \Cart::content();
       // return $product_file;
       // return $review;
 
        
-        return view('site.animal_details', compact('animal', 'related_animal', 'animal_files', 'review', 'totalreview'));
+        return view('site.animal_details', compact('animal', 'related_animal', 'animal_files', 'review', 'totalreview', 'cartItems'));
 
     }
     return RedirectHelper::backWithWarning('<strong>Sorry!!! </strong> Animal not found.');
