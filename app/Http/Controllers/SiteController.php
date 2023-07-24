@@ -40,6 +40,7 @@ class SiteController extends Controller {
 //   Start Here
 
 public function home(){
+    $data ['animals'] = Animal::where('status', '=', Animal::$statusArrays[0])->get();
     $data ['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();
     $cartItems = \Cart::content();
     $data ['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();

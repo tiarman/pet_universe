@@ -132,8 +132,8 @@
             <!-- Tab Start -->
             <div class="col-12">
                 <ul class="product-tab-nav nav justify-content-center mb-n3 pb-8 title-border-bottom">
-                    <li class="nav-item mb-3"><a class="nav-link active" data-bs-toggle="tab" href="#tab-product-all">Bestseller</a></li>
-                    <li class="nav-item mb-3"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-featured">Featured</a></li>
+                    <li class="nav-item mb-3"><a class="nav-link active" data-bs-toggle="tab" href="#tab-product-all">All Animal</a></li>
+                    <li class="nav-item mb-3"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-featured">New Arival</a></li>
                     <li class="nav-item mb-3"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-featuredss">Todays Deals</a></li>
                 </ul>
             </div>
@@ -175,7 +175,7 @@
                                             <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
-                                        <span class="new">New</span>
+                                        {{--  <span class="new">New</span>  --}}
                                         </span>
                                         <div class="action-wrapper">
                                             <a href="#/" id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
@@ -302,7 +302,7 @@
                                             <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
-                                        <span class="new">New</span>
+                                        <span class="new">Discount</span>
                                         </span>
                                         <div class="action-wrapper">
                                             <a href="#/" id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
@@ -574,7 +574,7 @@
 </div>
 <!-- Testimonial Section End -->
 
-<!-- Blog Section Start -->
+{{--  <!-- Blog Section Start -->
 <div class="section section-margin-bottom">
     <div class="container">
 
@@ -682,7 +682,7 @@
 
     </div>
 </div>
-<!-- Blog Section End -->
+<!-- Blog Section End -->  --}}
 
 
 

@@ -96,7 +96,7 @@
                         <!-- Header Logo Start -->
                         <div class="col-lg-3 col-md-4 col-6">
                             <div class="header-logo">
-                                <a href="index.html"><img src="{{asset('assets/site/images/logo/logo.png')}}" alt="Site Logo" /></a>
+                                <a href="{{route('home')}}"><img src="{{asset('assets/site/images/logo/logo.png')}}" alt="Site Logo" /></a>
                             </div>
                         </div>
                         <!-- Header Logo End -->
@@ -137,17 +137,10 @@
                                         </ul>
                                     </li>
                                     <li class="has-children">
-                                        <a href="#">Shop</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="about.html">About Us</a></li>
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                            <li><a href="error-404.html">Error 404</a></li>
-                                            <li><a href="faq.html">FAQ</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="register.html">Register</a></li>
-                                        </ul>
+                                        <a href="#">About Us</a>
+                                        
                                     </li>
-                                    <li class="has-children">
+                                    {{--  <li class="has-children">
                                         <a href="#">Blog</a>
                                         <ul class="sub-menu">
                                             <li><a href="blog.html">Blog</a></li>
@@ -156,7 +149,7 @@
                                             <li><a href="blog-details.html">Blog Details</a></li>
                                             <li><a href="blog-details-sidebar.html">Blog Details Sidebar</a></li>
                                         </ul>
-                                    </li>
+                                    </li>  --}}
                                    
                                     @guest()
                                     <li><a href="{{route('login')}}">Login</a></li>

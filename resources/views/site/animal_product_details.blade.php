@@ -12,10 +12,11 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="breadcrumb-wrapper">
-                    <h2 class="breadcrumb-title">Shop Grid</h2>
+                    
+                    <h2 class="breadcrumb-title">Shop Now</h2>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li>Shop Grid</li>
+                        <li>Shop Now</li>
                     </ul>
                 </div>
             </div>
@@ -81,7 +82,7 @@
                         <div class="product-inner">
                             <div class="thumb">
                                 <a href="single-product.html" class="image">
-                                    <img class="fit-image" src="{{asset($val->image)}}" alt="Product" />
+                                    <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                 </a>
                                 <div class="action-wrapper">
                                     <a id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
