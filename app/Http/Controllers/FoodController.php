@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Helper\CustomHelper;
 use App\Helper\RedirectHelper;
 use App\Models\Categories;

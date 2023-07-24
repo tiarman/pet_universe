@@ -78,6 +78,13 @@
                         {{--            </a></li> --}}
                         {{--          @endif --}}
 
+                            <li class="has_sub">
+                                <a class="waves-effect"><i class="mdi mdi-account-multiple"></i><span> Orders <span
+                                            class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                <ul class="list-unstyled">
+                                        <li><a href="{{ route('order.list') }}">List of Order</a></li>
+                                </ul>
+                            </li>
                         @if (\App\Helper\CustomHelper::canView('Create User|Manage User|Delete User|View User|List Of User', 'Super Admin'))
                             <li class="has_sub">
                                 <a class="waves-effect"><i class="mdi mdi-account-multiple"></i><span> Users <span

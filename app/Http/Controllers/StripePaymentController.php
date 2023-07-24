@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderStatusEnum;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 // use Stripe\Charge;
@@ -9,7 +11,7 @@ use Stripe;
 
 class StripePaymentController extends Controller
 {
-    public function stripe()
+    public function paymentCheckout()
     {   $cartItems = \Cart::content();
         // return $cartItems;
         return view('site.stripeCheckout',  compact('cartItems'));
@@ -20,26 +22,46 @@ class StripePaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function stripePost(Request $request)
+    public function paymentCheckoutStore(Request $request)
     {  
-        // return $request;
+        
+        // storing cart animal data to an associative array for storing json format in db
+        $cartItems = \Cart::content();
+        $animalData = [];
+
+        foreach ($cartItems as $item) {
+           $animalData[] = [
+            'id'         => $item->id,
+            'name'       => $item->name,
+            'qty'        => $item->qty,
+            'subtotal'   => $item->subtotal,
+           ];
+        }
+
+        // create order
+        $order = new Order();
+        $order->user_id             = auth()->id();
+        $order->animal              = json_encode($animalData);
+        $order->amount              = $request->amount;
+        $order->card_number         = $request->card_number;
+        $order->name                = $request->name;
+        $order->email               = $request->email;
+        $order->phone               = $request->phone;
+        $order->city                = $request->city;
+        $order->post_code           = $request->post_code;
+        $order->shipping_address    = $request->shipping_address;
+        $order->status              = OrderStatusEnum::PENDING;
+
+        // stripe payment create
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $payment =   Stripe\Charge::create([
             "amount" => $request->amount * 100,
             "currency" => "usd",
             "source" => $request->stripeToken,
-            "description" => "Test payment from itsolutionstuff.com.",
-            // "customer" => $request->name,
-            // "billing_details" => [
-            //     "name" => $request->name,
-            //     "email" => $request->email,
-            //     "phone" => $request->phone
-            // ],
+            "description" => "Order payment from Pet Universe.",
             "shipping" => [
 
                 "name" => $request->name,
-                // "email" => $request->email,
-                // "phone" => $request->phone,
 
                 "address" => [
 
@@ -48,8 +70,6 @@ class StripePaymentController extends Controller
                     "postal_code" => $request->post_code,
 
                     "city" => $request->city,
-
-                    // "house" => $request->shipping_address,
 
                     "state" => "CA",
 
@@ -61,9 +81,11 @@ class StripePaymentController extends Controller
         ]);
         
         Session::flash('success', 'Payment successful!');
-// return $payment;
-// source-id will be save in db
-
+        
+        if(Session::has('success')){
+            $order->payment_id = $payment->id;
+            $order->save();
+        }
         return back();
     }
 }
