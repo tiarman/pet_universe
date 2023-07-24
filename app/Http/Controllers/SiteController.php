@@ -41,12 +41,11 @@ class SiteController extends Controller {
 
 public function home(){
     $data ['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();
-    $data ['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
-    $data ['animals'] = Animal::where('status', '=', Animal::$statusArrays[0])->get();
     $cartItems = \Cart::content();
     $data ['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();
     $data ['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
     // return $datas;
+    // return $cartItems;
     return view('site.index', $data, compact('cartItems'));
 
 }
