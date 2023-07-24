@@ -132,8 +132,8 @@
             <!-- Tab Start -->
             <div class="col-12">
                 <ul class="product-tab-nav nav justify-content-center mb-n3 pb-8 title-border-bottom">
-                    <li class="nav-item mb-3"><a class="nav-link active" data-bs-toggle="tab" href="#tab-product-all">Bestseller</a></li>
-                    <li class="nav-item mb-3"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-featured">Featured</a></li>
+                    <li class="nav-item mb-3"><a class="nav-link active" data-bs-toggle="tab" href="#tab-product-all">All Animal</a></li>
+                    <li class="nav-item mb-3"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-featured">New Arival</a></li>
                     <li class="nav-item mb-3"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-featuredss">Todays Deals</a></li>
                 </ul>
             </div>
@@ -175,7 +175,7 @@
                                             <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
-                                        <span class="new">New</span>
+                                        {{--  <span class="new">New</span>  --}}
                                         </span>
                                         <div class="action-wrapper">
                                             <a href="#/" id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
@@ -251,7 +251,7 @@
 
                                     <!-- Content Start  -->
                                     <div class="content">
-                                        <h5 class="title"><a href="single-product.html">{{$val->name}}</a></h5>
+                                        <h5 class="title"><a href="{{ route('animal_details', $val->name) }}">{{$val->name}}</a></h5>
                                         {{--  <span class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -302,7 +302,7 @@
                                             <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
-                                        <span class="new">New</span>
+                                        <span class="new">Discount</span>
                                         </span>
                                         <div class="action-wrapper">
                                             <a href="#/" id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
@@ -314,7 +314,7 @@
 
                                     <!-- Content Start  -->
                                     <div class="content">
-                                        <h5 class="title"><a href="single-product.html">{{$val->name}}</a></h5>
+                                        <h5 class="title"><a href="{{ route('animal_details', $val->name) }}">{{$val->name}}</a></h5>
                                         {{--  <span class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -574,7 +574,7 @@
 </div>
 <!-- Testimonial Section End -->
 
-<!-- Blog Section Start -->
+{{--  <!-- Blog Section Start -->
 <div class="section section-margin-bottom">
     <div class="container">
 
@@ -682,13 +682,13 @@
 
     </div>
 </div>
-<!-- Blog Section End -->
+<!-- Blog Section End -->  --}}
 
 
 
 
 
-<!-- Modal Start  -->
+{{--  <!-- Modal Start  -->
 <div class="modalquickview modal fade" id="quick-view" tabindex="-1" aria-labelledby="quick-view" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" id="quickview_body">
@@ -698,7 +698,7 @@
         </div>
     </div>
 </div>
-<!-- Modal End  -->
+<!-- Modal End  -->  --}}
 
 
 
@@ -707,78 +707,8 @@
 @endsection
 
 @section('script')
-  <script type="text/javascript">
-        //ajax request send for collect childcategory
-        $(document).on('click', '.quickview', function() {
-            console.log('clicked');
-            var id = $(this).attr("id");
-            {{--  alert(id);  --}}
-            $.ajax({
-                url: "{{ url('/quickview/') }}/" + id,
-                type: 'get',
-                success: function(data) {
-                    $("#quickview_body").html(data);
-                }
-            });
-        });
-    </script>
 
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            // Listen for the click event on the 'Add to Cart' button
-            $(".add-to-cart-btn").click(function() {
-                // Get the animal ID from the data attribute
-                var animalId = $(this).data("animal-id");
-    
-                // Make the AJAX request to add the item to the cart
-                $.ajax({
-                    url: "/shopping/cartlist",
-                    type: "POST",
-                    data: {
-                        id: animalId,
-                        _token: "{{ csrf_token() }}"
-                    },
-                    success: function(response) {
-                        const items = $('#cart-count').text();
-                        console.log(parseInt(items)+1)
-                        $('#cart-count').text(parseInt(items)+1);
-                        // Handle the successful response with SweetAlert
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success',
-                            text: response.message,
-                            timer: 3000, // Display time (in milliseconds)
-                            timerProgressBar: true, // Show a progress bar
-                        });
-                        // You can also update the cart count or show the updated cart content dynamically
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle any errors that occurred during the AJAX request with SweetAlert
-                        if (xhr.status === 404) {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: 'Animal not found. Unable to add to cart.',
-                                timer: 3000,
-                                timerProgressBar: true,
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: 'An error occurred while adding the product to cart.',
-                                timer: 3000,
-                                timerProgressBar: true,
-                            });
-                        }
-                    }
-                });
-            });
-        });
-    </script>
 @endsection

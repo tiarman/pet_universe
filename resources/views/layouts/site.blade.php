@@ -96,7 +96,7 @@
                         <!-- Header Logo Start -->
                         <div class="col-lg-3 col-md-4 col-6">
                             <div class="header-logo">
-                                <a href="index.html"><img src="{{asset('assets/site/images/logo/logo.png')}}" alt="Site Logo" /></a>
+                                <a href="{{route('home')}}"><img src="{{asset('assets/site/images/logo/logo.png')}}" alt="Site Logo" /></a>
                             </div>
                         </div>
                         <!-- Header Logo End -->
@@ -111,8 +111,11 @@
                                     <li class="has-children position-static">
                                         <a href="#">Shop</a>
                                         <ul class="mega-menu">
+                                            @foreach ($category as $cat)
+                                                
+                                            
                                             <li class="mega-menu-col">
-                                                <h4 class="mega-menu-title">Shop Layout</h4>
+                                                <h4 class="mega-menu-title">{{$cat->category_name}}</h4>
                                                 <ul class="mb-n2">
                                                     <li><a href="shop.html">Shop Grid</a></li>
                                                     <li><a href="shop-left-sidebar.html">Left Sidebar</a></li>
@@ -142,8 +145,16 @@
                                                     <li><a href="cart.html">Cart</a></li>
                                                     <li><a href="{{route('paymentCheckout')}}">Checkout</a></li>
                                                     <li><a href="compare.html">Compare</a></li>
+                                                    @foreach($cat->subcategory as $sub)
+                                                    <li><a href="{{route('subcategory_details', $sub->id)}}">{{$sub->subcategory_name}}</a></li>
+                                                    @endforeach
+                                                    
                                                 </ul>
                                             </li>
+
+                                            @endforeach
+                                            
+                                            
                                             <li class="mega-menu-col">
                                                 <div class="megamenu-image">
                                                     <a href="shop.html">
@@ -154,17 +165,10 @@
                                         </ul>
                                     </li>
                                     <li class="has-children">
-                                        <a href="#">Pages</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="about.html">About Us</a></li>
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                            <li><a href="error-404.html">Error 404</a></li>
-                                            <li><a href="faq.html">FAQ</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="register.html">Register</a></li>
-                                        </ul>
+                                        <a href="#">About Us</a>
+                                        
                                     </li>
-                                    <li class="has-children">
+                                    {{--  <li class="has-children">
                                         <a href="#">Blog</a>
                                         <ul class="sub-menu">
                                             <li><a href="blog.html">Blog</a></li>
@@ -173,7 +177,7 @@
                                             <li><a href="blog-details.html">Blog Details</a></li>
                                             <li><a href="blog-details-sidebar.html">Blog Details Sidebar</a></li>
                                         </ul>
-                                    </li>
+                                    </li>  --}}
                                    
                                     @guest()
                                     <li><a href="{{route('login')}}">Login</a></li>
@@ -558,6 +562,18 @@
     </div>
     <!-- Modal End  -->  --}}
 
+    <!-- Modal Start  -->
+<div class="modalquickview modal fade" id="quick-view" tabindex="-1" aria-labelledby="quick-view" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="quickview_body">
+            
+
+            
+        </div>
+    </div>
+</div>
+<!-- Modal End  -->
+
     <!-- Scroll Top Start -->
     <a href="#" class="scroll-top show" id="scroll-top">
         <i class="arrow-top ti-angle-double-up"></i>
@@ -744,6 +760,78 @@
 
     <!--Main JS-->
     <script src="{{asset('assets/site/js/main.js')}}"></script>
+
+
+    <script type="text/javascript">
+        $(document).on('click', '.quickview', function() {
+            console.log('clicked');
+            var id = $(this).attr("id");
+            $.ajax({
+                url: "{{ url('/quickview/') }}/" + id,
+                type: 'get',
+                success: function(data) {
+                    $("#quickview_body").html(data);
+                }
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Listen for the click event on the 'Add to Cart' button
+            $(".add-to-cart-btn").click(function() {
+                // Get the animal ID from the data attribute
+                var animalId = $(this).data("animal-id");
+    
+                // Make the AJAX request to add the item to the cart
+                $.ajax({
+                    url: "/shopping/cartlist",
+                    type: "POST",
+                    data: {
+                        id: animalId,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        const items = $('#cart-count').text();
+                        console.log(parseInt(items)+1)
+                        $('#cart-count').text(parseInt(items)+1);
+                        // Handle the successful response with SweetAlert
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: response.message,
+                            timer: 3000, // Display time (in milliseconds)
+                            timerProgressBar: true, // Show a progress bar
+                        });
+                        // You can also update the cart count or show the updated cart content dynamically
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle any errors that occurred during the AJAX request with SweetAlert
+                        if (xhr.status === 404) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Animal not found. Unable to add to cart.',
+                                timer: 3000,
+                                timerProgressBar: true,
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'An error occurred while adding the product to cart.',
+                                timer: 3000,
+                                timerProgressBar: true,
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     @yield('script')
 </body>
 

@@ -202,6 +202,16 @@
                             </li>
                         @endif
 
+                        @if (
+                            \App\Helper\CustomHelper::canView(
+                                'Create SiteReview|Manage SiteReview|Delete SiteReview|View SiteReview|List Of SiteReview',
+                                'Super Admin|Customer'))
+                            <li><a href="{{ route('sitereview.list') }}" class="waves-effect">
+                                    <i class="mdi mdi-image-album"></i>
+                                    <span> Review</span>
+                                </a></li>
+                        @endif
+
 
 
 
