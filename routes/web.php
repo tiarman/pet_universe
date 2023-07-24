@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\SiteReviewController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\SubCategoryController;
@@ -181,6 +182,16 @@ Route::middleware([
             Route::delete('/destroy', [SliderController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Delete Slider')->name('destroy');
             Route::get('/list', [SliderController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
         });
+
+         #Review
+    Route::prefix('sitereview')->name('sitereview.')->group(function () {
+        Route::get('/create', [SiteReviewController::class, 'create'])->middleware('role_or_permission:Super Admin|Customer|Create SiteReview')->name('create');
+        Route::post('/store', [SiteReviewController::class, 'store'])->middleware('role_or_permission:Super Admin|Customer|Store SiteReview')->name('store');
+        Route::get('/manage/{id}', [SiteReviewController::class, 'manage'])->middleware('role_or_permission:Super Admin|Customer|Manage SiteReview')->name('manage');
+        Route::get('/view', [SiteReviewController::class, 'view'])->middleware('role_or_permission:Super Admin|View SiteReview')->name('view');
+        Route::delete('/destroy', [SiteReviewController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Customer|Delete SiteReview')->name('destroy');
+        Route::get('/list', [SiteReviewController::class, 'index'])->middleware('role_or_permission:Super Admin|Customer|List of SiteReview')->name('list');
+    });
 
 
 
