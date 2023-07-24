@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helper\RedirectHelper;
 use App\Models\Animal;
+use App\Models\Categories;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Cart;
 class CartController extends Controller
@@ -12,8 +14,10 @@ class CartController extends Controller
     public function cartList()
     {
         $cartItems = Cart::content();
-        return session()->all();
-        return view('site.cart_page', compact('cartItems'));
+        $data ['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();
+    $data ['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
+        // return session()->all();
+        return view('site.cart_page',$data, compact('cartItems'));
     }
     
     public function store(Request $request)

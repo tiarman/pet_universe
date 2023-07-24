@@ -40,6 +40,8 @@ Route::get('/', [SiteController::class, 'home'])->name('home');
 Route::get('/animal_details/{name}', [SiteController::class, 'animal_details'])->name('animal_details');
 Route::get('/quickview/{id}', [SiteController::class, 'quickview']);
 Route::get('/product-quick-view/{id}', [CartController::class, 'stores'])->name ('add.to.cart');
+Route::get('/subcategory_details/{id}', [SiteController::class, 'subcategory_details'])->name('subcategory_details');
+
 
 
 // Route::get('/shopping/cartlist', function () {

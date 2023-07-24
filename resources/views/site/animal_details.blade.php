@@ -176,7 +176,7 @@
                     <div class="mb-6 cart-btn action-btn">
                         <div class="action-cart-btn-wrapper d-flex">
                             <div class="add-to_cart">
-                                <a class="btn btn-primary btn-hover-dark rounded-0" href="cart.html">Add to cart</a>
+                                <a class="add-to-cart-btn btn btn-primary btn-hover-dark rounded-0" data-animal-id="{{ $animal->id }} href="cart.html">Add to cart</a>
                             </div>
                             <a href="wishlist.html" title="Wishlist" class="action"><i class="ti-heart"></i></a>
                         </div>
@@ -638,6 +638,61 @@
                         timer: 3000,
                         timerProgressBar: true
                     });
+                }
+            });
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        // Listen for the click event on the 'Add to Cart' button
+        $(".add-to-cart-btn").click(function() {
+            // Get the animal ID from the data attribute
+            var animalId = $(this).data("animal-id");
+
+            // Make the AJAX request to add the item to the cart
+            $.ajax({
+                url: "/shopping/cartlist",
+                type: "POST",
+                data: {
+                    id: animalId,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    const items = $('#cart-count').text();
+                    console.log(parseInt(items)+1)
+                    $('#cart-count').text(parseInt(items)+1);
+                    // Handle the successful response with SweetAlert
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: response.message,
+                        timer: 3000, // Display time (in milliseconds)
+                        timerProgressBar: true, // Show a progress bar
+                    });
+                    // You can also update the cart count or show the updated cart content dynamically
+                },
+                error: function(xhr, status, error) {
+                    // Handle any errors that occurred during the AJAX request with SweetAlert
+                    if (xhr.status === 404) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Animal not found. Unable to add to cart.',
+                            timer: 3000,
+                            timerProgressBar: true,
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'An error occurred while adding the product to cart.',
+                            timer: 3000,
+                            timerProgressBar: true,
+                        });
+                    }
                 }
             });
         });
