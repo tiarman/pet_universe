@@ -1,16 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-<<<<<<< HEAD
-use Illuminate\Http\Request;
-
-class FoodController extends Controller
-{
-    function createOrStore (Request $request){
-        if($request->isMethod('GET')){
-            return view('admin.food.create');
-=======
 use App\Helper\CustomHelper;
 use App\Helper\RedirectHelper;
 use App\Models\Categories;
@@ -130,7 +120,6 @@ class FoodController extends Controller
             if ($food->update(['status' => $status])) {
                 return "success";
             }
->>>>>>> 732115db5d6c2281d05640099ced590840d8c834
         }
     }
 }

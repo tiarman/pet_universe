@@ -2,7 +2,7 @@
     namespace App\Enums;
 
     enum OrderStatusEnum{
-        const ACTIVE        = 'accept';
+        const ACCEPT        = 'accept';
         const CANCEL        = 'cancel';
         const PENDING       = 'pending';
         const DELIVERED     = 'delivered';

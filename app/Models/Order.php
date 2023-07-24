@@ -25,6 +25,9 @@ class Order extends Model
     ];
 
     function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
+    // function animal(){
+    //     return $this->hasMany(Animal::class, 'id', 'animal');
+    // }
 }
