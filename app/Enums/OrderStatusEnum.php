@@ -4,7 +4,7 @@
     enum OrderStatusEnum{
         const ACTIVE        = 'accept';
         const CANCEL        = 'cancel';
-        const INREVIEW      = 'in-review';
+        const PENDING       = 'pending';
         const DELIVERED     = 'delivered';
     }
 ?>

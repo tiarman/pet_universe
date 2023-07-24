@@ -16,17 +16,17 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->json('animal');
+            $table->json('animal')->comment('animal information');
             $table->longText('payment_id');
             $table->text('card_number');
             $table->string('amount');
-            $table->string('name');
+            $table->string('name')->comment('customer name');
             $table->string('email');
             $table->string('phone');
             $table->string('city');
             $table->string('post_code');
             $table->string('shipping_address');
-            $table->string('status');
+            $table->string('status')->default(App\Enums\OrderStatusEnum::PENDING);
             $table->timestamps();
         });
     }
