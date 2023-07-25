@@ -53,6 +53,14 @@ public function home(){
 
 }
 
+public function all_product(){
+  $data ['animal'] = Animal::where('status', '=', Animal::$statusArrays[0])->get();
+  $data ['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();
+    $data ['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
+    $cartItems = \Cart::content();
+  return view('site.all_animal_products', $data, compact('cartItems'));
+}
+
 
 public function cartList()
 {

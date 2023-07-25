@@ -38,6 +38,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [SiteController::class, 'home'])->name('home');
+Route::get('/all_product', [SiteController::class, 'all_product'])->name('all_product');
 
 
 // All Details Sites

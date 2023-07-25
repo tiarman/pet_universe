@@ -9,10 +9,10 @@
             <div class="row">
                 <div class="text-center col-12">
                     <div class="breadcrumb-wrapper">
-                        <h2 class="breadcrumb-title">Wishlist</h2>
+                        <h2 class="breadcrumb-title">Checkout</h2>
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li>Wishlist</li>
+                            <li>checkout</li>
                         </ul>
                     </div>
                 </div>
@@ -102,13 +102,13 @@
                         <div class="mb-4 cart-btn-lef-side">
                             <a href="{{ route('home') }}" class="btn btn-gray-deep btn-hover-primary">Continue
                                 Shopping</a>
-                            <a href="#" class="btn btn-gray-deep btn-hover-primary">Update Shopping Cart</a>
+                            {{--  <a href="#" class="btn btn-gray-deep btn-hover-primary">Update Shopping Cart</a>  --}}
                         </div>
                         <!-- Cart Button left Side End -->
 
                         <!-- Cart Button Right Side Start -->
                         <div class="mb-4 cart-btn-right-right">
-                            <a href="#" class="btn btn-gray-deep btn-hover-primary">Clear Shopping Cart</a>
+                            <a href="{{route('paymentCheckout')}}" class="btn btn-gray-deep btn-hover-primary">Proceed To Checkout</a>
                         </div>
                         <!-- Cart Button Right Side End -->
 
@@ -118,7 +118,7 @@
                 </div>
             </div>
 
-            <div class="mt-10 row">
+            {{--  <div class="mt-10 row">
                 <div class="col-lg-6 me-0 ms-auto">
 
                     <!-- Cart Calculation Area Start -->
@@ -165,7 +165,7 @@
                     <!-- Cart Calculation Area End -->
 
                 </div>
-            </div>
+            </div>  --}}
 
         </div>
     </div>
