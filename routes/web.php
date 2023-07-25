@@ -18,6 +18,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -231,3 +232,14 @@ Route::controller(StripePaymentController::class)->group(function () {
 });
 
 Route::get('/cartlist', [SiteController::class, 'cartList'])->name('cartlist');
+
+
+
+ #Wish List
+ Route::prefix('wishlist')->name('wishlist.')->group(function () {
+    Route::get('/cartlist', [WishListController::class, 'cartList'])->name('cartlist');
+    Route::post('/cartlist', [WishListController::class, 'store'])->name('carts.store');
+    Route::post('/update-cart', [WishListController::class, 'updateCart'])->name('carts.update');
+    // Route::delete('/remove', [WishListController::class, 'removeFromCart'])->name('remove');
+    Route::delete('/remove/{id}', [WishListController::class, 'removeCart'])->name('remove');
+});
