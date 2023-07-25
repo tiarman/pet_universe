@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Enums\OrderStatusEnum;
+use App\Models\Categories;
 use App\Models\Order;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 // use Stripe\Charge;
@@ -13,8 +15,10 @@ class StripePaymentController extends Controller
 {
     public function paymentCheckout()
     {   $cartItems = \Cart::content();
+        $data ['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();
+    $data ['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
         // return $cartItems;
-        return view('site.stripeCheckout',  compact('cartItems'));
+        return view('site.stripeCheckout',$data,  compact('cartItems'));
     }
 
     /**

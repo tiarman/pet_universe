@@ -196,23 +196,38 @@ Route::middleware([
 
 
 
-    #Cart
-    Route::prefix('shopping')->name('shopping.')->group(function () {
-        Route::get('/cartlist', [CartController::class, 'cartList'])->name('cartlist');
-        Route::post('/cartlist', [CartController::class, 'store'])->name('carts.store');
-        Route::post('/update-cart', [CartController::class, 'updateCart'])->name('carts.update');
-        // Route::delete('/remove', [CartController::class, 'removeFromCart'])->name('remove');
-        Route::delete('/remove/{id}', [CartController::class, 'removeCart'])->name('remove');
-    });
+    // #Cart
+    // Route::prefix('shopping')->name('shopping.')->group(function () {
+    //     Route::get('/cartlist', [CartController::class, 'cartList'])->name('cartlist');
+    //     Route::post('/cartlist', [CartController::class, 'store'])->name('carts.store');
+    //     Route::post('/update-cart', [CartController::class, 'updateCart'])->name('carts.update');
+    //     // Route::delete('/remove', [CartController::class, 'removeFromCart'])->name('remove');
+    //     Route::delete('/remove/{id}', [CartController::class, 'removeCart'])->name('remove');
+    // });
 
-    Route::get('/cartlist', [SiteController::class, 'cartList'])->name('cartlist');
+    // Route::get('/cartlist', [SiteController::class, 'cartList'])->name('cartlist');
 
     // order list
     Route::get('/order-list', [OrderController::class, 'index'])->name('order.list');
-});
 
-// site
+
+    // site
 Route::controller(StripePaymentController::class)->group(function () {
     Route::get('payment-checkout', 'paymentCheckout')->name('paymentCheckout');
     Route::post('payment-checkout', 'paymentCheckoutStore')->name('paymentCheckoutStore');
 });
+
+});
+
+
+
+ #Cart
+ Route::prefix('shopping')->name('shopping.')->group(function () {
+    Route::get('/cartlist', [CartController::class, 'cartList'])->name('cartlist');
+    Route::post('/cartlist', [CartController::class, 'store'])->name('carts.store');
+    Route::post('/update-cart', [CartController::class, 'updateCart'])->name('carts.update');
+    // Route::delete('/remove', [CartController::class, 'removeFromCart'])->name('remove');
+    Route::delete('/remove/{id}', [CartController::class, 'removeCart'])->name('remove');
+});
+
+Route::get('/cartlist', [SiteController::class, 'cartList'])->name('cartlist');

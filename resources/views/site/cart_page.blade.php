@@ -7,7 +7,7 @@
     <div class="section breadcrumb-area bg-bright">
         <div class="container">
             <div class="row">
-                <div class="col-12 text-center">
+                <div class="text-center col-12">
                     <div class="breadcrumb-wrapper">
                         <h2 class="breadcrumb-title">Wishlist</h2>
                         <ul>
@@ -99,16 +99,16 @@
                     <div class="cart-button-section mb-n4">
 
                         <!-- Cart Button left Side Start -->
-                        <div class="cart-btn-lef-side mb-4">
-                            <a href="{{ route('home') }}" class="btn btn btn-gray-deep btn-hover-primary">Continue
+                        <div class="mb-4 cart-btn-lef-side">
+                            <a href="{{ route('home') }}" class="btn btn-gray-deep btn-hover-primary">Continue
                                 Shopping</a>
-                            <a href="#" class="btn btn btn-gray-deep btn-hover-primary">Update Shopping Cart</a>
+                            <a href="#" class="btn btn-gray-deep btn-hover-primary">Update Shopping Cart</a>
                         </div>
                         <!-- Cart Button left Side End -->
 
                         <!-- Cart Button Right Side Start -->
-                        <div class="cart-btn-right-right mb-4">
-                            <a href="#" class="btn btn btn-gray-deep btn-hover-primary">Clear Shopping Cart</a>
+                        <div class="mb-4 cart-btn-right-right">
+                            <a href="#" class="btn btn-gray-deep btn-hover-primary">Clear Shopping Cart</a>
                         </div>
                         <!-- Cart Button Right Side End -->
 
@@ -118,7 +118,7 @@
                 </div>
             </div>
 
-            <div class="row mt-10">
+            <div class="mt-10 row">
                 <div class="col-lg-6 me-0 ms-auto">
 
                     <!-- Cart Calculation Area Start -->
@@ -158,7 +158,7 @@
                         <!-- Cart Calculate Items End -->
 
                         <!-- Cart Checktout Button Start -->
-                        <a href="checkout.html" class="btn btn btn-gray-deep btn-hover-primary mt-6">Proceed To Checkout</a>
+                        <a href="{{route('paymentCheckout')}}" class="mt-6 btn btn-gray-deep btn-hover-primary">Proceed To Checkout</a>
                         <!-- Cart Checktout Button End -->
 
                     </div>
