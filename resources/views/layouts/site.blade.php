@@ -168,7 +168,7 @@
                         <div class="col-lg-3 col-md-8 col-6">
                             <div class="header-actions">
 
-                                <!-- Header Action Search Button Start -->
+                                {{--  <!-- Header Action Search Button Start -->
                                 <div class="header-action-btn header-action-btn-search d-none d-md-flex">
                                     <div class="action-execute">
                                         <a class="action-search-open" href="javascript:void(0)"><i class="icon-magnifier icons"></i></a>
@@ -182,7 +182,7 @@
                                     <!-- Search Form and Button End -->
 
                                 </div>
-                                <!-- Header Action Search Button End -->
+                                <!-- Header Action Search Button End -->  --}}
 
                                 <!-- Header My Account Button Start -->
                                 <a href="my-account.html" class="header-action-btn header-action-btn-wishlist">
