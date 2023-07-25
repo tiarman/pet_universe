@@ -62,7 +62,13 @@ class SiteReviewController extends Controller
             $sitereview = SiteReview::find($request->id);
             $message = $message . ' updated';
         } else {
-            $sitereview = new SiteReview();
+
+            if (!($sitereview = SiteReview::where('user_id', auth()->id())->first())){
+                $sitereview = new SiteReview();
+                $sitereview->user_id = auth()->id();
+              }
+
+            // $sitereview = new SiteReview();
             $message = $message . ' created';
         }
         $request->validate($rules);
