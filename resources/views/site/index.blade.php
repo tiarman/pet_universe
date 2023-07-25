@@ -18,7 +18,7 @@
                 <div class="container">
                     <div class="hero-slide-content text-start">
                         <h5 class="sub-title">We keep pets for pleasure.</h5>
-                        <h2 class="title m-0">Vitamins For all Pets</h2>
+                        <h2 class="m-0 title">Vitamins For all Pets</h2>
                         <p class="ms-0">We know your concerns when you are looking for a chewing treat for your dog.</p>
                         <a href="shop.html" class="btn btn-dark btn-hover-primary">Shop Now</a>
                     </div>
@@ -30,9 +30,9 @@
                     <img src="{{asset('assets/site/images/slider/slider1-2.png')}}" alt="Slider Image" />
                 </div>
                 <div class="container">
-                    <div class="hero-slide-content text-center text-md-end">
+                    <div class="text-center hero-slide-content text-md-end">
                         <h5 class="sub-title">We keep pets for pleasure.</h5>
-                        <h2 class="title m-0">Vitamins For all Pets</h2>
+                        <h2 class="m-0 title">Vitamins For all Pets</h2>
                         <p>We know your concerns when you are looking for a chewing treat for your dog.</p>
                         <a href="shop.html" class="btn btn-dark btn-hover-primary">Shop Now</a>
                     </div>
@@ -56,7 +56,7 @@
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 mb-n6">
 
-            <div class="col mb-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="mb-6 col" data-aos="fade-up" data-aos-duration="1000">
                 <!-- Single CTA Wrapper Start -->
                 <div class="single-cta-wrapper">
 
@@ -77,7 +77,7 @@
                 <!-- Single CTA Wrapper End -->
             </div>
 
-            <div class="col mb-6" data-aos="fade-up" data-aos-duration="1100">
+            <div class="mb-6 col" data-aos="fade-up" data-aos-duration="1100">
                 <!-- Single CTA Wrapper Start -->
                 <div class="single-cta-wrapper">
 
@@ -98,7 +98,7 @@
                 <!-- Single CTA Wrapper End -->
             </div>
 
-            <div class="col mb-6" data-aos="fade-up" data-aos-duration="1200">
+            <div class="mb-6 col" data-aos="fade-up" data-aos-duration="1200">
                 <!-- Single CTA Wrapper Start -->
                 <div class="single-cta-wrapper">
 
@@ -131,10 +131,10 @@
         <div class="row" data-aos="fade-up" data-aos-duration="1000">
             <!-- Tab Start -->
             <div class="col-12">
-                <ul class="product-tab-nav nav justify-content-center mb-n3 pb-8 title-border-bottom">
-                    <li class="nav-item mb-3"><a class="nav-link active" data-bs-toggle="tab" href="#tab-product-all">All Animal</a></li>
-                    <li class="nav-item mb-3"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-featured">New Arival</a></li>
-                    <li class="nav-item mb-3"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-featuredss">Todays Deals</a></li>
+                <ul class="pb-8 product-tab-nav nav justify-content-center mb-n3 title-border-bottom">
+                    <li class="mb-3 nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#tab-product-all">All Animal</a></li>
+                    <li class="mb-3 nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-featured">New Arival</a></li>
+                    <li class="mb-3 nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-featuredss">Todays Deals</a></li>
                 </ul>
             </div>
             <!-- Tab End -->
@@ -160,7 +160,7 @@
     
 
                             <!-- Product Start -->
-                            <div class="col-12 col-sm-6 col-lg-3 product-wrapper mb-8">
+                            <div class="mb-8 col-12 col-sm-6 col-lg-3 product-wrapper">
                                 <div class="product">
                                     {{--  <form action="{{ route('shopping.carts.store') }}" method="post" enctype="multipart/form-data">
                                         @csrf   --}}
@@ -231,7 +231,7 @@
                         <input type="hidden" value="{{ $val->id }}" name="id">
                         <input type="hidden" value="{{ $val->name }}" name="name">
                             <!-- Product Start -->
-                            <div class="col-12 col-sm-6 col-lg-3 product-wrapper mb-8">
+                            <div class="mb-8 col-12 col-sm-6 col-lg-3 product-wrapper">
                                 <div class="product">
                                     <!-- Thumb Start  -->
                                     <div class="thumb">
@@ -294,7 +294,7 @@
                     <input type="hidden" value="{{ $val->id }}" name="id">
                     <input type="hidden" value="{{ $val->name }}" name="name">
                             <!-- Product Start -->
-                            <div class="col-12 col-sm-6 col-lg-3 product-wrapper mb-8">
+                            <div class="mb-8 col-12 col-sm-6 col-lg-3 product-wrapper">
                                 <div class="product">
                                     <!-- Thumb Start  -->
                                     <div class="thumb">
@@ -359,7 +359,7 @@
         <div class="row mb-n6">
 
             <!-- Banner Start -->
-            <div class="col-md-6 col-12 mb-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="mb-6 col-md-6 col-12" data-aos="fade-up" data-aos-duration="1000">
                 <a href="shop.html" class="banner">
                     <img class="fit-image" src="{{asset('assets/site/images/banner/1.png')}}" alt="Banner Image" />
                 </a>
@@ -367,7 +367,7 @@
             <!-- Banner End -->
 
             <!-- Banner Start -->
-            <div class="col-md-6 col-12 mb-6" data-aos="fade-up" data-aos-duration="1400">
+            <div class="mb-6 col-md-6 col-12" data-aos="fade-up" data-aos-duration="1400">
                 <a href="shop.html" class="banner">
                     <img class="fit-image" src="{{asset('assets/site/images/banner/2.png')}}" alt="Banner Image" />
                 </a>
@@ -388,7 +388,7 @@
             <div class="col-12">
 
                 <!-- Section Title Start -->
-                <div class="section-title text-center">
+                <div class="text-center section-title">
                     <h2 class="title" data-aos="fade-up" data-aos-duration="1000">Deal Of The Week</h2>
                 </div>
                 <!-- Section Title End -->
@@ -403,16 +403,16 @@
                                 <!-- Single Product Deal Start -->
                                 <div class="single-deal-product row mb-n6">
                                     <!-- Deal Thumb Start -->
-                                    <div class="deal-thumb col-md-6 mb-6" data-aos="fade-up" data-aos-duration="1200">
+                                    <div class="mb-6 deal-thumb col-md-6" data-aos="fade-up" data-aos-duration="1200">
                                         <a href="single-product.html">
                                             <img class="fit-image" src="{{asset('assets/site/images/products/large-product/9.png')}}" alt="Product Image">
                                         </a>
                                     </div>
                                     <!-- Deal Thumb End -->
                                     <!-- Deal Content Start -->
-                                    <div class="product-deal-content col-md-6 mb-6" data-aos="fade-up" data-aos-duration="1400">
-                                        <h5 class="title mb-3"><a href="single-product.html">An Animal Album</a></h5>
-                                        <span class="rating mb-3">
+                                    <div class="mb-6 product-deal-content col-md-6" data-aos="fade-up" data-aos-duration="1400">
+                                        <h5 class="mb-3 title"><a href="single-product.html">An Animal Album</a></h5>
+                                        <span class="mb-3 rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -438,16 +438,16 @@
                                 <!-- Single Product Deal Start -->
                                 <div class="single-deal-product row mb-n6">
                                     <!-- Deal Thumb Start -->
-                                    <div class="deal-thumb col-md-6 mb-6">
+                                    <div class="mb-6 deal-thumb col-md-6">
                                         <a href="single-product.html">
                                             <img class="fit-image" src="{{asset('assets/site/images/products/large-product/10.png')}}" alt="Product Image">
                                         </a>
                                     </div>
                                     <!-- Deal Thumb End -->
                                     <!-- Deal Content Start -->
-                                    <div class="product-deal-content col-md-6 mb-6">
-                                        <h5 class="title mb-3"><a href="single-product.html">Animal For Life</a></h5>
-                                        <span class="rating mb-3">
+                                    <div class="mb-6 product-deal-content col-md-6">
+                                        <h5 class="mb-3 title"><a href="single-product.html">Animal For Life</a></h5>
+                                        <span class="mb-3 rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -489,8 +489,13 @@
 </div>
 <!-- Product Deal Section End -->
 
+
+
+
+
+
 <!-- Testimonial Section Start -->
-<div class="section bg-bright section-padding section-margin">
+<div class="section bg-bright section-padding" style="margin-top: 75px">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -498,33 +503,37 @@
                 <!-- Testimonial Carousel Start -->
                 <div class="testimonial-carousel">
 
+
+
+                        
+                    
                     <!-- Testimonial Gallery Top Start -->
                     <div class="swiper-container testimonial-gallery-top" data-aos="fade-up" data-aos-duration="1000">
                         <div class="swiper-wrapper">
-
+                            @foreach ($site_review as $val)
                             <!-- Single Swiper Slide Start -->
                             <div class="swiper-slide">
 
                                 <!-- Testimonial Content Start -->
-                                <div class="testimonial-content text-center">
-                                    <p>Lorem ipsum dolor sit amet, co adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita ullamco laboris nisi ut aliquip ex ea commodo</p>
+                                <div class="text-center testimonial-content">
+                                    <p>{{$val->comment}}</p>
                                 </div>
                                 <!-- Testimonial Content End -->
 
                             </div>
                             <!-- Single Swiper Slide End -->
+                            @endforeach
 
-                            <!-- Single Swiper Slide Start -->
                             <div class="swiper-slide">
 
                                 <!-- Testimonial Content Start -->
-                                <div class="testimonial-content text-center">
+                                <div class="text-center testimonial-content">
                                     <p>Vivamus a lobortis ipsum, vel condimentum magna. Etiam id turpis tortor. Nunc scelerisque, nisi a blandit varius, nunc purus venenatis ligula, sed venenatis orci augue nec sapien. Cum sociis natoque</p>
                                 </div>
                                 <!-- Testimonial Content End -->
 
                             </div>
-                            <!-- Single Swiper Slide End -->
+                            <!-- Single Swiper Slide End -->  --}}
                         </div>
 
                     </div>
@@ -533,30 +542,21 @@
                     <!-- Testimonial Gallery Thumb Start -->
                     <div class="swiper-container testimonial-gallery-thumbs" data-aos="fade-up" data-aos-duration="1500">
                         <div class="swiper-wrapper">
-
+                            @foreach ($site_review as $val)
                             <!-- Single Swiper Slide Start -->
                             <div class="swiper-slide">
                                 <!-- Testimonial Thumb Start -->
-                                <div class="testimonial-thumb text-center">
-                                    <img src="{{asset('assets/site/images/testimonial/1.png')}}" alt="Testimonial Image">
-                                    <h3 class="thumb-title">Jonathon Jhon</h3>
-                                    <h6 class="thumb-subtitle">Customer</h6>
+                                <div class="text-center testimonial-thumb">
+                                    <img style="height: 100px; width: 100px" src="{{asset($val->image)}}" alt="Testimonial Image">
+                                    <h3 class="thumb-title">{{$val->name}}</h3>
+                                    <h6 class="thumb-subtitle">{{$val->designation}}</h6>
                                 </div>
                                 <!-- Testimonial Thumb End -->
                             </div>
                             <!-- Single Swiper Slide End -->
+                            @endforeach
 
-                            <!-- Single Swiper Slide Start -->
-                            <div class="swiper-slide">
-                                <!-- Testimonial Thumb Start -->
-                                <div class="testimonial-thumb text-center">
-                                    <img src="{{asset('assets/site/images/testimonial/2.png')}}" alt="Testimonial Image">
-                                    <h3 class="thumb-title">Cristal Jerry</h3>
-                                    <h6 class="thumb-subtitle">Customer</h6>
-                                </div>
-                                <!-- Testimonial Thumb End -->
-                            </div>
-                            <!-- Single Swiper Slide End -->
+                            
 
                         </div>
 
@@ -580,7 +580,7 @@
 
         <div class="row" data-aos="fade-up" data-aos-duration="1000">
             <div class="col-12">
-                <div class="section-title text-center">
+                <div class="text-center section-title">
                     <h2 class="title">From Our Blog</h2>
                 </div>
             </div>
@@ -588,7 +588,7 @@
 
         <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 mb-n8">
 
-            <div class="col mb-8" data-aos="fade-up" data-aos-duration="1000">
+            <div class="mb-8 col" data-aos="fade-up" data-aos-duration="1000">
                 <!-- Single Blog Start -->
                 <div class="single-blog-wrapper">
 
@@ -618,7 +618,7 @@
                 <!-- Single Blog End -->
             </div>
 
-            <div class="col mb-8" data-aos="fade-up" data-aos-duration="1300">
+            <div class="mb-8 col" data-aos="fade-up" data-aos-duration="1300">
                 <!-- Single Blog Start -->
                 <div class="single-blog-wrapper">
 
@@ -648,7 +648,7 @@
                 <!-- Single Blog End -->
             </div>
 
-            <div class="col mb-8" data-aos="fade-up" data-aos-duration="1600">
+            <div class="mb-8 col" data-aos="fade-up" data-aos-duration="1600">
                 <!-- Single Blog Start -->
                 <div class="single-blog-wrapper">
 
