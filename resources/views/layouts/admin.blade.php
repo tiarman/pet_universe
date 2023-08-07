@@ -60,7 +60,7 @@
                 <div class="text-center" style="padding-right: 35px">
                     <a href="{{ route('home') }}" class="logo">
                         <img style="background: whitesmoke;display: unset"
-                            src="{{ asset($company_logo ?? 'assets/images/logo.png') }}" height="50"
+                            src="{{asset('assets/site/images/logo/logo.png')}}" height="50"
                             alt="logo"></a>
                 </div>
             </div>

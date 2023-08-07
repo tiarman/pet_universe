@@ -544,13 +544,15 @@ code {
   width: 240px;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
-  background: #263238;
+  /* background: #263238; */
+  background: rgb(246,171,73);
   position: absolute;
   z-index: 99;
 }
 
 .side-menu .waves-ripple {
-  background-color: rgba(255, 255, 255, 0.25);
+  /* background-color: rgba(255, 255, 255, 0.25); */
+  background-color: rgb(246,171,73);
 }
 
 .side-menu .topbar-left {
@@ -673,6 +675,7 @@ body.fixed-left .side-menu.left {
   padding: 0;
   position: relative;
   text-decoration: none;
+  color: #151529;
 }
 
 .navbar-nav > li > a.notification-icon-box {
@@ -685,7 +688,8 @@ body.fixed-left .side-menu.left {
 }
 
 #sidebar-menu {
-  background-color: #263238;
+  /* background-color: #263238; */
+  background-color: rgb(246,171,73);
   padding-bottom: 50px;
   width: 100%;
 }
@@ -699,18 +703,19 @@ body.fixed-left .side-menu.left {
 }
 
 #sidebar-menu ul ul li.active a {
-  color: rgba(255, 255, 255, 0.8);
+  /* color: rgba(255, 255, 255, 0.8); */
+  color: black;
 }
 
 #sidebar-menu ul ul a {
-  color: rgba(255, 255, 255, 0.5);
+  color: black;
   display: block;
   padding: 12px 20px 12px 55px;
   font-size: 15px;
 }
 
 #sidebar-menu ul ul a:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: #222d32;
 }
 
 #sidebar-menu ul ul a i {
@@ -722,14 +727,14 @@ body.fixed-left .side-menu.left {
 }
 
 #sidebar-menu > ul > li > a {
-  color: rgba(255, 255, 255, 0.5);
+  color: #263238;
   display: block;
   padding: 12px 20px;
-  background-color: #263238;
+  background-color: rgb(246,171,73);
 }
 
 #sidebar-menu > ul > li > a:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: #1d1e3a;
   text-decoration: none;
 }
 
@@ -743,8 +748,12 @@ body.fixed-left .side-menu.left {
 }
 
 #sidebar-menu > ul > li.nav-active > a {
-  background-color: #222d32;
-  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(214, 158, 85);
+  color: #151529;
+}
+#sidebar-menu > ul > li.nav-active > ul {
+  background-color: rgba(214, 158, 85, 0.712);
+  color: #151529;
 }
 
 #sidebar-menu > ul > li > a > span {
@@ -768,11 +777,11 @@ body.fixed-left .side-menu.left {
 }
 
 #sidebar-menu > ul > li > a.active {
-  color: rgba(255, 255, 255, 0.8);
+  color: #151529;
 }
 
 #sidebar-menu > ul > li > a.active i {
-  color: rgba(255, 255, 255, 0.8);
+  color: #151529;
 }
 
 #sidebar-menu > ul > li.nav-active > ul {
