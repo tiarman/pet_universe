@@ -10,7 +10,7 @@
 <div class="section breadcrumb-area bg-bright">
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="text-center col-12">
                 <div class="breadcrumb-wrapper">
                     
                     <h2 class="breadcrumb-title">Shop Now</h2>
@@ -32,7 +32,7 @@
             <div class="col-12">
 
                 <!--shop toolbar start-->
-                <div class="shop_toolbar_wrapper flex-column flex-md-row p-2 mb-8 border">
+                <div class="p-2 mb-8 border shop_toolbar_wrapper flex-column flex-md-row">
 
                     <!-- Shop Top Bar Left start -->
                     <div class="shop-top-bar-left">
@@ -86,7 +86,7 @@
                                 </a>
                                 <div class="action-wrapper">
                                     <a id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
-                                    <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="ti-heart"></i></a>
+                                    {{--  <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="ti-heart"></i></a>  --}}
                                     <a class="add-to-cart-btn action cart" data-animal-id="{{ $val->id }} title="Cart"><i class="ti-shopping-cart"></i></a>
                                 </div>
                             </div>
@@ -112,10 +112,10 @@
                                 <div class="cart-btn action-btn">
                                     <div class="action-cart-btn-wrapper d-flex">
                                         <div class="add-to_cart">
-                                            <a class="btn btn-primary btn-hover-dark rounded-0" href="cart.html">Add to cart</a>
+                                            <a class="add-to-cart-btn btn btn-primary btn-hover-dark rounded-0" data-animal-id="{{ $val->id }} href="cart.html">Add to cart</a>
                                         </div>
-                                        <a href="wishlist.html" title="Wishlist" class="action"><i class="ti-heart"></i></a>
-                                        <a href="#/" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view" title="Quickview"><i class="ti-plus"></i></a>
+                                        {{--  <a href="wishlist.html" title="Wishlist" class="action"><i class="ti-heart"></i></a>  --}}
+                                        <a id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
                                     </div>
                                 </div>
                                 <!-- Cart Button End -->
@@ -131,7 +131,7 @@
                 <!-- Shop Wrapper End -->
 
                 <!--shop toolbar start-->
-                <div class="shop_toolbar_wrapper justify-content-center mt-10">
+                <div class="mt-10 shop_toolbar_wrapper justify-content-center">
 
                     <!-- Shopt Top Bar Right Start -->
                     <div class="shop-top-bar-right">

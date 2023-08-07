@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <title>Admin | Dashboard</title>
 
-    <meta content="MD.Raihan Afroz" name="author" />
+    <meta content="Ours" name="author" />
     <meta content="RAST" name="company" />
     <meta content="RAST" name="description" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -184,7 +184,7 @@
                                 </ul>
                             </li>
                         @endif
-                        @if (
+                        {{--  @if (
                             \App\Helper\CustomHelper::canView(
                                 'Create Food|Manage Food|Delete Food|View Food|List Of Food',
                                 'Super Admin'))
@@ -200,7 +200,7 @@
                                     @endif
                                 </ul>
                             </li>
-                        @endif
+                        @endif  --}}
 
                         @if (
                             \App\Helper\CustomHelper::canView(
