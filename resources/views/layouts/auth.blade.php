@@ -39,7 +39,7 @@
 
           @foreach ($images as $item => $val)
             <div class="carousel-item {{$item == 0 ? 'active' : '' }}">
-              <img height="680px" class="d-block w-100 " src="{{asset($val->image)}}" alt="First slide">
+              <img height="680px" class="d-block w-100 " src="{{asset('assets/admin/images/gallery/work-1.jpg')}}" alt="First slide">
             </div>
           @endforeach
         </div>

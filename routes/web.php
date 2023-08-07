@@ -12,6 +12,7 @@ use App\Http\Controllers\PickupPointController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SiteReviewController;
 use App\Http\Controllers\SliderController;
@@ -196,6 +197,15 @@ Route::middleware([
         Route::get('/list', [SiteReviewController::class, 'index'])->middleware('role_or_permission:Super Admin|Customer|List of SiteReview')->name('list');
     });
 
+
+        #setting
+        Route::prefix('setting')->name('setting.')->group(function () {
+            Route::get('/create', [SettingController::class, 'create'])->name('create');
+            Route::get('/manage/{id}', [SettingController::class, 'manage'])->name('manage');
+            Route::post('/store', [SettingController::class, 'store'])->name('store');
+            Route::get('/list', [SettingController::class, 'index'])->name('list');
+            Route::delete('/destroy', [SettingController::class, 'destroy'])->name('destroy');
+          });
 
 
     // #Cart
