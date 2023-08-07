@@ -178,7 +178,7 @@
                             <div class="add-to_cart">
                                 <a class="add-to-cart-btn btn btn-primary btn-hover-dark rounded-0" data-animal-id="{{ $animal->id }} href="cart.html">Add to cart</a>
                             </div>
-                            <a href="wishlist.html" title="Wishlist" class="action"><i class="ti-heart"></i></a>
+                            {{--  <a href="wishlist.html" title="Wishlist" class="action"><i class="ti-heart"></i></a>  --}}
                         </div>
                     </div>
                     <!-- Cart Button End -->
@@ -539,9 +539,9 @@
                                                 <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                             </a>
                                             <div class="action-wrapper">
-                                                <a href="#/" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="ti-heart"></i></a>
-                                                <a href="cart.html" class="action cart" title="Cart"><i class="ti-shopping-cart"></i></a>
+                                                <a href="#/" id="{{ $val->id }}" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="ti-plus"></i></a>
+                                                {{--  <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="ti-heart"></i></a>  --}}
+                                                <a href="cart.html" class="add-to-cart-btn action cart" data-animal-id="{{ $val->id }} title="Cart"><i class="ti-shopping-cart"></i></a>
                                             </div>
                                         </div>
                                         <!-- Thumb End  -->

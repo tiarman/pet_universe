@@ -39,7 +39,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SiteController::class, 'home'])->name('home');
 Route::get('/all_product', [SiteController::class, 'all_product'])->name('all_product');
-
+Route::get('/about_us', [SiteController::class, 'about_us'])->name('about_us');
+// Route::get('/about_us', function () {return view('site.about_us');})->name('about_us');
 
 // All Details Sites
 Route::get('/animal_details/{name}', [SiteController::class, 'animal_details'])->name('animal_details');

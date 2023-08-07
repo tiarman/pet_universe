@@ -26,7 +26,7 @@
                   @csrf
                   <div class="form-group">
                       <label for="username">User Name <span class="text-danger">*</span></label>
-                      <input type="text" name="username" id="username" placeholder="Enter Your Phone Number" autocomplete="off"
+                      <input type="text" name="username" id="username" placeholder="Enter user name" autocomplete="off"
                              class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}">
                       <span class="spin"></span>
                       @error('username')
@@ -37,9 +37,9 @@
                   <div class="form-group">
                       <label class="form-label" for="full_name">Full Name</label>
                       <div class="d-flex">
-                          <input type="text" name="full_name" id="full_name" placeholder="Enter Your full_name"
+                          <input type="text" name="full_name" id="full_name" placeholder="Enter your full name"
                                  class="form-control @error('full_name') is-invalid @enderror" value="{{ old('full_name') }}" required>
-                          <span class="mt-1 "><i class="fa fa-duotone fa-envelope icon login-icon"></i></span>
+                          {{--  <span class="mt-1 "><i class="fa fa-duotone fa-envelope icon login-icon"></i></span>  --}}
                       </div>
 
                       <span class="spin"></span>
@@ -50,7 +50,7 @@
 
                   <div class="form-group">
                       <label for="phone">Phone <span class="text-danger">*</span></label>
-                      <input type="number" name="phone" id="phone" placeholder="Enter Your Phone Number" autocomplete="off"
+                      <input type="number" name="phone" id="phone" placeholder="Enter your phone number" autocomplete="off"
                              class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}">
                       <span class="spin"></span>
                       @error('phone')
@@ -61,9 +61,9 @@
                   <div class="form-group">
                       <label class="form-label" for="email">Email</label>
                       <div class="d-flex">
-                          <input type="text" name="email" id="email" placeholder="Enter Your email"
+                          <input type="text" name="email" id="email" placeholder="Enter your email"
                                  class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
-                          <span class="mt-1 "><i class="fa fa-duotone fa-envelope icon login-icon"></i></span>
+                          <span class="mt-1 "><i style="margin-left: -23px" class="fa fa-duotone fa-envelope icon login-icon"></i></span>
                       </div>
 
                       <span class="spin"></span>
@@ -76,9 +76,9 @@
                   <div class="form-group">
                       <label class="form-label" for="password">Password</label>
                       <div class="d-flex">
-                          <input type="password" name="password" id="password" placeholder="Enter Your Password" autocomplete="off"
+                          <input type="password" name="password" id="password" placeholder="Enter your password" autocomplete="off"
                                  class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" required>
-                          <span class="mt-1 "><i class="fa fa-regular fa-key icon login-icon"></i></span>
+                          <span class="mt-1 "><i style="margin-left: -23px" class="fa fa-regular fa-key icon login-icon"></i></span>
                       </div>
 
                       <span class="spin"></span>
@@ -89,7 +89,7 @@
 
                   <div class="form-group">
                       <label for="password_confirmation">Confirm Password <span class="text-danger">*</span></label>
-                      <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Your Password" autocomplete="off"
+                      <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm your password" autocomplete="off"
                              class="form-control @error('password_confirmation') is-invalid @enderror" value="{{ old('password_confirmation') }}">
                       <span class="spin"></span>
                       @error('password_confirmation')

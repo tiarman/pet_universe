@@ -69,13 +69,13 @@
                         <div class="header-top-settings">
                             <ul class="nav">
                                 <li class="curreny-wrap">
-                                    <a href="#">Currency</a>
-                                    <i class="fa fa-angle-down"></i>
+                                    <a href="#">Contact Us : 01860842420</a>
+                                    {{--  <i class="fa fa-angle-down"></i>
                                     <ul class="dropdown-list curreny-list">
                                         <li><a href="#">$ USD</a></li>
                                         <li><a href="#">€ Taka</a></li>
 
-                                    </ul>
+                                    </ul>  --}}
                                 </li>
                             </ul>
                         </div>
@@ -108,8 +108,8 @@
                                     <li class="has-children">
                                         <a href="{{route('home')}}">Home</a>
                                     </li>
-                                    <li class="has-children position-static">
-                                        <a href="#">Shop</a>
+                                    {{--  <li class="has-children position-static">
+                                        <a href="{{route('all_product')}}">Shop</a>
                                         <ul class="mega-menu">
                                             @foreach ($category as $cat)
                                                 
@@ -127,29 +127,32 @@
                                             @endforeach
                                             
                                             
-                                            <li class="mega-menu-col">
-                                                <div class="megamenu-image">
-                                                    <a href="shop.html">
-                                                        <img class="fit-image" src="{{asset('assets/site/images/header/mega-menu.png')}}" alt="Megamenu Image">
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-children">
-                                        <a href="#">About Us</a>
-                                        
-                                    </li>
-                                    {{--  <li class="has-children">
-                                        <a href="#">Blog</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                            <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                            <li><a href="blog-details-sidebar.html">Blog Details Sidebar</a></li>
+                                            
                                         </ul>
                                     </li>  --}}
+
+
+                                    @foreach ($category as $cat)
+                                    <li class="has-children">
+                                        <a href="#">{{$cat->category_name}}</a>
+                                        <ul class="sub-menu">
+                                            @foreach($cat->subcategory as $sub)
+                                            <li><a href="{{route('subcategory_details', $sub->id)}}">{{$sub->subcategory_name}}</a></li>
+                                            {{--  <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                                            <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                                            <li><a href="blog-details.html">Blog Details</a></li>
+                                            <li><a href="blog-details-sidebar.html">Blog Details Sidebar</a></li>  --}}
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                    @endforeach
+
+
+                                    <li class="has-children">
+                                        <a href="{{route('about_us')}}">About Us</a>
+                                        
+                                    </li>
+                                    
                                    
                                     @guest()
                                     <li><a href="{{route('login')}}">Login</a></li>
@@ -184,11 +187,11 @@
                                 </div>
                                 <!-- Header Action Search Button End -->  --}}
 
-                                <!-- Header My Account Button Start -->
+                                {{--  <!-- Header My Account Button Start -->
                                 <a href="my-account.html" class="header-action-btn header-action-btn-wishlist">
                                     <i class="icon-user icons"></i>
                                 </a>
-                                <!-- Header My Account Button End -->
+                                <!-- Header My Account Button End -->  --}}
 
                                 <!-- Header Action Button Start -->
                                 <div class="header-action-btn header-action-btn-cart d-none d-sm-flex">
@@ -373,7 +376,7 @@
                 <div class="row align-items-center mb-n4">
                     <div class="order-2 mb-4 text-center col-md-6 text-md-start order-md-1">
                         <div class="copyright-content">
-                            <p class="mb-0">© 2021 <strong>Amber </strong> Made with <i class="fa fa-heart text-danger"></i> by <a href="https://hasthemes.com/">HasThemes.</a></p>
+                            <p class="mb-0">© 2023 <strong>Pet Universe </strong> Made with <i class="fa fa-heart text-danger"></i> by <a href="">Team Pet Universe</a></p>
                         </div>
                     </div>
                     <div class="order-1 mb-4 text-center col-md-6 text-md-end order-md-2">
