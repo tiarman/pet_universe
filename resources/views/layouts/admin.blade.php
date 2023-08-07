@@ -188,17 +188,17 @@
 
                         @if (
                             \App\Helper\CustomHelper::canView(
-                                'Create Animal|Manage Animal|Delete Animal|View Animal|List Of Animal',
+                                'Create Setting|Manage Setting|Delete Setting|View Setting|List Of Setting',
                                 'Super Admin'))
                             <li class="has_sub">
-                                <a class="waves-effect"><i class="mdi mdi-cat"></i><span>Setting<span
+                                <a class="waves-effect"><i class="mdi mdi-settings"></i><span>Setting<span
                                             class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="list-unstyled">
-                                    @if (\App\Helper\CustomHelper::canView('Create Animal', 'Super Admin'))
-                                        <li><a href="{{ route('setting.create') }}">Create Animal</a></li>
+                                    @if (\App\Helper\CustomHelper::canView('Create Setting', 'Super Admin'))
+                                        <li><a href="{{ route('setting.create') }}">Create Setting</a></li>
                                     @endif
-                                    @if (\App\Helper\CustomHelper::canView('Manage Animal|Delete Animal|View Animal|List Of Animal', 'Super Admin'))
-                                        <li><a href="{{ route('setting.list') }}">List of Animal</a></li>
+                                    @if (\App\Helper\CustomHelper::canView('Manage Setting|Delete Setting|View Setting|List Of Setting', 'Super Admin'))
+                                        <li><a href="{{ route('setting.list') }}">List of Setting</a></li>
                                     @endif
                                 </ul>
                             </li>
