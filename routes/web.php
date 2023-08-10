@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\LoginSliderController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PickupPointController;
@@ -45,7 +46,7 @@ Route::get('/about_us', [SiteController::class, 'about_us'])->name('about_us');
 // All Details Sites
 Route::get('/animal_details/{name}', [SiteController::class, 'animal_details'])->name('animal_details');
 Route::get('/quickview/{id}', [SiteController::class, 'quickview']);
-Route::get('/product-quick-view/{id}', [CartController::class, 'stores'])->name ('add.to.cart');
+Route::get('/product-quick-view/{id}', [CartController::class, 'stores'])->name('add.to.cart');
 Route::get('/subcategory_details/{id}', [SiteController::class, 'subcategory_details'])->name('subcategory_details');
 
 
@@ -92,6 +93,7 @@ Route::middleware([
         Route::post('/update/animal/featured', [AnimalController::class, 'ajaxUpdateFeatured'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.featured');
         Route::post('/update/animal/today_deal', [AnimalController::class, 'ajaxUpdatedeal'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.animal.today_deal');
         Route::post('/update/order/status', [OrderController::class, 'ajaxUpdateStatus'])->middleware('role_or_permission:Super Admin|Manage User')->name('update.order.status');
+        Route::post('/update/backgrouond/status', [BackgroundImageController::class, 'ajaxUpdateStatus'])->name('update.backgroundImage.status');
     });
 
 
@@ -186,7 +188,7 @@ Route::middleware([
         Route::get('/list', [SliderController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
     });
 
-         #Review
+    #Review
     Route::prefix('sitereview')->name('sitereview.')->group(function () {
         Route::get('/create', [SiteReviewController::class, 'create'])->middleware('role_or_permission:Super Admin|Customer|Create SiteReview')->name('create');
         Route::post('/store', [SiteReviewController::class, 'store'])->middleware('role_or_permission:Super Admin|Customer|Store SiteReview')->name('store');
@@ -214,17 +216,20 @@ Route::middleware([
 
 
     // site
-Route::controller(StripePaymentController::class)->group(function () {
-    Route::get('payment-checkout', 'paymentCheckout')->name('paymentCheckout');
-    Route::post('payment-checkout', 'paymentCheckoutStore')->name('paymentCheckoutStore');
+    Route::controller(StripePaymentController::class)->group(function () {
+        Route::get('payment-checkout', 'paymentCheckout')->name('paymentCheckout');
+        Route::post('payment-checkout', 'paymentCheckoutStore')->name('paymentCheckoutStore');
+    });
+
+    #Background login Image
+    Route::match(['get', 'post'], '/background-image', [LoginSliderController::class, 'createOrIndex'])->name('admin.backgroundImage');
+    Route::delete('/background-image/destroy', [LoginSliderController::class, 'destroy'])->name('admin.backgroundImage.destroy');
 });
 
-});
 
 
-
- #Cart
- Route::prefix('shopping')->name('shopping.')->group(function () {
+#Cart
+Route::prefix('shopping')->name('shopping.')->group(function () {
     Route::get('/cartlist', [CartController::class, 'cartList'])->name('cartlist');
     Route::post('/cartlist', [CartController::class, 'store'])->name('carts.store');
     Route::post('/update-cart', [CartController::class, 'updateCart'])->name('carts.update');
