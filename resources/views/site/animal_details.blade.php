@@ -13,11 +13,11 @@
         <div class="row">
             <div class="text-center col-12">
                 <div class="breadcrumb-wrapper">
-                    <h2 class="breadcrumb-title">Variable Product</h2>
-                    <ul>
+                    <h2 class="breadcrumb-title">Animal Details</h2>
+                    {{--  <ul>
                         <li><a href="index.html">Home</a></li>
                         <li>Variable Product</li>
-                    </ul>
+                    </ul>  --}}
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
                     <!-- Product Head End -->
 
                     <div style="display: flex">
-                    <!-- Rating Start -->
+                    {{--  <!-- Rating Start -->
                         <span class="mb-2 rating justify-content-start">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -99,9 +99,11 @@
                                 <i class="fa fa-star-half-o"></i>
                                 <i class="fa fa-star-o"></i>
                             </span>
-                        <!-- Rating End -->
+                        <!-- Rating End -->  --}}
                         <h5>({{$totalreview}} Custommer Review)</h5>
                     </div>
+                    <br>
+                    <br>
 
                     <!-- Price Box Start -->
                     <div class="mb-2 price-box">
@@ -114,16 +116,21 @@
                     </div>
                     <!-- Price Box End -->
 
-                    <!-- SKU Start -->
+                    {{--  <!-- SKU Start -->
                     <div class="mb-3 sku">
                         <span>SKU: 12345</span>
                     </div>
-                    <!-- SKU End -->
+                    <!-- SKU End -->  --}}
 
                     <!-- Product Inventory Start -->
                     <div class="mb-3 product-inventroy">
                         <span class="inventroy-title"> <strong>Availability:</strong></span>
-                        <span class="inventory-varient">12 Left in Stock</span>
+                        @if ($val->stock_quantity >= 1)
+                        <span class="inventory-varient">Available in Stock</span>
+                        @else
+                        <span style="color: red" class="inventory-varient">Stock Out (Your order will be pending for arival)</span>
+                        @endif
+                        
                     </div>
                     <!-- Product Inventory End -->
 
@@ -228,16 +235,15 @@
                     <li class="mb-3 nav-item">
                         <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#connect-3" role="tab" aria-selected="false">Shipping Policy</a>
                     </li>
-                    <li class="mb-3 nav-item">
+                    {{--  <li class="mb-3 nav-item">
                         <a class="nav-link" id="review-tab" data-bs-toggle="tab" href="#connect-4" role="tab" aria-selected="false">Size Chart</a>
-                    </li>
+                    </li>  --}}
                 </ul>
 
                 <div class="tab-content mb-text" id="myTabContent">
                     <div class="tab-pane fade show active" id="connect-1" role="tabpanel" aria-labelledby="home-tab">
                         <div class="desc-content">
-                            <p class="mb-3">On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.</p>
-                            <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+                            <p class="mb-3">{{$animal->description}}</p>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="connect-2" role="tabpanel" aria-labelledby="profile-tab">
@@ -444,7 +450,7 @@
                         </div>
                         <!-- Shipping Policy End -->
                     </div>
-                    <div class="tab-pane fade" id="connect-4" role="tabpanel" aria-labelledby="review-tab">
+                    {{--  <div class="tab-pane fade" id="connect-4" role="tabpanel" aria-labelledby="review-tab">
                         <div class="mt-8 size-tab table-responsive-lg">
                             <h4 class="mb-4 title-3">Size Chart</h4>
                             <table class="table mb-0 border">
@@ -492,7 +498,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div>  --}}
                 </div>
 
             </div>
