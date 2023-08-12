@@ -125,7 +125,7 @@
                     <!-- Product Inventory Start -->
                     <div class="mb-3 product-inventroy">
                         <span class="inventroy-title"> <strong>Availability:</strong></span>
-                        @if ($val->stock_quantity >= 1)
+                        @if ($animal->stock_quantity >1 )
                         <span class="inventory-varient">Available in Stock</span>
                         @else
                         <span style="color: red" class="inventory-varient">Stock Out (Your order will be pending for arival)</span>
