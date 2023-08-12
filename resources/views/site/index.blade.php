@@ -171,7 +171,7 @@
                     
                                     <!-- Thumb Start  -->
                                     <div class="thumb">
-                                        <a href="single-product.html" class="image">
+                                        <a href="{{ route('animal_details', $val->name) }}" class="image">
                                             <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
@@ -235,7 +235,7 @@
                                 <div class="product">
                                     <!-- Thumb Start  -->
                                     <div class="thumb">
-                                        <a href="single-product.html" class="image">
+                                        <a href="{{ route('animal_details', $val->name) }}" class="image">
                                             <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
@@ -298,7 +298,7 @@
                                 <div class="product">
                                     <!-- Thumb Start  -->
                                     <div class="thumb">
-                                        <a href="single-product.html" class="image">
+                                        <a href="{{ route('animal_details', $val->name) }}" class="image">
                                             <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                         </a>
                                         <span class="badges">
@@ -397,33 +397,39 @@
                 <div class="product-deal-carousel arrow-outside-container">
                     <div class="swiper-container">
 
+                        
                         <div class="swiper-wrapper">
-
+                            @foreach ($animals as $val)
+                            @if ($val->today_deal == 'yes')
                             <div class="swiper-slide">
                                 <!-- Single Product Deal Start -->
                                 <div class="single-deal-product row mb-n6">
                                     <!-- Deal Thumb Start -->
                                     <div class="mb-6 deal-thumb col-md-6" data-aos="fade-up" data-aos-duration="1200">
                                         <a href="single-product.html">
-                                            <img class="fit-image" src="{{asset('assets/site/images/products/large-product/9.png')}}" alt="Product Image">
+                                            <img style="widows: 570px; height: 440px;" class="fit-image" src="{{asset($val->image)}}" alt="Product Image">
                                         </a>
                                     </div>
                                     <!-- Deal Thumb End -->
                                     <!-- Deal Content Start -->
                                     <div class="mb-6 product-deal-content col-md-6" data-aos="fade-up" data-aos-duration="1400">
-                                        <h5 class="mb-3 title"><a href="single-product.html">An Animal Album</a></h5>
-                                        <span class="mb-3 rating">
+                                        <h5 class="mb-3 title"><a href="{{ route('animal_details', $val->name) }}">{{$val->name}}</a></h5>
+                                        {{--  <span class="mb-3 rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star-o"></i>
-                                            </span>
+                                            </span>  --}}
                                         <span class="price">
-                                                <span class="new">$80.50</span>
-                                        <span class="old">$85.80</span>
+                                            @if ($val->discount_price == null)
+                                            <span class="new">${{ $val->selling_price }}</span>
+                                            @else
+                                            <span class="new">${{ $val->discount_price }}</span>
+                                            <span class="old">${{$val->selling_price}}</span>
+                                            @endif
                                         </span>
-                                        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+                                        <p>{{$val->description}}</p>
                                         <div class="countdown-area">
                                             <div class="countdown-wrapper" data-countdown="2028/12/28"></div>
                                         </div>
@@ -433,8 +439,10 @@
                                 </div>
                                 <!-- Single Product Deal End -->
                             </div>
+                            @endif
+                            @endforeach
 
-                            <div class="swiper-slide">
+                            {{--  <div class="swiper-slide">
                                 <!-- Single Product Deal Start -->
                                 <div class="single-deal-product row mb-n6">
                                     <!-- Deal Thumb Start -->
@@ -467,7 +475,7 @@
                                     <!-- Deal Content End -->
                                 </div>
                                 <!-- Single Product Deal End -->
-                            </div>
+                            </div>  --}}
 
                         </div>
 

@@ -13,11 +13,11 @@
             <div class="text-center col-12">
                 <div class="breadcrumb-wrapper">
                     
-                    <h2 class="breadcrumb-title">Shop Now</h2>
-                    <ul>
+                    <h2 class="breadcrumb-title">Animal by Sub Category</h2>
+                    {{--  <ul>
                         <li><a href="index.html">Home</a></li>
                         <li>Shop Now</li>
-                    </ul>
+                    </ul>  --}}
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                             <button data-role="grid_list" type="button" class="btn-list" title="List"><i class="ti-align-justify"></i></button>
                         </div>
                         <div class="shop-top-show">
-                            <span>Showing 1–12 of 39 results</span>
+                            {{--  <span>Showing 1–12 of 39 results</span>  --}}
                         </div>
 
                     </div>
@@ -81,7 +81,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 product">
                         <div class="product-inner">
                             <div class="thumb">
-                                <a href="single-product.html" class="image">
+                                <a href="{{ route('animal_details', $val->name) }}" class="image">
                                     <img class="fit-image" style="height: 270px; width: 270px;" src="{{asset($val->image)}}" alt="Product" />
                                 </a>
                                 <div class="action-wrapper">
