@@ -215,7 +215,7 @@
                                                 <!-- Single Cart Product Start -->
                                                 <div class="single-cart-product">
                                                     <div class="cart-product-thumb">
-                                                        <a href="single-product.html"><img src="{{asset('assets/site/images/header/header-cart/1.png')}}" alt="Cart Product"></a>
+                                                        <a href="{{ route('animal_details', $val->name) }}"><img src="{{ asset($val->options->image) }}" alt="Cart Product"></a>
                                                     </div>
                                                     <div class="cart-product-content">
                                                         <h3 class="title"><a href="{{ route('animal_details', $val->name) }}">{{$val->name}}</a></h3>
@@ -235,7 +235,7 @@
                                                         @method('DELETE')
                                                             @csrf
                                                             <input type="hidden" value="{{ $val->id }}" name="id">
-                                                    <button href="#/"><i class="icon-close"></i></button>
+                                                    <button style="border: none; cursor: pointer;" href="#/"><i class="icon-close"></i></button>
                                                     </form>
                                                 </div>
                                                 <!-- Product Remove End -->
