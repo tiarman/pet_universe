@@ -253,10 +253,10 @@ $(function() {
                     </div>
                 @endif
                 <!-- Checkbox Form Start -->
-                <form role="form" action="{{ route('paymentCheckoutStore') }}" method="post" class="require-validation"
+                <form role="form" action="{{ route('order.place') }}" method="post" class="require-validation"
                     data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                     @csrf
-                    <input value="{{$deliveryCharge + $totalAmount}}" type="hidden" name="amount" id="amount">
+                    <input value="{{ $deliveryCharge + $totalAmount }}" type="hidden" name="amount" id="amount">
 
                     <div class="checkbox-form">
 
@@ -295,7 +295,8 @@ $(function() {
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Address <span class="required">*</span></label>
-                                    <input id="shipping_address" name="shipping_address" placeholder="Street address/ House no" type="text">
+                                    <input id="shipping_address" name="shipping_address"
+                                        placeholder="Street address/ House no" type="text">
                                 </div>
                             </div>
                             <!-- Address Input End -->
@@ -318,9 +319,23 @@ $(function() {
                             </div>
                             <!-- Postcode or Zip Input End -->
 
+                            <br>
+                            <div class="form-group col-lg-4">
+                                <label>Paypal</label>
+                                <input type="radio" name="payment_type">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>SSL Commerze </label>
+                                <input type="radio" name="payment_type">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Hand Cash</label>
+                                <input type="radio" name="payment_type" value="Hand cash" checked="">
+                            </div>
+
                         </div>
                     </div>
-                    <h3 class="title border-1 fw-bold pb-3 border-bottom">Payment Details</h3>
+                    {{--  <h3 class="title border-1 fw-bold pb-3 border-bottom">Payment Details</h3>
                     <div class='form-row row mt-3'>
                         <div class='col-xs-12 form-group required'>
                             <label class='control-label'>Name on Card</label> <input class='form-control' name="card_name"
@@ -349,7 +364,7 @@ $(function() {
                             <label class='control-label'>Expiration Year</label> <input
                                 class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
                         </div>
-                    </div>
+                    </div>  --}}
 
                     <div class='form-row row'>
                         <div class='col-md-12 error form-group hide'>
@@ -361,7 +376,8 @@ $(function() {
                     <div class="order-button-payment">
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Place Order (${{ $deliveryCharge + $totalAmount }})</button>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Place Order
+                                    (${{ $deliveryCharge + $totalAmount }})</button>
                             </div>
                         </div>
                     </div>
@@ -377,73 +393,7 @@ $(function() {
 
 @section('script')
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        $(function() {
-
-            /*------------------------------------------
-            --------------------------------------------
-            Stripe Payment Code
-            --------------------------------------------
-            --------------------------------------------*/
-
-            var $form = $(".require-validation");
-
-            $('form.require-validation').bind('submit', function(e) {
-                var $form = $(".require-validation"),
-                    inputSelector = ['input[type=email]', 'input[type=password]',
-                        'input[type=text]', 'input[type=file]',
-                        'textarea'
-                    ].join(', '),
-                    $inputs = $form.find('.required').find(inputSelector),
-                    $errorMessage = $form.find('div.error'),
-                    valid = true;
-                $errorMessage.addClass('hide');
-
-                $('.has-error').removeClass('has-error');
-                $inputs.each(function(i, el) {
-                    var $input = $(el);
-                    if ($input.val() === '') {
-                        $input.parent().addClass('has-error');
-                        $errorMessage.removeClass('hide');
-                        e.preventDefault();
-                    }
-                });
-
-                if (!$form.data('cc-on-file')) {
-                    e.preventDefault();
-                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-                    Stripe.createToken({
-                        number: $('.card-number').val(),
-                        cvc: $('.card-cvc').val(),
-                        exp_month: $('.card-expiry-month').val(),
-                        exp_year: $('.card-expiry-year').val()
-                    }, stripeResponseHandler);
-                }
-
-            });
-
-            /*------------------------------------------
-            --------------------------------------------
-            Stripe Response Handler
-            --------------------------------------------
-            --------------------------------------------*/
-            function stripeResponseHandler(status, response) {
-                if (response.error) {
-                    $('.error')
-                        .removeClass('hide')
-                        .find('.alert')
-                        .text(response.error.message);
-                } else {
-                    /* token contains id, last4, and card type */
-                    var token = response['id'];
-
-                    $form.find('input[type=text]').empty();
-                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                    $form.get(0).submit();
-                }
-            }
-
-        });
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 @endsection

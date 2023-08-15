@@ -243,3 +243,12 @@ Route::controller(StripePaymentController::class)->group(function () {
 });
 
 Route::get('/cartlist', [SiteController::class, 'cartList'])->name('cartlist');
+
+
+Route::post('success',[StripePaymentController::class,'success'])->name('success');
+Route::post('fail',[StripePaymentController::class,'fail'])->name('fail');
+Route::get('cancel',[StripePaymentController::class,'cancel'])->name('cancel');
+
+
+
+Route::post('/order/place',[StripePaymentController::class,'OrderPlace'])->name('order.place');

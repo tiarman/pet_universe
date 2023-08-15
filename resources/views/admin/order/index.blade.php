@@ -24,6 +24,75 @@
                                 {!! session()->get('status') !!}
                             @endif
 
+
+
+                            <div class="row mt-5 mb-5">
+                                <div class="col-md-6 col-xl-3">
+                                    <div style="background: #f6ab4957" class="card">
+                                        <div class="card-body">
+                                                <span class="mini-stat-icon bg-purple me-0 float-end"><i class="mdi mdi-basket"></i></span>
+                                                <div class="mini-stat-info">
+                                                    <span class="counter text-purple">{{$total_order}}</span>
+                                                    Total Orders
+                                                </div>
+                                                {{--  <p class=" mb-0 mt-4 text-muted">Total income: $22506 <span class="float-end"><i class="fa fa-caret-up me-1"></i>10.25%</span></p>  --}}
+                                            </div>
+                                    </div>
+                                </div> <!--End col -->
+                                <div class="col-md-6 col-xl-3">
+                                    <div style="background: #f6ab4957" class="card">
+                                        <div class="card-body">
+                                                <span class="mini-stat-icon bg-blue-grey me-0 float-end"><i class="mdi mdi-black-mesa"></i></span>
+                                                <div class="mini-stat-info">
+                                                    <span class="counter text-blue-grey">{{$pending}}</span>
+                                                    Pending Orders
+                                                </div>
+                                                {{--  <p class="text-muted mb-0 mt-4">Total income: $22506 <span class="float-end"><i class="fa fa-caret-up me-1"></i>10.25%</span></p>  --}}
+                                            </div>
+                                    </div>
+                                </div> <!-- End col -->
+                                <div class="col-md-6 col-xl-3">
+                                    <div style="background: #f6ab4957" class="card">
+                                        <div class="card-body">
+                                                <span class="mini-stat-icon bg-brown me-0 float-end"><i class="mdi mdi-buffer"></i></span>
+                                                <div class="mini-stat-info">
+                                                    <span class="counter text-brown">{{$complete_order ?? ""}}</span>
+                                                    Complete
+                                                </div>
+                                                {{--  <p class="text-muted mb-0 mt-4">Total income: $22506 <span class="float-end"><i class="fa fa-caret-up me-1"></i>10.25%</span></p>  --}}
+                                            </div>
+                                    </div>
+                                </div> <!-- End col -->
+                                <div class="col-md-6 col-xl-3">
+                                    <div style="background: #f6ab4957" class="card">
+                                        <div class="card-body">
+                                                <span class="mini-stat-icon bg-teal me-0 float-end"><i class="mdi mdi-coffee"></i></span>
+                                                <div class="mini-stat-info">
+                                                    <span class="counter text-teal">20544</span>
+                                                    Unique Visitors
+                                                </div>
+                                                {{--  <p class="text-muted mb-0 mt-4">Total income: $22506 <span class="float-end"><i class="fa fa-caret-up me-1"></i>10.25%</span></p>  --}}
+                                            </div>
+                                    </div>
+                                </div><!--end col -->
+                            </div> <!-- end row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             {{-- <div class="row">
                                 <div class="col-lg-12 col-md-12 col-xl-12 text-right mb-3">
                                     <a href="{{ route('animal.create') }}" class="brn btn-success btn-sm">New animal</a>
@@ -39,6 +108,7 @@
                                             <tr>
                                                 <th width="10">#</th>
                                                 <th>Payment Info</th>
+                                                <th>Payment Type</th>
                                                 <th>Customer Info</th>
                                                 <th width="200">Animal Info</th>
                                                 <th width="50">Amount</th>
@@ -58,6 +128,12 @@
                                                                     class="text-primary">{{ $val->card_number }}</span></p>
                                                         </div>
                                                     </td>
+
+                                                    <td class="p-1">
+                                                        {{ $val->payment_type }}
+                                                    </p>
+                                                    </td>
+
                                                     <td class="p-1">
                                                         <div>
                                                             <p class="font-weight-bold">Name: <span
@@ -74,17 +150,17 @@
 
 
                                                     <td class="p-1">
-                                                        @foreach (json_decode($val->animal) as $item)
+                                                        
                                                             <div class="border-bottom">
                                                                 <p class="font-weight-bold">Animal: <span
-                                                                        class="">{{ $item->name }} ×
-                                                                        {{ $item->qty }}</span></p>
+                                                                        class="">{{ $val->name }} ×
+                                                                        {{ $val->qty }}</span></p>
 
                                                                 <p class="font-weight-bold">Sub-Total: <span
-                                                                        class="">{{ $item->subtotal }}</span>
+                                                                        class="">{{ $val->subtotal }}</span>
                                                                 </p>
                                                             </div>
-                                                        @endforeach
+                                                        
 
                                                     </td>
                                                     <td class="p-1">{{ $val->amount }}</td>
@@ -93,7 +169,7 @@
 
                                                     @php
                                                         $statusColor = '';
-                                                        if (App\Enums\OrderStatusEnum::ACCEPT == $val->status) {
+                                                        if (App\Enums\OrderStatusEnum::COMPLETE == $val->status) {
                                                             $statusColor = 'success';
                                                         } elseif (App\Enums\OrderStatusEnum::PENDING == $val->status) {
                                                             $statusColor = 'warning';
@@ -110,9 +186,9 @@
                                                                 class="form-control font-weight-bold {{ $statusColor }} ">
 
                                                                 <option class="text-success font-weight-bold"
-                                                                    value="{{ App\Enums\OrderStatusEnum::ACCEPT }}"
-                                                                    @if (App\Enums\OrderStatusEnum::ACCEPT == $val->status) selected @endif>
-                                                                    {{ ucfirst(App\Enums\OrderStatusEnum::ACCEPT) }}
+                                                                    value="{{ App\Enums\OrderStatusEnum::COMPLETE }}"
+                                                                    @if (App\Enums\OrderStatusEnum::COMPLETE == $val->status) selected @endif>
+                                                                    {{ ucfirst(App\Enums\OrderStatusEnum::COMPLETE) }}
                                                                 </option>
                                                                 <option class="text-warning font-weight-bold"
                                                                     value="{{ App\Enums\OrderStatusEnum::PENDING }}"
@@ -125,9 +201,9 @@
                                                                     {{ ucfirst(App\Enums\OrderStatusEnum::CANCEL) }}
                                                                 </option>
                                                                 <option class="text-info font-weight-bold"
-                                                                    value="{{ App\Enums\OrderStatusEnum::DELIVERED }}"
-                                                                    @if (App\Enums\OrderStatusEnum::DELIVERED == $val->status) selected @endif>
-                                                                    {{ ucfirst(App\Enums\OrderStatusEnum::DELIVERED) }}
+                                                                    value="{{ App\Enums\OrderStatusEnum::RETURN }}"
+                                                                    @if (App\Enums\OrderStatusEnum::RETURN == $val->status) selected @endif>
+                                                                    {{ ucfirst(App\Enums\OrderStatusEnum::RETURN) }}
                                                                 </option>
 
                                                             </select>

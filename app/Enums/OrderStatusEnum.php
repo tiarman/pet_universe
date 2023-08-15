@@ -2,9 +2,9 @@
     namespace App\Enums;
 
     enum OrderStatusEnum{
-        const ACCEPT        = 'accept';
+        const COMPLETE        = 'complete';
         const CANCEL        = 'cancel';
         const PENDING       = 'pending';
-        const DELIVERED     = 'delivered';
+        const RETURN     = 'return';
     }
 ?>
