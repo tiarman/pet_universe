@@ -715,8 +715,20 @@
 @endsection
 
 @section('script')
+<script src="{{ asset('assets/admin/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
-
+@if (session('message'))
+    <script>
+        Swal.fire({
+            icon: '{{ session('alert-type', 'info') }}',
+            title: '{{ session('message') }}',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+@endif
 
 
 @endsection

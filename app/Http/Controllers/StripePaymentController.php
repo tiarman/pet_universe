@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\OrderStatusEnum;
+use App\Helper\RedirectHelper;
 use App\Models\Categories;
 use App\Models\Order;
 use App\Models\SubCategory;
@@ -57,8 +58,20 @@ class StripePaymentController extends Controller
             }
             \Cart::destroy();
     
-            $notification = array('messege' => 'Successfullt Order Placed!', 'alert-type' => 'success');
-            return redirect()->to('/')->with($notification);
+            // return redirect()->to('/')->with($message);
+            // $message = 'Successfully Order Placed!';
+
+            // return RedirectHelper::routeSuccess('shopping.cartlist', $message);
+
+            $notification = array(
+                'message' => 'Successfully Order Placed!',
+                'alert-type' => 'success'
+            );
+        
+            return redirect()->route('home')->with($notification);
+
+            // $message = array('messege' => 'Successfullt Order Placed!', 'alert-type' => 'success');
+            // return redirect()->route('home')->with($message);
 
 
             
@@ -176,9 +189,7 @@ class StripePaymentController extends Controller
 
     public function success(Request $request){
         
-// $user_ids = Auth::id();
-// return $request->opt_b;
-// dd($user_ids);
+
         $order = array();
             $order['user_id'] = $request->opt_b;
             $order['name'] = $request->cus_name;
@@ -207,8 +218,17 @@ class StripePaymentController extends Controller
             }
             \Cart::destroy();
     
-            $notification = array('messege' => 'Successfullt Order Placed!', 'alert-type' => 'success');
+            // $message = array('messege' => 'Successfullt Order Placed!', 'alert-type' => 'success');
+            // return redirect()->route('home')->with($message);
+            // $message = 'Successfully Order Placed!';
+            // return RedirectHelper::routeSuccess('shopping.cartlist', $message);
+            $notification = array(
+                'message' => 'Successfully Order Placed!',
+                'alert-type' => 'success'
+            );
+        
             return redirect()->route('home')->with($notification);
+
         // $request_id= $request->mer_txnid;
 
         // //verify the transection using Search Transection API 
@@ -247,11 +267,5 @@ class StripePaymentController extends Controller
     }
 
 
-//     //_paymentgateway extra method
-// public function success (Request $request) {
-//     return $request;
-//     }
-//     public function fail (Request $request){
-//     return $request;
-//     }
+
 }

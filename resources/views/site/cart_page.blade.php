@@ -1,5 +1,7 @@
 @extends('layouts.site')
 @section('stylesheet')
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 @endsection
 
 @section('content')
@@ -24,10 +26,21 @@
     <!-- Shopping Cart Section Start -->
     <div class="section section-margin">
         @if (session()->has('status'))
-            <div style="text-align: center; color: green">
+            <div style="text-align: center; color: green; font-size: 20px">
                 {!! session()->get('status') !!}
             </div>
         @endif
+
+        @if (session('message'))
+    <script>
+        Swal.fire({
+            icon: '{{ session('alert-type', 'info') }}',
+            title: '{{ session('message') }}',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+@endif
         <div class="container">
 
             <div class="row">

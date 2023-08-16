@@ -754,6 +754,23 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 
+
+
+    <script src="{{ asset('assets/admin/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+@if (session('message'))
+    <script>
+        Swal.fire({
+            icon: '{{ session('alert-type', 'info') }}',
+            title: '{{ session('message') }}',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+@endif
+
     <script>
         $(document).ready(function() {
             // Listen for the click event on the 'Add to Cart' button
