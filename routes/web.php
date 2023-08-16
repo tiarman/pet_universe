@@ -207,6 +207,13 @@ Route::middleware([
             Route::delete('/destroy', [SettingController::class, 'destroy'])->name('destroy');
           });
 
+           #setting
+        Route::prefix('paymentgatway')->name('paymentgatway.')->group(function () {
+            Route::get('/', [SiteController::class, 'PaymentGateway'])->name('payment.gateway');
+            Route::post('/update/aamarpay', [SiteController::class, 'AamarpayUpdate'])->name('update.aamarpay');
+            
+          });
+
 
     // #Cart
     // Route::prefix('shopping')->name('shopping.')->group(function () {
@@ -248,6 +255,12 @@ Route::get('/cartlist', [SiteController::class, 'cartList'])->name('cartlist');
 Route::post('success',[StripePaymentController::class,'success'])->name('success');
 Route::post('fail',[StripePaymentController::class,'fail'])->name('fail');
 Route::get('cancel',[StripePaymentController::class,'cancel'])->name('cancel');
+
+
+//You need declear your success & fail route in "app\Middleware\VerifyCsrfToken.php"
+// Route::post('success',[\App\Http\Controllers\paymentController::class,'success'])->name('success');
+// Route::post('fail',[\App\Http\Controllers\paymentController::class,'fail'])->name('fail');
+// Route::get('cancel',[\App\Http\Controllers\paymentController::class,'cancel'])->name('cancel');
 
 
 

@@ -325,8 +325,8 @@ $(function() {
                                 <input type="radio" name="payment_type">
                             </div>
                             <div class="form-group col-lg-4">
-                                <label>SSL Commerze </label>
-                                <input type="radio" name="payment_type">
+                                <label>Bkash/Rocket/Nogod </label>
+                                <input type="radio" name="payment_type" value="Aamarpay">
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Hand Cash</label>

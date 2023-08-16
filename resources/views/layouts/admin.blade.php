@@ -166,6 +166,17 @@
                         @endif
 
 
+                        @if (
+                            \App\Helper\CustomHelper::canView(
+                                'Create Category|Manage Category|Delete Category|View Category|List Of Category',
+                                'Super Admin|Customer'))
+                            <li><a href="{{ route('paymentgatway.payment.gateway') }}" class="waves-effect">
+                                    <i class="mdi mdi-recycle"></i>
+                                    <span>Payment Gateway</span>
+                                </a></li>
+                        @endif
+
+
 
                         @if (
                             \App\Helper\CustomHelper::canView(

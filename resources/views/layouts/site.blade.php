@@ -252,7 +252,7 @@
                                         <!-- Cart Product Total Start -->
                                         <div class="pb-4 mb-4 cart-product-total border-bottom">
                                             <span class="value">Total</span>
-                                            <span class="price">{{Cart::total()}}$</span>
+                                            <span class="price">{{Cart::subtotal()}}$</span>
                                         </div>
                                         <!-- Cart Product Total End -->
 
