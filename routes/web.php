@@ -228,6 +228,7 @@ Route::middleware([
 
     // order list
     Route::get('/order-list', [OrderController::class, 'index'])->name('order.list');
+    Route::get('/view/admin/{id}', [OrderController::class, 'ViewOrder'])->name('view.order');
 
 
     // site

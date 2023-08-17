@@ -30,49 +30,53 @@
                                 <div class="col-md-6 col-xl-3">
                                     <div style="background: #f6ab4957" class="card">
                                         <div class="card-body">
-                                                <span class="mini-stat-icon bg-purple me-0 float-end"><i class="mdi mdi-basket"></i></span>
-                                                <div class="mini-stat-info">
-                                                    <span class="counter text-purple">{{$total_order}}</span>
-                                                    Total Orders
-                                                </div>
-                                                {{--  <p class=" mb-0 mt-4 text-muted">Total income: $22506 <span class="float-end"><i class="fa fa-caret-up me-1"></i>10.25%</span></p>  --}}
+                                            <span class="mini-stat-icon bg-purple me-0 float-end"><i
+                                                    class="mdi mdi-basket"></i></span>
+                                            <div class="mini-stat-info">
+                                                <span class="counter text-purple">{{ $total_order }}</span>
+                                                Total Orders
                                             </div>
+                                            {{--  <p class=" mb-0 mt-4 text-muted">Total income: $22506 <span class="float-end"><i class="fa fa-caret-up me-1"></i>10.25%</span></p>  --}}
+                                        </div>
                                     </div>
                                 </div> <!--End col -->
                                 <div class="col-md-6 col-xl-3">
                                     <div style="background: #f6ab4957" class="card">
                                         <div class="card-body">
-                                                <span class="mini-stat-icon bg-blue-grey me-0 float-end"><i class="mdi mdi-black-mesa"></i></span>
-                                                <div class="mini-stat-info">
-                                                    <span class="counter text-blue-grey">{{$pending}}</span>
-                                                    Pending Orders
-                                                </div>
-                                                {{--  <p class="text-muted mb-0 mt-4">Total income: $22506 <span class="float-end"><i class="fa fa-caret-up me-1"></i>10.25%</span></p>  --}}
+                                            <span class="mini-stat-icon bg-blue-grey me-0 float-end"><i
+                                                    class="mdi mdi-black-mesa"></i></span>
+                                            <div class="mini-stat-info">
+                                                <span class="counter text-blue-grey">{{ $pending }}</span>
+                                                Pending Orders
                                             </div>
+                                            {{--  <p class="text-muted mb-0 mt-4">Total income: $22506 <span class="float-end"><i class="fa fa-caret-up me-1"></i>10.25%</span></p>  --}}
+                                        </div>
                                     </div>
                                 </div> <!-- End col -->
                                 <div class="col-md-6 col-xl-3">
                                     <div style="background: #f6ab4957" class="card">
                                         <div class="card-body">
-                                                <span class="mini-stat-icon bg-brown me-0 float-end"><i class="mdi mdi-buffer"></i></span>
-                                                <div class="mini-stat-info">
-                                                    <span class="counter text-brown">{{$complete_order ?? ""}}</span>
-                                                    Complete
-                                                </div>
-                                                {{--  <p class="text-muted mb-0 mt-4">Total income: $22506 <span class="float-end"><i class="fa fa-caret-up me-1"></i>10.25%</span></p>  --}}
+                                            <span class="mini-stat-icon bg-brown me-0 float-end"><i
+                                                    class="mdi mdi-buffer"></i></span>
+                                            <div class="mini-stat-info">
+                                                <span class="counter text-brown">{{ $complete_order ?? '' }}</span>
+                                                Complete
                                             </div>
+                                            {{--  <p class="text-muted mb-0 mt-4">Total income: $22506 <span class="float-end"><i class="fa fa-caret-up me-1"></i>10.25%</span></p>  --}}
+                                        </div>
                                     </div>
                                 </div> <!-- End col -->
                                 <div class="col-md-6 col-xl-3">
                                     <div style="background: #f6ab4957" class="card">
                                         <div class="card-body">
-                                                <span class="mini-stat-icon bg-teal me-0 float-end"><i class="mdi mdi-coffee"></i></span>
-                                                <div class="mini-stat-info">
-                                                    <span class="counter text-teal">20544</span>
-                                                    Unique Visitors
-                                                </div>
-                                                {{--  <p class="text-muted mb-0 mt-4">Total income: $22506 <span class="float-end"><i class="fa fa-caret-up me-1"></i>10.25%</span></p>  --}}
+                                            <span class="mini-stat-icon bg-teal me-0 float-end"><i
+                                                    class="mdi mdi-coffee"></i></span>
+                                            <div class="mini-stat-info">
+                                                <span class="counter text-teal">20544</span>
+                                                Unique Visitors
                                             </div>
+                                            {{--  <p class="text-muted mb-0 mt-4">Total income: $22506 <span class="float-end"><i class="fa fa-caret-up me-1"></i>10.25%</span></p>  --}}
+                                        </div>
                                     </div>
                                 </div><!--end col -->
                             </div> <!-- end row-->
@@ -107,31 +111,25 @@
                                         <thead>
                                             <tr>
                                                 <th width="10">#</th>
-                                                <th>Payment Info</th>
+                                               
                                                 <th>Payment Type</th>
                                                 <th>Customer Info</th>
-                                                <th width="200">Animal Info</th>
-                                                <th width="50">Amount</th>
+                                                <th width="200">Amount</th>
                                                 <th class="hidden-phone" width="40">Payment Time</th>
+                                                <th width="100">Action</th>
                                                 <th width="100">Status</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($orders as $key => $val)
                                                 <tr class="@if ($key % 2 == 0) gradeX @else gradeC @endif">
                                                     <td class="p-1">{{ $key + 1 }}</td>
-                                                    <td class="p-1">
-                                                        <div>
-                                                            <p class="font-weight-bold">Payment ID: <span
-                                                                    class="text-primary">{{ $val->payment_id }}</span></p>
-                                                            <p class="font-weight-bold">Card NO: <span
-                                                                    class="text-primary">{{ $val->card_number }}</span></p>
-                                                        </div>
-                                                    </td>
+                                                    
 
                                                     <td class="p-1">
                                                         {{ $val->payment_type }}
-                                                    </p>
+                                                        </p>
                                                     </td>
 
                                                     <td class="p-1">
@@ -150,20 +148,18 @@
 
 
                                                     <td class="p-1">
-                                                        
-                                                            <div class="border-bottom">
-                                                                <p class="font-weight-bold">Animal: <span
-                                                                        class="">{{ $val->name }} ×
-                                                                        {{ $val->qty }}</span></p>
 
-                                                                <p class="font-weight-bold">Sub-Total: <span
-                                                                        class="">{{ $val->subtotal }}</span>
-                                                                </p>
-                                                            </div>
-                                                        
+                                                      
+                                                            
+
+                                                            <p class="font-weight-bold">Sub-Total: <span
+                                                                    class="">{{ $val->subtotal }}</span>
+                                                            </p>
+                                                      
+
 
                                                     </td>
-                                                    <td class="p-1">{{ $val->amount }}</td>
+                                                    {{--  <td class="p-1">{{ $val->amount }}</td>  --}}
                                                     <td width="200" class="p-1">
                                                         {{ date('F d, Y h:i A', strtotime($val->created_at)) }}</td>
 
@@ -181,8 +177,8 @@
                                                     @endphp
                                                     @if (\App\Helper\CustomHelper::canView('Create User|Manage User|Delete User|View User|List Of User', 'Super Admin'))
                                                         <td class="text-capitalize p-1" width="100">
-                                                            <select id="order_status_{{$val->id}}" name="status" required
-                                                                data-id="{{ $val->id }}"
+                                                            <select id="order_status_{{ $val->id }}" name="status"
+                                                                required data-id="{{ $val->id }}"
                                                                 class="form-control font-weight-bold {{ $statusColor }} ">
 
                                                                 <option class="text-success font-weight-bold"
@@ -209,11 +205,27 @@
                                                             </select>
                                                         </td>
                                                     @endif
+                                                    @if (
+                                                        \App\Helper\CustomHelper::canView(
+                                                            'Create User|Manage User|Delete User|View User|List Of User',
+                                                            'Super Admin|Customer'))
+                                                        <td class="center hidden-phone p-1" width="100">
+                                                            <a href="{{ route('view.order', $val->id) }}"
+                                                                class="btn btn-sm btn-success"> <i class="fa fa-eye"></i>
+                                                            </a>
+                                                            {{--  <span
+                                                                class="btn btn-sm btn-danger btn-delete delete_modal view" id="{{ $val->id }}"
+                                                                style="cursor: pointer" data-id="{{ $val->id }}"><i
+                                                                    class="fa fa-trash"></i></span>  --}}
+                                                        </td>
+                                                    @endif
+
                                                     @if ($role == 'Customer')
-                                                    <td class="text-capitalize p-1" width="100">
-                                                       <button class="btn ms-2 btn-{{$statusColor}}">{{ucfirst($val->status)}}</button>
-                                                    </td>
-                                                @endif
+                                                        <td class="text-capitalize p-1" width="100">
+                                                            <button
+                                                                class="btn ms-2 btn-{{ $statusColor }}">{{ ucfirst($val->status) }}</button>
+                                                        </td>
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -235,19 +247,14 @@
     <div class="modal fade" id="userDeleteModal" tabindex="-1" role="dialog" aria-labelledby="userDeleteModal"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content" id="view_modal_body">
                 <div class="modal-header">
                     {{--                    <h4>{{__('admin.animal.delete_user')}}</h4> --}}
                     <h4>Delete animal</h4>
                 </div>
-                <div class="modal-body">
-                    <strong>Are You Sure Delete animal</strong>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-success btn-sm yes-btn">Yes</button>
-                </div>
-            </div>
+               
+           
         </div>
     </div>
 @endsection
@@ -270,6 +277,20 @@
     <script src="{{ asset('assets/admin/plugins/datatables/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/admin/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/admin/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    <script>
+        //order view
+        $('body').on('click', '.view, function () {
+        var id = $(this).data('id');
+        var url = "{{ url('/order/view/admin') }}/" + id; 
+        $.ajax({
+            url: url,
+            type: 'get',
+            success: function(data) {
+                $("#view_modal_body").html(data);
+            }
+        });
+        });
+    </script>
 
 
 
