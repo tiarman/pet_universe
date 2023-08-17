@@ -41,6 +41,7 @@
                                     <th width="10">#</th>
                                     <th>Image</th>
                                     <th>Name</th>
+                                    <th>Stock</th>
                                     <th width="200">Created</th>
                                     <th width="50">Today Deal</th>
                                     <th width="50">Featured</th>
@@ -55,6 +56,7 @@
                                         <td class="p-1">{{ ($key+1) }}</td>
                                         <td class="p-1"><img src="{{ asset($val->image) }}" style="height: 50px;"></td>
                                         <td class="p-1">{{ $val->name }}</td>
+                                        <td class="p-1">{{ $val->stock_quantity }}</td>
                                         <td width="200" class="p-1">{{ date('F d, Y h:i A', strtotime($val->created_at)) }}</td>
 
 

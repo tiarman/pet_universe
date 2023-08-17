@@ -37,7 +37,9 @@
             <div class="d-flex">
               <input type="password" name="password" id="password" placeholder="Enter Your Password" autocomplete="off"
                      class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" required>
-              <span class="mt-1 "><i style="margin-left: -23px" class="fa fa-regular fa-key icon login-icon"></i></span>
+                     <span toggle="#password-field" class="mt-1 "><i style="margin-left: -23px" class="fa fa-fw fa-eye field_icon toggle-password"></i></span>
+
+              {{--  <span class="mt-1 "><i style="margin-left: -23px" class="fa fa-regular fa-key icon login-icon"></i></span>  --}}
             </div>
 
             <span class="spin"></span>
@@ -59,4 +61,24 @@
 
     </div>
   </div>
+@endsection
+
+
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<script>
+    $("body").on('click', '.toggle-password', function() {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $("#password");
+        if (input.attr("type") === "password") {
+          input.attr("type", "text");
+        } else {
+          input.attr("type", "password");
+        }
+      
+      });
+</script>
+    
 @endsection

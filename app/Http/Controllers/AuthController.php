@@ -16,7 +16,7 @@ class AuthController extends Controller
         if ($request->isMethod('POST')) {
             $request->validate([
                 'email' => 'required|email',
-                'password' => 'required|string|min:' . User::$minimumPasswordLength
+                'password' => 'required|string|min:8' . User::$minimumPasswordLength
             ]);
 
             $credential = $request->only('email', 'password');
@@ -43,7 +43,7 @@ class AuthController extends Controller
                 'username' => 'required|string|unique:' . with(new User)->getTable() . ',username,',
                 'full_name' => 'required|string|unique:' . with(new User)->getTable() . ',username,',
                 'email' => 'required|email|unique:' . with(new User)->getTable() . ',email,',
-                'password' => 'required|string|min:6|confirmed',
+                'password' => 'required|string|min:8|confirmed',
                 'phone' => 'required|regex:' . CustomHelper::PhoneNoRegex,
             ];
             $message = $message . ' Register';
