@@ -18,10 +18,12 @@ class StripePaymentController extends Controller
 {
     public function paymentCheckout()
     {
+        $auth = Auth::user();
+// return $datas;
         $cartItems = \Cart::content();
         $data['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();
         $data['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
-        return view('site.stripeCheckout', $data,  compact('cartItems'));
+        return view('site.stripeCheckout', $data,  compact('cartItems', 'auth'));
     }
 
     //_orderplace_____
@@ -211,9 +213,9 @@ class StripePaymentController extends Controller
                 $details['quantity'] = $row->qty;
                 $details['single_price'] = $row->price;
                 $details['subtotal_price'] = $row->price * $row->qty;
-                return $details;
+                // return $details;
                 DB::table('order_details')->insert($details);
-                return $details;
+                // return $details;
                 
             }
             // return $details;

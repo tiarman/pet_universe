@@ -105,7 +105,7 @@
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Name<span class="required">*</span></label>
-                                    <input id="shipping_name" name="name" placeholder="Name" type="text">
+                                    <input id="shipping_name" value="{{$auth->full_name}}" name="name" placeholder="Name" type="text">
                                 </div>
                             </div>
                             <!-- First Name Input End -->
@@ -114,7 +114,7 @@
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Email Address <span class="required">*</span></label>
-                                    <input id="email" name="email" placeholder="" type="email">
+                                    <input id="email" value="{{$auth->email}}" name="email" placeholder="" type="email">
                                 </div>
                             </div>
                             <!-- Email Address Input End -->
@@ -156,10 +156,10 @@
                             <!-- Postcode or Zip Input End -->
 
                             <br>
-                            <div class="form-group col-lg-4">
+                            {{--  <div class="form-group col-lg-4">
                                 <label>Paypal</label>
                                 <input type="radio" name="payment_type">
-                            </div>
+                            </div>  --}}
                             <div class="form-group col-lg-4">
                                 <label>Bkash/Rocket/Nogod </label>
                                 <input type="radio" name="payment_type" value="Aamarpay">
