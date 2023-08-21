@@ -21,7 +21,6 @@ class StripePaymentController extends Controller
         $cartItems = \Cart::content();
         $data['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();
         $data['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
-        // return $cartItems;
         return view('site.stripeCheckout', $data,  compact('cartItems'));
     }
 
@@ -44,7 +43,7 @@ class StripePaymentController extends Controller
     
             // dd($order);
             $order_id = DB::table('orders')->insertGetId($order);
-            //order details
+            return $order_id;
             $content = \Cart::content();
             $details = array();
             foreach ($content as $row) {
@@ -55,13 +54,10 @@ class StripePaymentController extends Controller
                 $details['single_price'] = $row->price;
                 $details['subtotal_price'] = $row->price * $row->qty;
                 DB::table('order_details')->insert($details);
+                
             }
+            // return $details;
             \Cart::destroy();
-    
-            // return redirect()->to('/')->with($message);
-            // $message = 'Successfully Order Placed!';
-
-            // return RedirectHelper::routeSuccess('shopping.cartlist', $message);
 
             $notification = array(
                 'message' => 'Successfully Order Placed!',
@@ -83,15 +79,14 @@ class StripePaymentController extends Controller
 
         }elseif($request->payment_type=="Aamarpay"){
             // echo "amarpay";
+            // return $request;
 
             $tran_id = "test".rand(1111111,9999999);//unique transection id for every transection 
 
         $currency= "BDT"; //aamarPay support Two type of currency USD & BDT  
         $delevary_charge = '50';
         $amount = \Cart::subtotal()+$delevary_charge ;
-        // $amount = "10";   //10 taka is the minimum amount for show card option in aamarPay payment gateway
         
-        //For live Store Id & Signature Key please mail to support@aamarpay.com
         $store_id = "aamarpaytest";
         $user_id = Auth::id();
         // dd($user_id);
@@ -138,6 +133,7 @@ class StripePaymentController extends Controller
             'Content-Type: application/json'
         ),
         ));
+       
 
         $response = curl_exec($curl);
 
@@ -188,6 +184,7 @@ class StripePaymentController extends Controller
 
 
     public function success(Request $request){
+        // return $request->all;
         
 
         $order = array();
@@ -201,10 +198,10 @@ class StripePaymentController extends Controller
             $order['subtotal'] = $request->amount;
             $order['total'] = \Cart::total();
             $order['payment_type'] = 'amarpay';
+
     
-            // dd($order);
             $order_id = DB::table('orders')->insertGetId($order);
-            //order details
+            // return $order_id;
             $content = \Cart::content();
             $details = array();
             foreach ($content as $row) {
@@ -214,14 +211,15 @@ class StripePaymentController extends Controller
                 $details['quantity'] = $row->qty;
                 $details['single_price'] = $row->price;
                 $details['subtotal_price'] = $row->price * $row->qty;
+                return $details;
                 DB::table('order_details')->insert($details);
+                return $details;
+                
             }
+            // return $details;
             \Cart::destroy();
     
-            // $message = array('messege' => 'Successfullt Order Placed!', 'alert-type' => 'success');
-            // return redirect()->route('home')->with($message);
-            // $message = 'Successfully Order Placed!';
-            // return RedirectHelper::routeSuccess('shopping.cartlist', $message);
+            
             $notification = array(
                 'message' => 'Successfully Order Placed!',
                 'alert-type' => 'success'
@@ -229,31 +227,31 @@ class StripePaymentController extends Controller
         
             return redirect()->route('home')->with($notification);
 
-        // $request_id= $request->mer_txnid;
+        $request_id= $request->mer_txnid;
 
-        // //verify the transection using Search Transection API 
+        //verify the transection using Search Transection API 
 
-        // $url = "http://sandbox.aamarpay.com/api/v1/trxcheck/request.php?request_id=$request_id&store_id=aamarpaytest&signature_key=dbb74894e82415a2f7ff0ec3a97e4183&type=json";
+        $url = "http://sandbox.aamarpay.com/api/v1/trxcheck/request.php?request_id=$request_id&store_id=aamarpaytest&signature_key=dbb74894e82415a2f7ff0ec3a97e4183&type=json";
         
-        // //For Live Transection Use "http://secure.aamarpay.com/api/v1/trxcheck/request.php"
+        //For Live Transection Use "http://secure.aamarpay.com/api/v1/trxcheck/request.php"
         
-        // $curl = curl_init();
+        $curl = curl_init();
 
-        // curl_setopt_array($curl, array(
-        // CURLOPT_URL => $url,
-        // CURLOPT_RETURNTRANSFER => true,
-        // CURLOPT_ENCODING => '',
-        // CURLOPT_MAXREDIRS => 10,
-        // CURLOPT_TIMEOUT => 0,
-        // CURLOPT_FOLLOWLOCATION => true,
-        // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        // CURLOPT_CUSTOMREQUEST => 'GET',
-        // ));
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        ));
 
-        // $response = curl_exec($curl);
+        $response = curl_exec($curl);
 
-        // curl_close($curl);
-        // echo $response;
+        curl_close($curl);
+        echo $response;
 
     }
 
