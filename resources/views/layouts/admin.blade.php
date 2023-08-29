@@ -184,13 +184,28 @@
                             </li>
                         @endif
 
-                        @if (\App\Helper\CustomHelper::canView('Manage Permission', 'Super Admin'))
-                            <li><a href="{{ route('admin.backgroundImage') }}" class="waves-effect">
-                                    <i class="mdi mdi-image-album"></i>
-                                    <span>Login Background Slider</span>
-                                </a></li>
+
+                        @if (
+                            \App\Helper\CustomHelper::canView(
+                                'Create Setting|Manage Setting|Delete Setting|View Setting|List Of Setting',
+                                'Super Admin'))
+                            <li class="has_sub">
+                                <a class="waves-effect"><i class="mdi mdi-settings"></i><span>Setting<span
+                                            class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                <ul class="list-unstyled">
+                                    @if (\App\Helper\CustomHelper::canView('Create Setting', 'Super Admin'))
+                                        <li><a href="{{ route('setting.create') }}">Create Setting</a></li>
+                                    @endif
+                                    @if (\App\Helper\CustomHelper::canView('Manage Setting|Delete Setting|View Setting|List Of Setting', 'Super Admin'))
+                                        <li><a href="{{ route('setting.list') }}">List of Setting</a></li>
+                                    @endif
+                                </ul>
+                            </li>
                         @endif
-                        {{--  @if (\App\Helper\CustomHelper::canView('Create Food|Manage Food|Delete Food|View Food|List Of Food', 'Super Admin'))
+                        {{--  @if (
+                            \App\Helper\CustomHelper::canView(
+                                'Create Food|Manage Food|Delete Food|View Food|List Of Food',
+                                'Super Admin'))
                             <li class="has_sub">
                                 <a class="waves-effect"><i class="mdi mdi-account-multiple"></i><span>Food<span
                                             class="pull-right"><i class="mdi mdi-chevron-right"></i></span> </span></a>
