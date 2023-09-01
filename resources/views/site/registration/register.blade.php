@@ -10,13 +10,13 @@
       <div class="card-body">
           <div class="row">
               <div class="col-12 text-center"><a href="{{ route('home') }}" class="logo logo-admin">
-                      <img src="{{ asset('assets/text-logo.png') }}" height="80" alt="logo">
+                      {{-- <img src="{{ asset('assets/text-logo.png') }}" height="80" alt="logo"> --}}
                   </a></div>
           </div>
           <div class="pl-3 pr-3 pb-3">
               <div class="row">
                   <div class="col-12 text-center">
-                      <h3 class="m-2">Login</h3>
+                      <h3 class="m-2">Register</h3>
                   </div>
               </div>
               @if(session()->has('status'))
@@ -103,9 +103,15 @@
 
 
                   <div style="text-align: center" class="row mt-3">
-                      <div class="text-right d-flex justify-content-center">
-                          <button class="btn btn-success text-center w-full" type="submit">Register</button>
+                      <div class="text-right col-sm-12">
+                          <button style="background-color:rgb(246,171,73);"
+                                        class="btn text-light w-100 waves-effect waves-light" type="submit">Register</button>
                       </div>
+                      
+                  </div>
+                  <div class="mt-3">
+                    <a href="{{ route('login') }}"
+                                        class="pt-3 text-center">Already Sign in? Login Now</a>
                   </div>
               </form>
           </div>
