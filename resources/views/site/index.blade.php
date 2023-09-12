@@ -197,10 +197,10 @@
                                     </span>  --}}
                                         <span class="price">
                                             @if ($val->discount_price == null)
-                                            <span class="new">${{ $val->selling_price }}</span>
+                                            <span class="new">৳{{ $val->selling_price }}</span>
                                             @else
-                                            <span class="new">${{ $val->discount_price }}</span>
-                                            <span class="old">${{$val->selling_price}}</span>
+                                            <span class="new">৳{{ $val->discount_price }}</span>
+                                            <span class="old">৳{{$val->selling_price}}</span>
                                             @endif
 
                                         </span>
@@ -261,10 +261,10 @@
                                     </span>  --}}
                                     <span class="price">
                                         @if ($val->discount_price == null)
-                                        <span class="new">${{ $val->selling_price }}</span>
+                                        <span class="new">৳{{ $val->selling_price }}</span>
                                         @else
-                                        <span class="new">${{ $val->discount_price }}</span>
-                                        <span class="old">${{$val->selling_price}}</span>
+                                        <span class="new">৳{{ $val->discount_price }}</span>
+                                        <span class="old">৳{{$val->selling_price}}</span>
                                         @endif
 
                                     </span>
@@ -324,10 +324,10 @@
                                     </span>  --}}
                                     <span class="price">
                                         @if ($val->discount_price == null)
-                                        <span class="new">${{ $val->selling_price }}</span>
+                                        <span class="new">৳{{ $val->selling_price }}</span>
                                         @else
-                                        <span class="new">${{ $val->discount_price }}</span>
-                                        <span class="old">${{$val->selling_price}}</span>
+                                        <span class="new">৳{{ $val->discount_price }}</span>
+                                        <span class="old">৳{{$val->selling_price}}</span>
                                         @endif
 
                                     </span>
@@ -423,10 +423,10 @@
                                             </span>  --}}
                                         <span class="price">
                                             @if ($val->discount_price == null)
-                                            <span class="new">${{ $val->selling_price }}</span>
+                                            <span class="new">৳{{ $val->selling_price }}</span>
                                             @else
-                                            <span class="new">${{ $val->discount_price }}</span>
-                                            <span class="old">${{$val->selling_price}}</span>
+                                            <span class="new">৳{{ $val->discount_price }}</span>
+                                            <span class="old">৳{{$val->selling_price}}</span>
                                             @endif
                                         </span>
                                         <p>{{$val->description}}</p>

@@ -69,7 +69,9 @@
                         <div class="header-top-settings">
                             <ul class="nav">
                                 <li class="curreny-wrap">
-                                    <a href="#">Contact Us : 01860842420</a>
+                                    @if ($contact_no_1)
+                                    <a href="#">Contact Us : {{$contact_no_1->value ?? 0}}</a>
+                                    @endif
                                     {{--  <i class="fa fa-angle-down"></i>
                                     <ul class="dropdown-list curreny-list">
                                         <li><a href="#">$ USD</a></li>
@@ -96,7 +98,9 @@
                         <!-- Header Logo Start -->
                         <div class="col-lg-3 col-md-4 col-6">
                             <div class="header-logo">
-                                <a href="{{route('home')}}"><img src="{{asset('assets/site/images/logo/logo.png')}}" alt="Site Logo" /></a>
+                                @if ($logo)
+                                <a href="{{route('home')}}"><img src="{{$logo->value}}" alt="Site Logo" /></a>
+                                @endif
                             </div>
                         </div>
                         <!-- Header Logo End -->
@@ -308,14 +312,25 @@
                     <div class="mb-8 col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-duration="1000">
                         <div class="single-footer-widget">
                             <h1 class="widget-title">About Us</h1>
-                            <p class="desc-content">Lorem ipsum dolor sit amet, co adipisi elit, sed eiusmod tempor incididunt ut labore et dolore</p>
+                            @if ($about_us)
+                            <p class="desc-content">{{$about_us->value ?? 0}}</p>
+                            @endif
                             <!-- Soclial Link Start -->
                             <div class="widget-social justify-content-start mb-n2">
-                                <a title="Twitter" href="#/"><i class="icon-social-twitter"></i></a>
-                                <a title="Instagram" href="#/"><i class="icon-social-instagram"></i></a>
-                                <a title="Linkedin" href="#/"><i class="icon-social-linkedin"></i></a>
-                                <a title="Skype" href="#/"><i class="icon-social-skype"></i></a>
-                                <a title="Dribble" href="#/"><i class="icon-social-dribbble"></i></a>
+                                @if ($twitter)
+                                <a title="Twitter" href="{{$twitter->value ?? 0}}"><i class="icon-social-twitter"></i></a>
+                                @endif
+                                @if ($instagram)
+                                <a title="Instagram" href="{{$instagram->value ?? 0}}"><i class="icon-social-instagram"></i></a>
+                                @endif
+                                @if ($linkedin)
+                                <a title="Linkedin" href="{{$linkedin->value ?? 0}}"><i class="icon-social-linkedin"></i></a>
+                                @endif
+
+                                @if ($about_us)
+                                <a title="facebook" href="{{$facebook->value ?? 0}}"><i class="icon-social-facebook"></i></a>
+                                @endif
+                                {{--  <a title="Dribble" href="#/"><i class="icon-social-dribbble"></i></a>  --}}
                             </div>
                             <!-- Social Link End -->
                         </div>

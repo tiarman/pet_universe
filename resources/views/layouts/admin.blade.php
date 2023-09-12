@@ -56,22 +56,26 @@
         <div class="left side-menu">
 
             <!-- LOGO -->
+            @if ($logo)
             <div class="topbar-left">
                 <div class="text-center" style="padding-right: 35px">
                     <a href="{{ route('home') }}" class="logo">
                         <img style="background: whitesmoke;display: unset"
-                            src="{{ asset('assets/site/images/logo/logo.png') }}" height="50" alt="logo"></a>
+                        
+                            src="{{$logo->value}}" height="50" alt="logo"></a>
+                            
                 </div>
             </div>
+            @endif
             <div class="sidebar-inner slimscrollleft">
                 <div id="sidebar-menu">
                     <ul>
                         <li class="menu-title">Menu</li>
-                        <li>
+                        {{--  <li>
                             <a href="{{ route('dashboard') }}" class="waves-effect"><i
                                     class="mdi mdi-view-dashboard"></i> <span> Dashboard</span>
                             </a>
-                        </li>
+                        </li>  --}}
                         {{--          @if (\App\Helper\CustomHelper::canView('Manage Logo', 'Super Admin')) --}}
                         {{--          <li><a href="{{ route('site.logo') }}" class="waves-effect"><i class="mdi mdi-image-album"></i> <span>{{__('layout.site_logo')}}</span> --}}
                         {{--            </a></li> --}}

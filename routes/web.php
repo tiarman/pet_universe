@@ -189,7 +189,7 @@ Route::middleware([
         Route::get('/list', [SliderController::class, 'index'])->middleware('role_or_permission:Super Admin|List of Slider')->name('list');
     });
 
-    #Review
+    #SiteReview
     Route::prefix('sitereview')->name('sitereview.')->group(function () {
         Route::get('/create', [SiteReviewController::class, 'create'])->middleware('role_or_permission:Super Admin|Customer|Create SiteReview')->name('create');
         Route::post('/store', [SiteReviewController::class, 'store'])->middleware('role_or_permission:Super Admin|Customer|Store SiteReview')->name('store');
@@ -209,7 +209,7 @@ Route::middleware([
             Route::delete('/destroy', [SettingController::class, 'destroy'])->name('destroy');
           });
 
-           #setting
+           #payment
         Route::prefix('paymentgatway')->name('paymentgatway.')->group(function () {
             Route::get('/', [SiteController::class, 'PaymentGateway'])->name('payment.gateway');
             Route::post('/update/aamarpay', [SiteController::class, 'AamarpayUpdate'])->name('update.aamarpay');

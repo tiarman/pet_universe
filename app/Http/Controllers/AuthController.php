@@ -33,7 +33,7 @@ class AuthController extends Controller
                     \Illuminate\Support\Facades\Session::flush();
                     return RedirectHelper::backWithInput('<strong>Sorry!!!</strong> Your not a active user.');
                 }
-                return to_route('dashboard');
+                return to_route('order.list');
             }
             return RedirectHelper::backWithInput('<strong>Sorry!!!</strong> Your email or password is wrong.');
         }

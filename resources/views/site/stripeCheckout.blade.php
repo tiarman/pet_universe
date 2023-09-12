@@ -68,7 +68,7 @@
                                 <tr class="order-total">
                                     <th class="text-start ps-0">Order Total</th>
                                     <td class="text-end pe-0"><strong><span
-                                                class="amount">${{ $deliveryCharge + $totalAmount }}</span></strong></td>
+                                                class="amount">৳{{ $deliveryCharge + $totalAmount }}</span></strong></td>
                                 </tr>
                             </tfoot>
                             <!-- Table Footer End -->
@@ -213,7 +213,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <button class="btn btn-primary btn-lg btn-block" type="submit">Place Order
-                                    (${{ $deliveryCharge + $totalAmount }})</button>
+                                    (৳{{ $deliveryCharge + $totalAmount }})</button>
                             </div>
                         </div>
                     </div>

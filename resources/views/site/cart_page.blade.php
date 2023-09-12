@@ -88,7 +88,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="pro-subtotal"><span>${{ $val->subtotal }}</span></td>
+                                        <td class="pro-subtotal"><span>৳{{ $val->subtotal }}</span></td>
                                         <form action="{{ route('shopping.remove', $val->id) }}" method="post"
                                             enctype="multipart/form-data">
                                             @method('DELETE')

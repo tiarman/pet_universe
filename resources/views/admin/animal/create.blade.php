@@ -69,7 +69,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Sub Category<span class="text-danger">*</span></label>
-                                            <select name="subcategory_id" id="subcategory_id"  class="form-control @error('subcategory_id') is-invalid @enderror">
+                                            <select name="subcategory_id" id="subcategory_id" required  class="form-control @error('subcategory_id') is-invalid @enderror">
                                                 <option value="">Choose a category Status</option>
                                                 @foreach($subcategory as $e)
                                                     <option value="{{ $e->id }}" @if(old('subcategory_id') == $e->subcategory_name) selected @endif>{{ ucfirst($e->subcategory_name) }}</option>
@@ -128,7 +128,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Thumbnail <label class="text-danger">*</label></label>
-                                            <input type="file" name="image"  placeholder="Slider image" value="{{ old('image') }}"
+                                            <input type="file" name="image"  placeholder="Slider image" required value="{{ old('image') }}"
                                                    class="form-control @error('image') is-invalid @enderror">
                                             @error('image')
                                             <strong class="text-danger">{{ $errors->first('image') }}</strong>
@@ -156,7 +156,7 @@
 
                                 <div class="row">
                                   
-                                    <div class="col-sm-6">
+                                    {{--  <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Pickup Point<span class="text-danger">*</span></label>
                                             <select name="pickup_point_id" id="pickup_point_id"  class="form-control @error('pickup_point_id') is-invalid @enderror">
@@ -167,6 +167,16 @@
                                             </select>
                                             @error('pickup_point_id')
                                             <strong class="text-danger">{{ $errors->first('pickup_point_id') }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>  --}}
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Selling Price</label>
+                                            <input type="text" name="selling_price" placeholder="Enter selling price" value="{{ old('selling_price') }}"
+                                                   class="form-control @error('selling_price') is-invalid @enderror">
+                                            @error('selling_price')
+                                            <strong class="text-danger">{{ $errors->first('selling_price') }}</strong>
                                             @enderror
                                         </div>
                                     </div>
@@ -190,16 +200,7 @@
 
                                 <div class="row">
                                     
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Selling Price</label>
-                                            <input type="text" name="selling_price" placeholder="Enter selling price" value="{{ old('selling_price') }}"
-                                                   class="form-control @error('selling_price') is-invalid @enderror">
-                                            @error('selling_price')
-                                            <strong class="text-danger">{{ $errors->first('selling_price') }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">Discount Price</label>

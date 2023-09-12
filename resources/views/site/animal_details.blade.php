@@ -108,10 +108,10 @@
                     <!-- Price Box Start -->
                     <div class="mb-2 price-box">
                         @if ($animal->discount_price == null)
-                        <span class="regular-price">${{ $animal->selling_price }}</span>
+                        <span class="regular-price">৳{{ $animal->selling_price }}</span>
                         @else
-                        <span class="regular-price">${{ $animal->discount_price }}</span>
-                        <span class="old-price"><del>${{ $animal->selling_price }}</del></span>
+                        <span class="regular-price">৳{{ $animal->discount_price }}</span>
+                        <span class="old-price"><del>৳{{ $animal->selling_price }}</del></span>
                         @endif
                     </div>
                     <!-- Price Box End -->
@@ -564,11 +564,11 @@
                                                 </span>  --}}
                                             <span class="price">
                                                 @if ($animal->discount_price == null)
-                                                    <span class="new">${{ $animal->selling_price }}</span>
+                                                    <span class="new">৳{{ $animal->selling_price }}</span>
 
                                                     @else
-                                                    <span class="new">${{ $animal->discount_price }}</span>
-                                                    <span class="old">${{$animal->selling_price}}</span>
+                                                    <span class="new">৳{{ $animal->discount_price }}</span>
+                                                    <span class="old">৳{{$animal->selling_price}}</span>
 
                                                     @endif
                                             </span>

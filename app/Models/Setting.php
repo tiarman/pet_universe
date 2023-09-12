@@ -15,6 +15,6 @@ class Setting extends Model
         'value'
     ];
 
-    public static $keyArray =['logo','contact_no_1','contact_no_2', 'email', 'facebook', 'twitter', 'linkedin','instagram','office_address',];
+    public static $keyArray =['logo','contact_no_1','contact_no_2', 'email', 'facebook', 'twitter', 'linkedin','instagram','office_address','about_us',];
     
 }

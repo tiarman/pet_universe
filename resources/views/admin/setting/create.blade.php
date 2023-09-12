@@ -17,14 +17,14 @@
             <div class="panel-body">
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-xl-12 text-right mb-3">
-                  <a href="{{ route('setting.list', auth()->user()->subdomain) }}" class="brn btn-success btn-sm">List of Settting</a>
+                  <a href="{{ route('setting.list') }}" class="brn btn-success btn-sm">List of Settting</a>
                 </div>
               </div>
 
               @if(session()->has('status'))
                 {!! session()->get('status') !!}
               @endif
-              <form action="{{ route('setting.store', auth()->user()->subdomain) }}" method="post" enctype="multipart/form-data">
+              <form action="{{ route('setting.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-sm-6">

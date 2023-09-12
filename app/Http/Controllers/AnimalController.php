@@ -61,7 +61,6 @@ class AnimalController extends Controller
 
             'category_id' => 'nullable|string',
             'subcategory_id' => 'nullable|string',
-            'pickup_point_id' => 'nullable|string',
             'name' => 'nullable|string',
             'purchase_price' => 'nullable|string',
             'selling_price' => 'nullable|string',
@@ -88,7 +87,6 @@ class AnimalController extends Controller
         try {
             $animal->category_id = $request->category_id;
             $animal->subcategory_id = $request->subcategory_id;
-            $animal->pickup_point_id = $request->pickup_point_id;
             $animal->name = $request->name;
             $animal->purchase_price = $request->purchase_price;
             $animal->selling_price = $request->selling_price;
@@ -132,7 +130,7 @@ class AnimalController extends Controller
             }
             return RedirectHelper::backWithInput();
         } catch (QueryException $e) {
-            return $e;
+            // return $e;
             return RedirectHelper::backWithInputFromException();
         }
     }

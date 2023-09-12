@@ -35,7 +35,7 @@ class SiteController extends Controller
   {
     \auth()->logout();
     // \session()->flush();
-    return redirect()->route('login');
+    return redirect()->route('home');
   }
 
 
