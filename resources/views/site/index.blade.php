@@ -10,34 +10,25 @@
 <div class="section">
     <div class="hero-slider swiper-container">
         <div class="swiper-wrapper">
+@foreach ($slider as $val)
+<div class="hero-slide-item swiper-slide">
+    <div class="hero-slide-bg">
+        <img src="{{asset($val->image)}}" alt="Slider Image" />
+    </div>
+    <div class="container">
+        <div class="hero-slide-content text-start">
+            {{--  <h5 class="sub-title">We keep pets for pleasure.</h5>  --}}
+            <h2 class="m-0 title">{{$val->title}}</h2>
+            <p class="ms-0">{{$val->description}}</p>
+            <a href="#" class="btn btn-dark btn-hover-primary">Shop Now</a>
+        </div>
+    </div>
+</div>
+    
+@endforeach
+            
 
-            <div class="hero-slide-item swiper-slide">
-                <div class="hero-slide-bg">
-                    <img src="{{asset('assets/site/images/slider/slider1-1.png')}}" alt="Slider Image" />
-                </div>
-                <div class="container">
-                    <div class="hero-slide-content text-start">
-                        <h5 class="sub-title">We keep pets for pleasure.</h5>
-                        <h2 class="m-0 title">Vitamins For all Pets</h2>
-                        <p class="ms-0">We know your concerns when you are looking for a chewing treat for your dog.</p>
-                        <a href="shop.html" class="btn btn-dark btn-hover-primary">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero-slide-item swiper-slide">
-                <div class="hero-slide-bg">
-                    <img src="{{asset('assets/site/images/slider/slider1-2.png')}}" alt="Slider Image" />
-                </div>
-                <div class="container">
-                    <div class="text-center hero-slide-content text-md-end">
-                        <h5 class="sub-title">We keep pets for pleasure.</h5>
-                        <h2 class="m-0 title">Vitamins For all Pets</h2>
-                        <p>We know your concerns when you are looking for a chewing treat for your dog.</p>
-                        <a href="shop.html" class="btn btn-dark btn-hover-primary">Shop Now</a>
-                    </div>
-                </div>
-            </div>
+        
         </div>
 
         <!-- Swiper Pagination Start -->
@@ -360,7 +351,7 @@
 
             <!-- Banner Start -->
             <div class="mb-6 col-md-6 col-12" data-aos="fade-up" data-aos-duration="1000">
-                <a href="shop.html" class="banner">
+                <a href="#" class="banner">
                     <img class="fit-image" src="{{asset('assets/site/images/banner/1.png')}}" alt="Banner Image" />
                 </a>
             </div>
@@ -368,7 +359,7 @@
 
             <!-- Banner Start -->
             <div class="mb-6 col-md-6 col-12" data-aos="fade-up" data-aos-duration="1400">
-                <a href="shop.html" class="banner">
+                <a href="#" class="banner">
                     <img class="fit-image" src="{{asset('assets/site/images/banner/2.png')}}" alt="Banner Image" />
                 </a>
             </div>
@@ -433,7 +424,7 @@
                                         <div class="countdown-area">
                                             <div class="countdown-wrapper" data-countdown="2028/12/28"></div>
                                         </div>
-                                        <a href="shop.html" class="btn btn-primary btn-hover-dark">Shop Now</a>
+                                        <a href="#" class="btn btn-primary btn-hover-dark">Shop Now</a>
                                     </div>
                                     <!-- Deal Content End -->
                                 </div>

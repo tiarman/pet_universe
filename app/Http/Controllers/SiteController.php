@@ -6,8 +6,9 @@ use App\Helper\RedirectHelper;
 use App\Models\Animal;
 use App\Models\AnimalFile;
 use App\Models\Categories;
+use App\Models\LoginSlider;
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\Slider;
 use App\Models\Review;
 use App\Models\SiteReview;
 use App\Models\SubCategory;
@@ -53,6 +54,7 @@ class SiteController extends Controller
     $cartItems = \Cart::content();
     $data['category'] = Categories::where('status', '=', Categories::$statusArrays[0])->get();
     $data['subcategory'] = SubCategory::where('status', '=', SubCategory::$statusArrays[0])->get();
+    $data['slider'] = slider::where('status', '=', slider::$statusArrays[0])->get();
     $data['site_review'] = SiteReview::get();
     // return $datas;
     // return $cartItems;

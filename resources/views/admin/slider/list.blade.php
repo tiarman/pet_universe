@@ -71,9 +71,27 @@
                           @enderror
                         </div>
                       </div>
-                      <div class="col-sm-6">
+                    
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label class="control-label">Status<span class="text-danger">*</span></label>
+                        <select name="status" required class="form-control @error('status') is-invalid @enderror">
+                          <option value="">Choose a statue</option>
+                          @foreach(\App\Models\Slider::$statusArrays as $statys)
+                            <option value="{{ $statys }}"
+                                    @if(old('status') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
+                          @endforeach
+                        </select>
+                        @error('status')
+                        <strong class="text-danger">{{ $errors->first('status') }}</strong>
+                        @enderror
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="control-label">Image <label class="text-danger">*</label></label>
+                            <label class="control-label">Image <label class="text-danger">* Width=1920px Height=610px</label></label>
                             <input type="file" name="image"  placeholder="Slider image" value="{{ old('image') }}"
                                    class="form-control @error('image') is-invalid @enderror">
                             @error('image')
@@ -81,23 +99,6 @@
                             @enderror
                         </div>
                     </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label class="control-label">Status<span class="text-danger">*</span></label>
-                          <select name="status" required class="form-control @error('status') is-invalid @enderror">
-                            <option value="">Choose a statue</option>
-                            @foreach(\App\Models\Slider::$statusArrays as $statys)
-                              <option value="{{ $statys }}"
-                                      @if(old('status') == $statys) selected @endif>{{ ucfirst($statys) }}</option>
-                            @endforeach
-                          </select>
-                          @error('status')
-                          <strong class="text-danger">{{ $errors->first('status') }}</strong>
-                          @enderror
-                        </div>
-                      </div>
                     </div>
                     <div class="row">
                       <div class="col-sm-12">

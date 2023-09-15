@@ -45,11 +45,11 @@ class SliderController extends Controller
             //    dd($request->all());
         $message = '<strong>Congratulations!!!</strong> Slider successfully';
         $rules = [
-            'title' => 'nullable|string',
+            'title' => 'nullable|string|max:100',
             'sub_title' => 'nullable|string',
             'slug' => 'nullable|string',
-            'description' => 'nullable|string',
-            'images' => 'nullable|string',
+            'description' => 'nullable|string|max:130',
+            'image' => 'nullable|dimensions:width=1920,height=610',
             'status' => ['required', Rule::in(\App\Models\Slider::$statusArrays)],
             // 'status' = ['required|string', Rule::in(\App\Models\Slider::$statusArrays)],
         ];
