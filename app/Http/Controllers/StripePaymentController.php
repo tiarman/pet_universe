@@ -45,7 +45,7 @@ class StripePaymentController extends Controller
     
             // dd($order);
             $order_id = DB::table('orders')->insertGetId($order);
-            return $order_id;
+            // return $order_id;
             $content = \Cart::content();
             $details = array();
             foreach ($content as $row) {
@@ -129,6 +129,8 @@ class StripePaymentController extends Controller
             "cus_phone": "'.$request->phone.'",
             "opt_a": "'.$request->user_id.'",
             "opt_b": "'.Auth::id().'",
+            "opt_c": "'.$request->city.'",
+            "opt_d": "'.$request->post_code.'",
             "type": "json"
         }',
         CURLOPT_HTTPHEADER => array(
@@ -195,15 +197,15 @@ class StripePaymentController extends Controller
             $order['phone'] = $request->cus_phone;
             $order['shipping_address'] = $request->cus_add1;
             $order['email'] = $request->cus_email;
-            $order['post_code'] = $request->cus_postcode;
-            $order['city'] = $request->cus_city;
+            $order['post_code'] = $request->opt_d;
+            $order['city'] = $request->opt_c;
             $order['subtotal'] = $request->amount;
             $order['total'] = \Cart::total();
             $order['payment_type'] = 'amarpay';
 
     
             $order_id = DB::table('orders')->insertGetId($order);
-            // return $order_id;
+            // return $order;
             $content = \Cart::content();
             $details = array();
             foreach ($content as $row) {

@@ -235,13 +235,33 @@
                             </li>
                         @endif  --}}
 
-                        @if (
+                        {{--  @if (
                             \App\Helper\CustomHelper::canView(
                                 'Create SiteReview|Manage SiteReview|Delete SiteReview|View SiteReview|List Of SiteReview',
                                 'Super Admin|Customer'))
                             <li><a href="{{ route('sitereview.list') }}" class="waves-effect">
                                     <i class="mdi mdi-image-album"></i>
                                     <span> Review</span>
+                                </a></li>
+                        @endif  --}}
+
+
+                        @if (
+                            \App\Helper\CustomHelper::canView(
+                                'Create SiteReview|Manage SiteReview|Delete SiteReview|View SiteReview|List Of SiteReview',
+                                'Customer'))
+                            <li><a href="{{ route('sitereview.list') }}" class="waves-effect">
+                                    <i class="mdi mdi-image-album"></i>
+                                    <span>Testimonial</span>
+                                </a></li>
+                        @endif
+                          @if (
+                            \App\Helper\CustomHelper::canView(
+                                'Create SiteReview|Manage SiteReview|Delete SiteReview|View SiteReview|List Of SiteReview',
+                                'Super Admin'))
+                            <li><a href="{{ route('sitereview.list_admin') }}" class="waves-effect">
+                                    <i class="mdi mdi-image-album"></i>
+                                    <span> Manage Testimonials</span>
                                 </a></li>
                         @endif
 

@@ -115,7 +115,7 @@
                                                 <th>Payment Type</th>
                                                 <th>Customer Info</th>
                                                 <th width="200">Amount</th>
-                                                <th class="hidden-phone" width="40">Payment Time</th>
+                                                {{--  <th class="hidden-phone" width="40">Payment Time</th>  --}}
                                                 <th width="100">Action</th>
                                                 <th width="100">Status</th>
 
@@ -160,8 +160,8 @@
 
                                                     </td>
                                                     {{--  <td class="p-1">{{ $val->amount }}</td>  --}}
-                                                    <td width="200" class="p-1">
-                                                        {{ date('F d, Y h:i A', strtotime($val->created_at)) }}</td>
+                                                    {{--  <td width="200" class="p-1">
+                                                        {{ date('F d, Y h:i A', strtotime($val->created_at)) }}</td>  --}}
 
                                                     @php
                                                         $statusColor = '';

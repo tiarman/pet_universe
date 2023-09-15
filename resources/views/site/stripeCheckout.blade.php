@@ -140,7 +140,7 @@
                             <!-- Town or City Name Input Start -->
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
-                                    <label>Town / City <span class="required">*</span></label>
+                                    <label>Shipping Address <span class="required">*</span></label>
                                     <input id="shipping_city" name="city" placeholder="City name" type="text">
                                 </div>
                             </div>

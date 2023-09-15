@@ -197,6 +197,7 @@ Route::middleware([
         Route::get('/view', [SiteReviewController::class, 'view'])->middleware('role_or_permission:Super Admin|View SiteReview')->name('view');
         Route::delete('/destroy', [SiteReviewController::class, 'destroy'])->middleware('role_or_permission:Super Admin|Customer|Delete SiteReview')->name('destroy');
         Route::get('/list', [SiteReviewController::class, 'index'])->middleware('role_or_permission:Super Admin|Customer|List of SiteReview')->name('list');
+        Route::get('/list_admin', [SiteReviewController::class, 'list_admin'])->middleware('role_or_permission:Super Admin|Customer|List of SiteReview')->name('list_admin');
     });
 
 

@@ -162,7 +162,7 @@
                                     <li><a href="{{route('login')}}">Login</a></li>
 
                                     @else
-                                    <li><a href="{{route('dashboard')}}">Dashboard</a></li>
+                                    <li><a href="{{route('order.list')}}">Dashboard</a></li>
                                     <li><a href="{{route('logout')}}">Logout</a></li>
 
                                     @endguest

@@ -22,6 +22,18 @@ class SiteReviewController extends Controller
         return view('admin.sitereview.list', $data);
     }
 
+    public function list_admin($id = null)
+    {
+        // $data['sitereview'] = SiteReview::find($id);
+        $user_id = auth()->id();
+        
+        // $data['data'] = SiteReview::where('user_id', 'id')->orderby('created_at', 'desc')->get();
+        // $data['data'] = SiteReview::where('id', $user_id)->get();
+        $data['data'] = SiteReview::get();
+
+        return view('admin.sitereview.adminreviewlist', $data);
+    }
+
 
     public function create()
     {

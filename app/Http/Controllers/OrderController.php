@@ -20,13 +20,15 @@ class OrderController extends Controller
         $role = Auth::user()->roles->pluck('name');
         if ($role[0] == 'Super Admin') {
             $datas['orders']    = Order::with('user')->get();
+            // return $datas;
             $datas['role']      = $role;
-            $total_order = DB::table('orders')->where('user_id', Auth::id())->count();
-            $complete_order = DB::table('orders')->where('user_id', Auth::id())->where('status', 'pending')->count();
-            $pending = DB::table('orders')->where('user_id', Auth::id())->where('status', 'complete')->count();
+            $total_order = DB::table('orders')->count();
+            // return $total_order;
+            $complete_order = DB::table('orders')->where('status', 'complete')->count();
+            $pending = DB::table('orders')->where('status', 'pending')->count();
             $cancel_order = DB::table('orders')->where('user_id', Auth::id())->where('status', 5)->count();
             $return_order = DB::table('orders')->where('user_id', Auth::id())->where('status', 4)->count();
-            // return $datas;
+            // return $role[0];
             return view('admin.order.index', $datas, compact('total_order', 'complete_order', 'pending', 'cancel_order', 'return_order'));
         } else {
             $datas['orders']    = Order::where('user_id', auth()->id())->with('user')->get();
