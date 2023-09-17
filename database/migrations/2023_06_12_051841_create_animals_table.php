@@ -25,7 +25,12 @@ return new class extends Migration
             $table->string('purchase_price')->nullable();
             $table->string('selling_price')->nullable();
             $table->string('discount_price')->nullable();
-            $table->string('stock_quantity')->nullable();            
+            $table->string('stock_quantity')->nullable();
+            $table->string('pet_tag')->nullable();
+            $table->string('pet_behaviour')->nullable();
+            $table->string('pet_habbit')->nullable();
+            $table->string('health_info')->nullable();
+            $table->string('certification_info')->nullable();
             $table->string('image')->nullable();
             $table->string('featured')->default(Animal::$featuredArrays[0]);
             $table->string('today_deal')->default(Animal::$todayDealArrays[0]);

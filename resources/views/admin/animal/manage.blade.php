@@ -33,7 +33,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label class="control-label">animal Name</label>
+                                        <label class="control-label">Animal Name</label>
                                         <input type="text" name="name" placeholder="Slider name"
                                                value="{{ old('name', $animal->name) }}"
                                                class="form-control @error('name') is-invalid @enderror">
@@ -175,7 +175,7 @@
                             <div class="row">
                                
 
-                                <div class="col-sm-6">
+                                {{-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="control-label">Pickuppoint<span class="text-danger">*</span></label>
                                         <select name="pickup_point_id" required class="form-control @error('pickup_point_id') is-invalid @enderror">
@@ -188,7 +188,7 @@
                                         <strong class="text-danger">{{ $errors->first('pickup_point_id') }}</strong>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -245,6 +245,68 @@
                                                class="form-control @error('discount_price') is-invalid @enderror">
                                         @error('discount_price')
                                         <strong class="text-danger">{{ $errors->first('discount_price') }}</strong>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Pet Tag</label>
+                                        <input type="text" name="pet_tag"
+                                               placeholder="Pet Tag"
+                                               value="{{ old('pet_tag', $animal->pet_tag) }}"
+                                               class="form-control @error('pet_tag') is-invalid @enderror">
+                                        @error('pet_tag')
+                                        <strong class="text-danger">{{ $errors->first('pet_tag') }}</strong>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Pet Behaviour</label>
+                                        <input type="text" name="pet_behaviour"
+                                               placeholder="Pet Behaviour"
+                                               value="{{ old('pet_behaviour', $animal->pet_behaviour) }}"
+                                               class="form-control @error('pet_behaviour') is-invalid @enderror">
+                                        @error('pet_behaviour')
+                                        <strong class="text-danger">{{ $errors->first('pet_behaviour') }}</strong>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Pet Habbit</label>
+                                        <input type="text" name="pet_habbit"
+                                               placeholder="Pet Habbit"
+                                               value="{{ old('pet_habbit', $animal->pet_habbit) }}"
+                                               class="form-control @error('pet_habbit') is-invalid @enderror">
+                                        @error('pet_habbit')
+                                        <strong class="text-danger">{{ $errors->first('pet_habbit') }}</strong>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Pet Vaccination / Health Info <label
+                                                class="text-danger">*</label></label>
+                                        <input type="file" name="health_info" placeholder="health_info"
+                                               value="{{ old('health_info', $animal->health_info) }}"
+                                               class="form-control @error('health_info') is-invalid @enderror">
+                                        @error('health_info')
+                                        <strong class="text-danger">{{ $errors->first('health_info') }}</strong>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Certification Info <label
+                                                class="text-danger">*</label></label>
+                                        <input type="file" name="certification_info" placeholder="Slider certification_info"
+                                               value="{{ old('certification_info', $animal->certification_info) }}"
+                                               class="form-control @error('certification_info') is-invalid @enderror">
+                                        @error('certification_info')
+                                        <strong class="text-danger">{{ $errors->first('certification_info') }}</strong>
                                         @enderror
                                     </div>
                                 </div>

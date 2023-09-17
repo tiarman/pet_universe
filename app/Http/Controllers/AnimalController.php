@@ -59,18 +59,21 @@ class AnimalController extends Controller
         $message = '<strong>Congratulations!!!</strong> Animal successfully';
         $rules = [
 
-            'category_id' => 'nullable|string',
-            'subcategory_id' => 'nullable|string',
-            'name' => 'nullable|string',
-            'purchase_price' => 'nullable|string',
-            'selling_price' => 'nullable|string',
-            'discount_price' => 'nullable|string',
-            'stock_quantity' => 'nullable|string',
-            'description' => 'nullable|string',
-            'images' => 'nullable|string',
-            'featured' => ['required', Rule::in(\App\Models\Animal::$featuredArrays)],
-            'today_deal' => 'nullable|string',
-            'status' => ['required', Rule::in(\App\Models\Animal::$statusArrays)],
+            'category_id'           => 'nullable|string',
+            'subcategory_id'        => 'nullable|string',
+            'name'                  => 'nullable|string',
+            'purchase_price'        => 'nullable|string',
+            'selling_price'         => 'nullable|string',
+            'discount_price'        => 'nullable|string',
+            'pet_tag'               => 'nullable|string',
+            'pet_behaviour'         => 'nullable|string',
+            'pet_habbit'            => 'nullable|string',
+            'stock_quantity'        => 'nullable|string',
+            'description'           => 'nullable|string',
+            'images'                => 'nullable|string',
+            'featured'              => ['required', Rule::in(\App\Models\Animal::$featuredArrays)],
+            'today_deal'            => 'nullable|string',
+            'status'                => ['required', Rule::in(\App\Models\Animal::$statusArrays)],
             // 'status' = ['required|string', Rule::in(\App\Models\Animal::$statusArrays)],
         ];
 
@@ -81,34 +84,58 @@ class AnimalController extends Controller
         } else {
             $animal = new Animal();
             $message = $message . ' created';
+            // return $request;
         }
         $request->validate($rules);
 
         try {
-            $animal->category_id = $request->category_id;
-            $animal->subcategory_id = $request->subcategory_id;
-            $animal->name = $request->name;
-            $animal->purchase_price = $request->purchase_price;
-            $animal->selling_price = $request->selling_price;
-            $animal->discount_price = $request->discount_price;
-            $animal->stock_quantity = $request->stock_quantity;
-            $animal->description = $request->description;
-            $animal->featured = $request->featured;
-            $animal->today_deal = $request->today_deal;
-            $animal->status = $request->status;
+            $animal->category_id            = $request->category_id;
+            $animal->subcategory_id         = $request->subcategory_id;
+            $animal->name                   = $request->name;
+            $animal->purchase_price         = $request->purchase_price;
+            $animal->selling_price          = $request->selling_price;
+            $animal->discount_price         = $request->discount_price;
+            $animal->pet_tag                = $request->pet_tag;
+            $animal->pet_behaviour          = $request->pet_behaviour;
+            $animal->pet_habbit             = $request->pet_habbit;
+            $animal->stock_quantity         = $request->stock_quantity;
+            $animal->description            = $request->description;
+            $animal->featured               = $request->featured;
+            $animal->today_deal             = $request->today_deal;
+            $animal->status                 = $request->status;
 
 
-            $oldImage = $animal->image;
+            $oldImage               = $animal->image;
+            $oldImageHealth         = $animal->health_info;
+            $oldImageCertification  = $animal->certification_info;
             //            return $animal;
             if ($request->hasFile('image')) {
-                $logo = CustomHelper::storeImage($request->file('image'), '/animal/');
-                if ($logo != false) {
-                    $animal->image = $logo;
+                $logo1 = CustomHelper::storeImage($request->file('image'), '/animal/');
+                if ($logo1 != false) {
+                    $animal->image = $logo1;
+                }
+            }
+            if ($request->hasFile('health_info')) {
+                $logo2 = CustomHelper::storeImage($request->file('health_info'), '/animal/health/');
+                if ($logo2 != false) {
+                    $animal->health_info = $logo2;
+                }
+            }
+            if ($request->hasFile('certification_info')) {
+                $logo3 = CustomHelper::storeImage($request->file('certification_info'), '/animal/certificate/');
+                if ($logo3 != false) {
+                    $animal->certification_info = $logo3;
                 }
             }
             if ($animal->save()) {
-                if ($oldImage !== null && isset($logo)) {
+                if ($oldImage !== null && isset($logo1)) {
                     CustomHelper::deleteFile($oldImage);
+                }
+                if ($oldImageHealth !== null && isset($logo2)) {
+                    CustomHelper::deleteFile($oldImageHealth);
+                }
+                if ($oldImageCertification !== null && isset($logo3)) {
+                    CustomHelper::deleteFile($oldImageCertification);
                 }
                 if ($request->hasFile('image_upload')) {
                     foreach ($request->file('image_upload') as $k => $file) {
