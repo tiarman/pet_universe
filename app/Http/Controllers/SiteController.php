@@ -105,7 +105,6 @@ class SiteController extends Controller
       // return $product_file;
       // return $review;
 
-
       return view('site.animal_details', $data, compact('animal', 'related_animal', 'animal_files', 'review', 'totalreview', 'cartItems'));
     }
     return RedirectHelper::backWithWarning('<strong>Sorry!!! </strong> Animal not found.');

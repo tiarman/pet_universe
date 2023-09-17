@@ -134,6 +134,12 @@
                     </div>
                     <!-- Product Inventory End -->
 
+                   <div class="d-flex">
+                    <p class=" desc-content"><strong>Pet Tag:</strong> {{$animal->pet_tag}}</p>
+                    <p class="ms-5 desc-content"><strong>Pet Behaviour:</strong> {{$animal->pet_behaviour}}</p>
+                    <p class="ms-5 desc-content"><strong>Pet Habbit:</strong> {{$animal->pet_habbit}}</p>
+                   </div>
+
                     <!-- Description Start -->
                     <p class="mb-5 desc-content">{{$animal->description}}</p>
                     <!-- Description End -->
@@ -225,7 +231,18 @@
 
             <!-- Single Product Tab Start -->
             <div class="col-lg-12 single-product-tab">
-                <ul class="nav nav-tabs mb-n3" id="myTab" role="tablist">
+
+                <div class="d-flex justify-content-between mb-5">
+                    <div>
+                        <h4 class="text-center mb-3">Health Information</h4>
+                        <img width="500px" height="400px" src="{{asset($animal->health_info)}}" alt="">
+                    </div>
+                    <div>
+                        <h4 class="text-center mb-3">Certificate Information</h4>
+                        <img width="500px" height="400px" src="{{asset($animal->certification_info)}}" alt="">
+                    </div>
+                </div>
+                <ul class="nav nav-tabs mb-n3 mt-5" id="myTab" role="tablist">
                     <li class="mb-3 nav-item">
                         <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#connect-1" role="tab" aria-selected="true">Description</a>
                     </li>
